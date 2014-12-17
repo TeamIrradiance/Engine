@@ -10,6 +10,16 @@
 #pragma once
 #include "IBaseEngine.h"
 
+struct EngineSetup
+{
+  //Engine Settings
+  bool consoleActive;
+  int windowsSizeX;
+  int windowSizeY;
+  int fps_cap;
+
+};
+
 /******************************************************************************/
 /*!
  \class   EngineCore
@@ -34,6 +44,10 @@ struct EngineCore
   //GLOBAL VARIABLES
   bool g_bGameIsActive;
   GLFWwindow* g_glWindow;
+  EngineSetup settings;
+
+  //Debugging purposes
+  bool m_bIsInitialized;
 };
 
 extern EngineCore* gEngineCore;

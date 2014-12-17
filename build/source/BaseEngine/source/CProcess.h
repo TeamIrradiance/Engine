@@ -23,7 +23,7 @@ namespace BaseEngine
  */
 /******************************************************************************/
   #define AddProcess(a)\
-  Global::gEngineCore->g_csProcessManager->AddProcessf(a);
+  gEngineCore->g_csProcessManager->AddProcessf(a);
 
 /******************************************************************************/
 /*!
@@ -42,8 +42,8 @@ namespace BaseEngine
     friend class CProcessManager;
 
   public:
-    virtual void VUpdate(const double dt){};
-    virtual void VInit(){};
+    virtual void VUpdate(const double dt) = 0;
+    virtual void VInit() = 0;
 
   protected:
     std::string mName;  // for debugging purposes

@@ -33,7 +33,7 @@ namespace BaseEngine
   void IframeRate::Update()
   {
     _private->frameRate.Update();
-      // update public dt value
+    //  // update public dt value
     m_dDt= _private->frameRate.m_dDt;
      // update public timeElapsed value
     m_dTimeElapsed = _private->frameRate.m_dTimeElapsed;
@@ -43,6 +43,7 @@ namespace BaseEngine
   {
     _private = new pFrameRate;
     gEngineCore->g_csFramerateControl = this;
+    m_dDt = 0.f;
   }
 
   IframeRate::~IframeRate(void)

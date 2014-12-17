@@ -23,7 +23,13 @@ EngineCore::EngineCore()
   ErrorIf(gEngineCore != 0,"Engine is created!");
   gEngineCore = this;
 
-  gEngineCore->g_csProcessManager = NULL;
+  g_bGameIsActive = true;
+  m_bIsInitialized = false;
+
+  g_csProcessManager = NULL;
+  g_csFramerateControl = NULL;
+  g_csProcessManager = new BaseEngine::CProcessManager;
+  g_csFramerateControl = new BaseEngine::IframeRate;
 }
 
 /******************************************************************************/
@@ -34,7 +40,8 @@ EngineCore::EngineCore()
 /******************************************************************************/
 EngineCore::~EngineCore()
 {
-
+  delete g_csProcessManager;
+  delete g_csFramerateControl;
 };
 
 /******************************************************************************/
@@ -46,6 +53,9 @@ EngineCore::~EngineCore()
 void EngineCore::Init()
 {
   g_csProcessManager->InitProcesses();
+  g_csFramerateControl->Init(settings.fps_cap);
+
+  m_bIsInitialized = true;
 }
 
 /******************************************************************************/
@@ -56,18 +66,11 @@ void EngineCore::Init()
 /******************************************************************************/
 void EngineCore::Update()
 {
+  ErrorIf(!m_bIsInitialized,"Engine hasn't been initialized!");
   while(g_bGameIsActive)
   {
-      //glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS
-  while(!glfwWindowShouldClose(gEngineCore->g_glWindow) )
-  {
-
-    // Draw nothing, see you in tutorial 2 !
- 
-      // Swap buffers
-      glfwSwapBuffers(gEngineCore->g_glWindow);
-      glfwPollEvents();
-
-  }
+    g_csFramerateControl->StartTime();
+    g_csProcessManager->UpdateProcesses(g_csFramerateControl->m_dDt);
+    g_csFramerateControl->Update();
   }
 }

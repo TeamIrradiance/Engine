@@ -27,9 +27,9 @@ Variant::Variant(std::string _name)
 
 Variant::~Variant()
 {
-  if(m_data != NULL)
-    delete m_data; 
-  m_data = NULL;
+  //if(m_data != NULL)
+  //  delete m_data; 
+  //m_data = NULL;
 }
 
 
