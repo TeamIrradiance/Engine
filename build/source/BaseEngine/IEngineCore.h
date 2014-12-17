@@ -9,15 +9,17 @@
 /******************************************************************************/
 #pragma once
 #include "IBaseEngine.h"
+#define EngineSettings g_csEngineCore->settings
+
 
 struct EngineSetup
 {
   //Engine Settings
   bool consoleActive;
-  int windowsSizeX;
-  int windowSizeY;
+  int windowsX;
+  int windowsY;
   int fps_cap;
-
+  std::string application_name;
 };
 
 /******************************************************************************/
@@ -50,4 +52,4 @@ struct EngineCore
   bool m_bIsInitialized;
 };
 
-extern EngineCore* gEngineCore;
+extern EngineCore* g_csEngineCore;

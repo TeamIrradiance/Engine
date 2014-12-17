@@ -21,8 +21,8 @@ namespace BaseEngine
   CProcessManager::CProcessManager()
   {
     //Assert if user try to initialize ProcessManager twice or recreate it
-    ErrorIf(gEngineCore->g_csProcessManager != NULL, "Processmanager has been created!");
-    gEngineCore->g_csProcessManager = this;
+    ErrorIf(g_csEngineCore->g_csProcessManager != NULL, "Processmanager has been created!");
+    g_csEngineCore->g_csProcessManager = this;
   }
 
 /******************************************************************************/
@@ -48,6 +48,7 @@ namespace BaseEngine
 /******************************************************************************/
   void CProcessManager::AddProcessf( CProcess* pProcess)
   {
+    ErrorIf(pProcess == NULL, "%s process does not exist", pProcess->mName);
     mProcessList.push_back(pProcess);
   }
 

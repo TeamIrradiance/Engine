@@ -80,11 +80,11 @@ int main (void)
   EngineCore Engine;
   Engine.settings.consoleActive = false;
   Engine.settings.fps_cap = 60;
-  Engine.settings.windowSizeY = 500;
-  Engine.settings.windowSizeY = 500;
+  Engine.settings.windowsX = 500;
+  Engine.settings.windowsY = 500;
+  Engine.settings.application_name = "Irradiance";
 
   AddProcess(new Process::WindowProcess);
-
 
   Engine.Init();
   Engine.Update();

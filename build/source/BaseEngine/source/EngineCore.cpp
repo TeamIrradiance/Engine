@@ -11,7 +11,7 @@
 #include <Precompiled.h>
 #include "IEngineCore.h"
 
-EngineCore* gEngineCore = 0;
+EngineCore* g_csEngineCore = 0;
 /******************************************************************************/
 /*!
   \class   EngineCore()
@@ -20,8 +20,8 @@ EngineCore* gEngineCore = 0;
 /******************************************************************************/
 EngineCore::EngineCore()
 {
-  ErrorIf(gEngineCore != 0,"Engine is created!");
-  gEngineCore = this;
+  ErrorIf(g_csEngineCore != 0,"Engine is created!");
+  g_csEngineCore = this;
 
   g_bGameIsActive = true;
   m_bIsInitialized = false;

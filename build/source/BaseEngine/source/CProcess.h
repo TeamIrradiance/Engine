@@ -23,7 +23,7 @@ namespace BaseEngine
  */
 /******************************************************************************/
   #define AddProcess(a)\
-  gEngineCore->g_csProcessManager->AddProcessf(a);
+  g_csEngineCore->g_csProcessManager->AddProcessf(a);
 
 /******************************************************************************/
 /*!
