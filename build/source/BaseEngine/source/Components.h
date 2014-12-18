@@ -7,6 +7,7 @@
  \brief
  */
 /******************************************************************************/
+#pragma once
 #include <Precompiled.h>
 #include "IData.h"
 
@@ -58,7 +59,7 @@ namespace BaseEngine
     {
       if(components[cType<T>::GetType()] != NULL) return;  //if it has existed return
 
-      T* cmp = new T();    //Allocate component
+      T* cmp = new T();    // Allocate component
       cmp->base = this;    //assign created component's base
       components[cType<T>::GetType()] = cmp; //store it
     }

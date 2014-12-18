@@ -24,7 +24,7 @@ int main (void)
   Engine.settings.application_name = "Irradiance";
 
   AddProcess(new Process::WindowProcess);
-
+  AddProcess(new Process::GraphicsProcess);
   Engine.Init();
   Engine.Update();
 

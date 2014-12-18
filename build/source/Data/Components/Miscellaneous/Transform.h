@@ -9,6 +9,7 @@
 /******************************************************************************/
 #include <Precompiled.h>
 #include "Components.h"
+#include "MathLib.h"
 
 namespace Component
 {

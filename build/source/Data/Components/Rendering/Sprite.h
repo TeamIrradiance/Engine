@@ -8,7 +8,7 @@
 // */
 //******************************************************************************/
 #include "Components.h"
-
+#include "MathLib.h"
 namespace Component
 {
 //******************************************************************************/
@@ -24,5 +24,8 @@ namespace Component
     void Serialize();
     Sprite();
     ~Sprite();
+
+    //DATA
+    Vector2 size;
   };
 }

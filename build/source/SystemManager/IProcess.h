@@ -10,3 +10,4 @@
 #pragma once
 #include "Process_Template.h"
 #include "WindowProcess.h"
+#include "GraphicsProcess.h"

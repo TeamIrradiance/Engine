@@ -9,5 +9,6 @@
 /******************************************************************************/
 #include "Precompiled.h"
 #include "Components.h"
+#include "Transform.h"
 #include "MathLib.h"
 

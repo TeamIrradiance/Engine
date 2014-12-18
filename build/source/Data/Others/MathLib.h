@@ -7,6 +7,8 @@
  \brief
  */
 /******************************************************************************/
+#pragma once
+
 #include <Precompiled.h>
 #include "IData.h"
 
