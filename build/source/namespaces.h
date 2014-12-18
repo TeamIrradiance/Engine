@@ -10,3 +10,4 @@
 
 namespace BaseEngine{}
 namespace Process{}
+namespace Component{}

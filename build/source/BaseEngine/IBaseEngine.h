@@ -13,3 +13,4 @@
 #include "IDebugAssertion.h"
 #include "CProcess.h"
 #include "IEngineCore.h"
+#include "DataManager.h"
