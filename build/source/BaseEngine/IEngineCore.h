@@ -38,10 +38,12 @@ struct EngineCore
 
   void Init();
   void Update();
+  void DefineMeta();
 
   //GLOBAL SYSTEMS
   BaseEngine::IframeRate* g_csFramerateControl;
   BaseEngine::CProcessManager* g_csProcessManager;
+  //BaseEngine::DataManager* g_csDatamanager;
 
   //GLOBAL VARIABLES
   bool g_bGameIsActive;

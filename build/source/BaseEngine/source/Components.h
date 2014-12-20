@@ -10,29 +10,12 @@
 #pragma once
 #include <Precompiled.h>
 #include "IData.h"
-
+#include "TypeInfo.h"
+#include "DataManager.h"
 namespace BaseEngine
 {
   class GameObject;
   class Component;
-
-/******************************************************************************/
-/*!
- \class   cType
- \brief  for component map indexing purposes
- */
-/******************************************************************************/
-  template<typename T>
-  struct cType // start with c to be able to differentiate with "type" c means class
-  {
-    static int* GetType(void) //get a unique type identifier in the form of a void* for any class T
-    {
-      static int typeId;
-      return &typeId;
-    }
-
-    T* type;
-  };
 
 /******************************************************************************/
 /*!
@@ -42,6 +25,7 @@ namespace BaseEngine
 /******************************************************************************/
   class GameObject
   {
+  public:
     GameObject(){};     
     ~GameObject(){};   //@DO NOTHING, DELETE EVERYTHING IN DATA MANAGER
     
@@ -49,7 +33,8 @@ namespace BaseEngine
     T* Get()
     {
       //get static int* from cType it's the index of map
-      T* returnThis = (T*)(components[cType<T>().GetType()]);
+      T* returnThis = (T*)(m_csChild[cType<T>().GetType()]);
+
       if(returnThis) return returnThis;  //check if the component exist.
       else           return NULL;  //return NULL 
     }
@@ -57,15 +42,14 @@ namespace BaseEngine
     template<typename T>
     void Add()
     {
-      if(components[cType<T>::GetType()] != NULL) return;  //if it has existed return
+      if(m_csChild[cType<T>::GetType()] != NULL) return;  //if it has existed return
 
       T* cmp = new T();    // Allocate component
-      cmp->base = this;    //assign created component's base
-      components[cType<T>::GetType()] = cmp; //store it
+      cmp->m_csBase = this;    //assign created component's base
+      m_csChild[cType<T>::GetType()] = cmp; //store it
     }
 
-  private:
-    std::map<int*,Component*> components;
+    std::map<int*,Component*> m_csChild; //name it as child to have the same structure as levels
   };
 
 /******************************************************************************/
@@ -74,14 +58,13 @@ namespace BaseEngine
  \brief  
  */
 /******************************************************************************/
+  //@@TODO:DELETE IDATA
   class Component : public ::IData
   {
   public:
+    virtual void DefineMeta() = 0;
     friend class GameObject;
-    virtual void ToolInit() = 0;
-    virtual void Serialize() = 0;
-
-  private:
-    GameObject* base;
+    GameObject* m_csBase;
+    std::string m_sName;
   };
 }

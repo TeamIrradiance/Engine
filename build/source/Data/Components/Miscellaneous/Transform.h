@@ -7,6 +7,7 @@
  \brief
  */
 /******************************************************************************/
+#pragma once
 #include <Precompiled.h>
 #include "Components.h"
 #include "MathLib.h"
@@ -23,14 +24,14 @@ namespace Component
 //@@ Only this 4 function is allowed in component class
   class Transform: public BaseEngine::Component
   {
-    void ToolInit();
-    void Serialize();
+  public:
     Transform();
     ~Transform();
+    void DefineMeta();
 
     //DATA
     Vector3 translation;
-    Vector2 scale;
+    Vector3 scale;
     float rotation;
   };
 }

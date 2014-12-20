@@ -22,14 +22,13 @@
 class Vector2:public IData
 {
 public:
-  void ToolInit();
-  void Serialize();
   Vector2(){x = y = 0;};
   Vector2(glm::vec2 vec)
   {
     x = vec.x;
     y = vec.y;
   };
+  void DefineMeta();
   
   union
   {
@@ -57,8 +56,6 @@ public:
 class Vector3:public IData
 {
 public:
-  void ToolInit();
-  void Serialize();
   Vector3(){x = y = z = 0;}
   Vector3(glm::vec3 vec)
   {
@@ -66,6 +63,7 @@ public:
     y = vec.y;
     z = vec.z;
   };
+  void DefineMeta();
 
   union
   {
@@ -93,8 +91,6 @@ public:
 class Vector4:public IData
 {
 public:
-  void ToolInit();
-  void Serialize();
   Vector4(){x = y = z = w = 0;}
   Vector4(glm::vec4 vec)
   {
@@ -103,6 +99,7 @@ public:
     z = vec.z;
     w = vec.w;
   };
+  void DefineMeta();
 
   union
   {

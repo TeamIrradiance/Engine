@@ -11,24 +11,29 @@
 #include <vld.h> // if it does give an error, Download visual leak detector
 #include "IBaseEngine.h"
 #include "IProcess.h"
-
-#define CONNECT(Vec3,data)\
-
+#include "TypeReflection_Sample.h"
+#include "Json.h"
+struct Vec3
+{
+  float x, y, z;
+};
 int main (void)
 {
   EngineCore Engine;
-  Engine.settings.consoleActive = false;
+  Engine.settings.consoleActive = true;
   Engine.settings.fps_cap = 60;
-  Engine.settings.windowsX = 500;
+  Engine.settings.windowsX = 100;
   Engine.settings.windowsY = 500;
   Engine.settings.application_name = "Irradiance";
 
   AddProcess(new Process::WindowProcess);
   AddProcess(new Process::GraphicsProcess);
+  Engine.DefineMeta();
   Engine.Init();
+  type_sample();
+
+
   Engine.Update();
-
-
 
   return 0;
 }

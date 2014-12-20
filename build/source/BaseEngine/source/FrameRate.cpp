@@ -22,7 +22,7 @@ namespace BaseEngine
     m_dFrequency = double(li.QuadPart);
     QueryPerformanceCounter(&li);
 
-      //frameRate System variable initialization
+      //frameRate System Variant initialization
     m_dCurTime = 0.0;
     m_dPrevTime = 0.0;
     m_dFrameRate = frameRate;

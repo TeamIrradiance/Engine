@@ -10,7 +10,8 @@
 #pragma once
 #include <Precompiled.h>
 #include "IEngineCore.h"
-
+#include "ITypeReflection.h"
+#include "IComponents.h"
 EngineCore* g_csEngineCore = 0;
 /******************************************************************************/
 /*!
@@ -73,4 +74,56 @@ void EngineCore::Update()
     g_csProcessManager->UpdateProcesses(g_csFramerateControl->m_dDt);
     g_csFramerateControl->Update();
   }
+}
+
+/******************************************************************************/
+/*!
+  \class   Update()
+  \brief   game loop
+  */
+/******************************************************************************/
+void EngineCore::DefineMeta()
+{
+  using namespace Component;
+  using namespace std;
+    // Add some type information to the reflection system
+  meta_begin( int )
+  meta_end()
+  meta_begin( float )
+  meta_end()
+  meta_begin( double )
+  meta_end()
+  meta_begin( string )
+  meta_end()
+  
+  meta_begin( Vector3 )
+  meta_child(Vector3,x)
+  meta_child(Vector3,y)
+  meta_child(Vector3,z)
+  meta_end()
+
+  meta_begin( Vector4 )
+  meta_child(Vector4,x)
+  meta_child(Vector4,y)
+  meta_child(Vector4,z)
+  meta_child(Vector4,w)
+  meta_end()
+
+  meta_begin( Vector2 )
+  meta_child(Vector2,x)
+  meta_child(Vector2,y)
+  meta_end()
+
+  meta_begin( Transform )
+  meta_child(Transform,translation)
+  meta_child(Transform,scale)
+  meta_child(Transform,rotation)
+  meta_end()
+
+  meta_begin(Sprite)
+  meta_child(Sprite,size)
+  meta_end()
+
+
+
 }

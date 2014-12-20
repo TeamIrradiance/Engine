@@ -8,7 +8,41 @@
  */
 /******************************************************************************/
 #include "Precompiled.h"
-#include "Components.h"
-#include "Transform.h"
-#include "MathLib.h"
+#include "ITypeReflection.h"
+#include "IComponents.h"
 
+namespace Component
+{
+/******************************************************************************/
+/*!
+\fn   Transform()
+\brief   Constructor
+*/
+/******************************************************************************/
+  Transform::Transform()
+  {
+    m_sName = Tokenize(typeid(Transform).name());
+  }
+
+/******************************************************************************/
+/*!
+\fn   ~Transform()
+\brief   Destructor
+*/
+/******************************************************************************/
+  Transform::~Transform()
+  {
+
+  }
+
+/******************************************************************************/
+/*!
+\fn   DefineMeta()
+\brief   define meta here
+*/
+/******************************************************************************/
+  void Transform::DefineMeta()
+  {
+
+  }
+}

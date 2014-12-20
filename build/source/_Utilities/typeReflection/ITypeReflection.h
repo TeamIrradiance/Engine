@@ -1,69 +1,46 @@
-/******************************************************************************/
-/*!
- \file   ITypeReflection.h
- \author Aji Suprana
- \par    Course: GAM250
- \par    All content ?2014 DigiPen (USA) Corporation, all rights reserved.
- \brief
- */
-/******************************************************************************/
-#pragma once
-#include <Precompiled.h>
+#include "TypeReflectionmacros.h"
 #include "Variant.h"
-#include "TypeManager.h"
-#include "TypeData.h"
+
+// Add a type to the type infos array. For now this just stores
+// name and size of a type.
 
 /******************************************************************************/
 /*!
- \macros DEFINE_TYPE
- \par    name
-          - the type name, like: int, float, double .etc
- \brief
- */
+\macros  meta_begin : begin defining a metatype   
+\param   T
+         - a default type or a struct/class object
+*/
 /******************************************************************************/
-#define DEFINE_TYPE(name)\
-  Variant type_##name (#name);\
-  typeData<name> info_##name = typeData<name>();\
-  typemanagers.AddType(&type_##name);\
-
+#define meta_begin( T ) _meta_begin(T)
 
 /******************************************************************************/
 /*!
- \macros GET_TYPE
- \par    name std::string
-          - the type name, like: int, float, double .etc
- \brief  return type variant
- */
+\macros  meta_child : adding a child type to begined type
+\param   addTo      : begined meta type
+\param   varName    : define a member Variant inside begined type as a child
+*/
 /******************************************************************************/
-#define GET_VARIANT(name)\
-  typemanagers.types[name]
+#define meta_child(addTo,varName) _meta_child(addTo,varName)
 
 /******************************************************************************/
 /*!
- \macros GET_TYPE_DATA
- \par    name std::string
-          - the type name, like: int, float, double .etc
- \brief  return type data, it's a struct. example of use GET_TYPE_DATA(int).data
- */
+\macros  meta_end : end of metatype defining
+*/
 /******************************************************************************/
-#define GET_DATA(name)\
-  typemanagers.types[name]
-//@TODO: get the data of a type
+#define meta_end() _meta_end()
 
 /******************************************************************************/
 /*!
- \macros ADDMEMBERS
- \par    Variant addTo
-          - name of metatype existing defined to add to
- \par    var
-          - addTo's member variable
- */
+\macros  meta_end : Allows code to get a pointer to a TypeInfo through a 
+                    template type lookup ID.
+*/
 /******************************************************************************/
-#define ADDMEMBERS(addTo,var)\
-{\
-  std::string type;\
-  type = typeid( info_##addTo .data. ##var ).name();\
-  /*ErrorIf( typemanagers.types.find(type) == typemanagers.types.end())*/ \
-  typemanagers.types[#addTo] ->Addmember( #var ,type.c_str());\
-}
+#define GET_TYPE_BY_TEMPLATE( T ) _GET_TYPE_BY_TEMPLATE(T)
 
+/******************************************************************************/
+/*!
+\macros  GET_TYPE_BY_STRING : Allows code to get a pointer to a TypeInfo through a 
+                              string
+*/
+/******************************************************************************/
+#define GET_TYPE_BY_STRING( typeNameCharPointer ) _GET_TYPE_BY_STRING( typeNameCharPointer )

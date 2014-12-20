@@ -8,9 +8,9 @@
  */
 /******************************************************************************/
 #pragma once
-
+#include "json.h"
 class IData
 {
-  virtual void ToolInit() = 0;
-  virtual void Serialize() = 0;
+  virtual void DefineMeta() = 0;
 };
+

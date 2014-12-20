@@ -1,58 +1,39 @@
-/******************************************************************************/
-/*!
- \file   variant.h
- \author Aji Suprana
- \par    Course: GAM250
- \par    All content ?2014 DigiPen (USA) Corporation, all rights reserved.
- \brief
- */
-/******************************************************************************/
 #pragma once
 #include <Precompiled.h>
-
-/******************************************************************************/
-/*!
- \class   Variant
- \brief   defining a type and its type
- */
-/******************************************************************************/
-class Variant
+#include "TypeInfo.h"
+#include "TypeReflectionMacros.h"
+// Allows code to get a pointer to a TypeInfo through a template type lookup ID.
+#define _GET_TYPE_BY_TEMPLATE( T ) TypeLookupByTemplate< T >::GetType( NULL )
+#define _GET_TYPE_BY_STRING( typeNameCharPointer ) GetTypeByString( typeNameCharPointer )
+ 
+struct Variant
 {
-public:
-  Variant(){};
-  Variant(std::string _name);
-  ~Variant();
-  void Addmember(std::string name , std::string type);
+  // Functions to initialize the data and typeInfo pointers
+  void Set( void* dataPtr, TypeInfo* typeInfoPtr )
+  {
+    m_vData = dataPtr;
+    m_csTypeInfo = typeInfoPtr;
+  }
+ 
+  template < typename T >
+  void Set( T& typedData )
+  {
+    m_vData = &typedData;
+    m_csTypeInfo = _GET_TYPE_BY_TEMPLATE( T );
+  }
+ 
+  // If any could would like to retrieve the explicit data the code
+  // must provide a templated type to cast to.
+  template < typename T >
+  T* GetValue( )
+  {
+    // An assert here can force type safety
+    ErrorIf( _GET_TYPE_BY_TEMPLATE( T ) != m_csTypeInfo, "Variant try to cast data to different type");
+ 
+    return (T*)m_vData;
+  }
 
-  template<typename T>
-  void CreateVariant(T Object);
-  Variant& operator=(const Variant *d);
-
-  std::map<std::string, Variant*> members;
-  std::string name;
-  void* m_data;
+ 
+  void* m_vData;
+  TypeInfo* m_csTypeInfo;
 };
-
-template<typename T>
-void Variant::CreateVariant(T data)
-{
-  Variant createThis;
-  std::string type = typeid(data).name();
-  std::vector<char> temp;
-
-  for(int i = type.size() - 1;i >= 0 ; i--)
-  {
-    if(type.at(i) == ' ' || type.at(i) == ':')
-      break;
-    temp.push_back(type.at(i));
-  }
-   type.clear(); 
-  for(int i = temp.size() - 1;i >= 0 ; i--)
-  {
-    type.push_back(temp.at(i));
-  }
-  createThis = typemanagers.types[type];
-  createThis.m_data = new T;
-  createThis.m_data = (void*)&data;
-  *this = createThis;
-}

@@ -20,12 +20,13 @@ namespace Component
 //******************************************************************************/
   class Sprite: public BaseEngine::Component
   {
-    void ToolInit();
-    void Serialize();
+  public:
     Sprite();
     ~Sprite();
+    void DefineMeta();
 
     //DATA
     Vector2 size;
+
   };
 }

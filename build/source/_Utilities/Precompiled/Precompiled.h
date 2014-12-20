@@ -11,6 +11,7 @@
 //C_Library
 #include <stdio.h>
 #include <iostream>
+#include <fstream>
 #include <stdarg.h>
 #include <stdlib.h>
 #include <iostream>
@@ -20,6 +21,10 @@
 #include <vector>
 #include <map>
 #include <memory>
+#include <cstdio>
+#include <cstring>
+#include <stddef.h>
+#include <sstream> 
 
 //Windows header
 #include <windows.h>

@@ -8,7 +8,7 @@
  */
 /******************************************************************************/
 #include "Components.h"
-
+//@@ REMEMBER TO INCLUDE NEW COMPONENT TO "IComponents.h"
 namespace Component
 {
 /******************************************************************************/
@@ -22,10 +22,9 @@ namespace Component
   class sampleComponent: public BaseEngine::Component
   {
   public:
-    void ToolInit();
-    void Serialize();
     sampleComponent();
     ~sampleComponent();
+    void DefineMeta();
 
     //DATAS
   };
