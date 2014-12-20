@@ -9,6 +9,7 @@
 /******************************************************************************/
 #ifndef DESERIALIZE_HEADER
 #define DESERIALIZE_HEADER
+#include "Precompiled.h"
 #include "Json.h"
 #include "Components.h"
 #include "IComponents.h"
@@ -40,7 +41,7 @@ template<typename T> void Deserialize(T* obj,const char* targetFile);
  \brief  Creating a generic Deserialize system that can serialize any kind of data
  */
 /******************************************************************************/
-#include "Precompiled.h"
+
 #ifndef SERIALIZE_CPP
 #define SERIALZE_CPP
 
@@ -125,7 +126,7 @@ void DeserializeData(T* obj,Json::Value *root)
       if(var.m_csTypeInfo->child_info[curTypeID]->name == "float")
       {
         float* castedObj = (float*)curData;
-        *castedObj = curRoot.asDouble();
+        *castedObj = (float)curRoot.asDouble();
       }
       if(var.m_csTypeInfo->child_info[curTypeID]->name == "double")
       {

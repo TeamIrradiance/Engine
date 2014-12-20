@@ -13,12 +13,16 @@ GOTO EndComment
 /******************************************************************************/
 :EndComment
 
+cd premake
+rm *.vcxproj
+rm *.vcxproj.filters
+rm *.vcxproj.user
+cd ..
 rm *.sdf
 rm *.opensdf
 rm *.sln
 rm *.suo
-rm *.vcxproj*
-rmdir /S /Q source\vcproj
 rmdir /S /Q obj
 rmdir /S /Q bin
 rmdir /S /Q ipch
+pause

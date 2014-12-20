@@ -13,5 +13,6 @@ GOTO EndComment
 /******************************************************************************/
 :EndComment
 
-cd build
+cd premake
 .\premake5 vs2013
+pause

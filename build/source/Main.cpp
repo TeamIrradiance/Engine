@@ -8,7 +8,7 @@
  */
 /******************************************************************************/
 #include <Precompiled.h>
-#include <vld.h> // if it does give an error, Download visual leak detector
+//#include <vld.h> // if it does give an error, Download visual leak detector
 #include "IBaseEngine.h"
 #include "IProcess.h"
 #include "TypeReflection_Sample.h"
@@ -22,8 +22,8 @@ int main (void)
   EngineCore Engine;
   Engine.settings.consoleActive = true;
   Engine.settings.fps_cap = 60;
-  Engine.settings.windowsX = 100;
-  Engine.settings.windowsY = 500;
+  Engine.settings.windowsX = 1024;
+  Engine.settings.windowsY = 576;
   Engine.settings.application_name = "Irradiance";
 
   AddProcess(new Process::WindowProcess);

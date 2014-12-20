@@ -13,7 +13,7 @@ GOTO EndComment
 /******************************************************************************/
 :EndComment
 
-cd build
+cd premake
 .\premake5 vs2012
 cd ..
 start "" "Irradiance.sln"

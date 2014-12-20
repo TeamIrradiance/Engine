@@ -23,11 +23,11 @@ class Vector2:public IData
 {
 public:
   Vector2(){x = y = 0;};
-  Vector2(glm::vec2 vec)
-  {
-    x = vec.x;
-    y = vec.y;
-  };
+  //Vector2(glm::vec2 vec)
+  //{
+  //  x = vec.x;
+  //  y = vec.y;
+  //};
   void DefineMeta();
   
   union
@@ -57,12 +57,12 @@ class Vector3:public IData
 {
 public:
   Vector3(){x = y = z = 0;}
-  Vector3(glm::vec3 vec)
-  {
-    x = vec.x;
-    y = vec.y;
-    z = vec.z;
-  };
+  //Vector3(glm::vec3 vec)
+  //{
+  //  x = vec.x;
+  //  y = vec.y;
+  //  z = vec.z;
+  //};
   void DefineMeta();
 
   union
@@ -92,13 +92,13 @@ class Vector4:public IData
 {
 public:
   Vector4(){x = y = z = w = 0;}
-  Vector4(glm::vec4 vec)
-  {
-    x = vec.x;
-    y = vec.y;
-    z = vec.z;
-    w = vec.w;
-  };
+  //Vector4(glm::vec4 vec)
+  //{
+  //  x = vec.x;
+  //  y = vec.y;
+  //  z = vec.z;
+  //  w = vec.w;
+  //};
   void DefineMeta();
 
   union
