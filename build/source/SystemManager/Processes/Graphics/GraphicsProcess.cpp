@@ -8,17 +8,20 @@
  */
 /******************************************************************************/
 #include <Precompiled.h>
-#include "GraphicsProcess.h"
+
 namespace Framework
 {
-  void GraphicsProcess::VUpdate(const double dt)
-  {
-
-  }
 
   void GraphicsProcess::VInit()
   {
+    TransformPipeline* trans = new TransformPipeline ();
+    RenderPipeline* render = new RenderPipeline ();
+  }
 
+  void GraphicsProcess::VUpdate (const double dt)
+  {
+    G_TRANSFORM->Update (dt);
+    G_RENDER->Draw ();
   }
   
   GraphicsProcess::GraphicsProcess()
@@ -34,6 +37,14 @@ namespace Framework
 
   GraphicsProcess:: ~GraphicsProcess()
   {
+    if (G_TRANSFORM != nullptr)
+    {
+      delete G_TRANSFORM;
+    }
 
+    if (G_RENDER != nullptr)
+    {
+      delete G_RENDER;
+    }
   }
 }

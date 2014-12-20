@@ -1,6 +1,6 @@
 /******************************************************************************/
 /*!
-\file   Pipeline.h
+\file   TransformPipeline.h
 \author Manas Sudhir Kulkarni
 \par    Course: GAM250
 \par    All content ?2014 DigiPen (USA) Corporation, all rights reserved.
@@ -13,9 +13,6 @@
 
 namespace Framework
 {
-  //typedef glm::mat2 Matrix2x2;
-  //typedef glm::mat3 Matrix3x3;
-  //typedef glm::mat4 Matrix4x4;
 
   enum MATRIX_MODE
   {
@@ -29,6 +26,8 @@ namespace Framework
   public:
     TransformPipeline ();
     ~TransformPipeline ();
+
+    void Update (double dt);
 
     void LoadIdentity ();
     void MatrixMode (int mode);
@@ -44,16 +43,8 @@ namespace Framework
     void LookAt (glm::vec3 eye, glm::vec3 center, glm::vec3 up);
     void UpdateMatrices ();
     void UploadMatrices (Shader* shader);
-    void Update ();
-    void Draw ();
-    void ResetBlendMode ();
     void PushMatrix ();
     void PopMatrix ();
-    bool IsDebugDrawEnabled () const;
-    void ToggleDebugDraw ();
-
-    void ResizeBuffer (const int w, const int h);
-    //void OnApplicationPause (UpdateEvent* pause);
 
     int GetMatrixMode ();
     Matrix4x4 GetModelMatrix ();
@@ -62,22 +53,31 @@ namespace Framework
     Matrix4x4 GetModelViewMatrix ();
     Matrix4x4 GetModelViewProjectionMatrix ();
 
+
+    // 16 BYTE ALIGNMENT TO AVOID ACCESS VIOLATION
+    void* operator new (size_t i)
+    {
+      return _mm_malloc (i, 16);
+    }
+
+    void operator delete (void* p)
+    {
+      _mm_free (p);
+    }
+
   private:
-    std::vector <glm::mat4> modelMatrix;
-    std::vector <glm::mat4> viewMatrix;
-    std::vector <glm::mat4> projectionMatrix;
+    std::vector <Matrix4x4> m_modelMatrix;
+    std::vector <Matrix4x4> m_viewMatrix;
+    std::vector <Matrix4x4> m_projectionMatrix;
 
-    Matrix4x4 modelViewMatrix;
-    Matrix4x4 viewProjectionMatrix;
-    Matrix4x4 modelViewProjectionMatrix;
+    Matrix4x4 m_modelViewMatrix;
+    Matrix4x4 m_viewProjectionMatrix;
+    Matrix4x4 m_modelViewProjectionMatrix;
 
-    GLenum sFactor;
-    GLenum dFactor;
-    int currentMatrix;
-    bool matricesReady;
+    int m_currentMatrix;
+    bool m_matricesReady;
 
-    bool useDebugDraw;
   };
 
-  extern TransformPipeline* OPENGL;
+  extern TransformPipeline* G_TRANSFORM;
 }

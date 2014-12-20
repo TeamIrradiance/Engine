@@ -19,7 +19,7 @@
 #pragma once
 
 #ifndef M_PI
-#define M_PI 3.141592653589f
+#define M_PI 3.1415f
 #endif // !M_PI
 
 #ifndef M_PI_2

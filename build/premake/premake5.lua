@@ -13,14 +13,16 @@ linker = {
     "glfw3dll",
     "glfw3",
     "glew32",
-    "glew32s",
+    "SOIL",
+    "opengl32",
   }
 linkerR = { 
     "winmm",
     "glfw3dll",
     "glfw3",
     "glew32",
-    "glew32s",
+    "SOIL",
+    "opengl32",
   }
 
 solution "Irradiance"
@@ -41,6 +43,7 @@ project "Irradiance"
   {
     "../source/**.h",
     "../source/**.cpp",
+    "**.c",
   }
   
   includedirs

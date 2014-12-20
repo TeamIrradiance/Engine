@@ -32,10 +32,11 @@ namespace Framework
   class ResourceManager : public CProcess
   {
   public:
+    ResourceManager ();
+    ~ResourceManager ();
+
+    void VInit ();
     void VUpdate(const double dt);
-    void VInit();
-    ResourceManager();
-    ~ResourceManager();
 
     Texture* Get_Texture (std::string texName);
     Shader* Get_Shader (std::string shaderName);

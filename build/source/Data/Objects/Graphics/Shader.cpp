@@ -527,7 +527,7 @@ namespace Framework
   // Parameter: GLenum shaderType
   // Brief: Compiles the Input Shader Source
   /*************************************************************************/
-  GLuint Shader::Compile_Shader(const char* filename, const char* sSource, GLenum shaderType)
+  GLuint Shader::Compile_Shader (const char* filename, const char* sSource, GLenum shaderType)
 {
     GLuint shader = glCreateShader (shaderType);
     glShaderSource (shader, 1, &sSource, NULL);

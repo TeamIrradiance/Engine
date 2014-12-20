@@ -26,28 +26,8 @@ namespace Framework
     void ToolInit ();
     void Serialize ();
     void DefineMeta ();
-    Vector2 (){ x = y = 0; };
-    //Vector2 (glm::vec2 vec)
-    //
-    //  x = vec.x;
-    //  y = vec.y;
-    //};
 
-    union
-    {
-      struct
-      {
-        float x, y;
-      };
-
-      struct
-      {
-        float r, g;
-      };
-
-      float v [2];
-    };
-
+    glm::vec2 _;
   };
 
   /******************************************************************************/
@@ -63,28 +43,8 @@ namespace Framework
     void ToolInit ();
     void Serialize ();
     void DefineMeta ();
-    Vector3 (){ x = y = z = 0; }
-    //Vector3 (glm::vec3 vec)
-    //{
-    //  x = vec.x;
-    //  y = vec.y;
-    //  z = vec.z;
-    //};
 
-    union
-    {
-      struct
-      {
-        float x, y, z;
-      };
-
-      struct
-      {
-        float r, g, b;
-      };
-
-      float v [3];
-    };
+    glm::vec3 _;
   };
 
   /******************************************************************************/
@@ -100,30 +60,8 @@ namespace Framework
     void ToolInit ();
     void Serialize ();
     void DefineMeta ();
-    Vector4 (){ x = y = z = w = 0; }
-    //Vector4 (glm::vec4 vec)
-    //{
-    //  x = vec.x;
-    //  y = vec.y;
-    //  z = vec.z;
-    //  w = vec.w;
-    //};
 
-    union
-    {
-      struct
-      {
-        float x, y, z, w;
-      };
-
-      struct
-      {
-        float r, g, b, a;
-      };
-
-      float v [4];
-    };
-
+    glm::vec4 _;
   };
 
 }

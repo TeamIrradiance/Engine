@@ -87,7 +87,7 @@ void DeserializeData(T* obj,Json::Value *root)
   {
     Json::Value curRoot = *itr;
     char* dummy = (char *)var.GetValue< T >( );
-    int curTypeID;
+    int curTypeID = 0;
 
     std::string curType = itr.memberName();
     for(int i = 0; i < var.m_csTypeInfo->childSize; ++i)
@@ -98,7 +98,9 @@ void DeserializeData(T* obj,Json::Value *root)
         break;
       }
     }
-    void* curData = (dummy + var.m_csTypeInfo->child_offsets[curTypeID]);
+
+    void* curData = nullptr;
+    curRoot = (dummy + var.m_csTypeInfo->child_offsets [curTypeID]);
     
     // if this is a struct
     if( var.m_csTypeInfo->child_info[curTypeID]->childSize > 0)
