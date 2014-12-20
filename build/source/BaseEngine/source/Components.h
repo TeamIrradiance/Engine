@@ -8,11 +8,10 @@
  */
 /******************************************************************************/
 #pragma once
-#include <Precompiled.h>
 #include "IData.h"
 #include "TypeInfo.h"
 #include "DataManager.h"
-namespace BaseEngine
+namespace Framework
 {
   class GameObject;
   class Component;
@@ -30,7 +29,7 @@ namespace BaseEngine
     ~GameObject(){};   //@DO NOTHING, DELETE EVERYTHING IN DATA MANAGER
     
     template<typename T>
-    T* Get()
+    T* GetComponent()
     {
       //get static int* from cType it's the index of map
       T* returnThis = (T*)(m_csChild[cType<T>().GetType()]);
@@ -40,7 +39,7 @@ namespace BaseEngine
     }
 
     template<typename T>
-    void Add()
+    void AddComponent()
     {
       if(m_csChild[cType<T>::GetType()] != NULL) return;  //if it has existed return
 
@@ -62,6 +61,8 @@ namespace BaseEngine
   class Component : public ::IData
   {
   public:
+    virtual ~Component (){}
+
     virtual void DefineMeta() = 0;
     friend class GameObject;
     GameObject* m_csBase;

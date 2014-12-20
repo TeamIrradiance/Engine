@@ -7,13 +7,13 @@
  \brief
  */
 /******************************************************************************/
-#include <Precompiled.h>
+
 //#include "IEngineCore.h"
 #pragma once
 //forward declaration
 struct EngineCore;
 
-namespace BaseEngine
+namespace Framework
 {
 /******************************************************************************/
 /*!

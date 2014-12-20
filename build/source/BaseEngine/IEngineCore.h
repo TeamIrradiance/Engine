@@ -41,8 +41,8 @@ struct EngineCore
   void DefineMeta();
 
   //GLOBAL SYSTEMS
-  BaseEngine::IframeRate* g_csFramerateControl;
-  BaseEngine::CProcessManager* g_csProcessManager;
+  Framework::IframeRate* g_csFramerateControl;
+  Framework::CProcessManager* g_csProcessManager;
   //BaseEngine::DataManager* g_csDatamanager;
 
   //GLOBAL VARIABLES

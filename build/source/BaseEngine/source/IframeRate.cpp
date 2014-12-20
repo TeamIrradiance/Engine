@@ -10,11 +10,11 @@
 #include "Precompiled.h"
 #include "IBaseEngine.h"
 #include "FrameRate.h"
-namespace BaseEngine
+namespace Framework
 {
   struct pFrameRate
   {
-    BaseEngine::frameRate frameRate;
+    Framework::frameRate frameRate;
   };
 
     // Initialize mFrameRate;

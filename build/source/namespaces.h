@@ -8,6 +8,4 @@
  */
 /******************************************************************************/
 
-namespace BaseEngine{}
-namespace Process{}
-namespace Component{}
+namespace Framework {}

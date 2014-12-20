@@ -1,6 +1,6 @@
 /******************************************************************************/
 /*!
- \file   GraphicsProcess.cpp
+ \file   TemplateProcess.cpp
  \author Aji Suprana
  \par    Course: GAM250
  \par    All content ?2014 DigiPen (USA) Corporation, all rights reserved.
@@ -8,23 +8,23 @@
  */
 /******************************************************************************/
 #include <Precompiled.h>
-#include "GraphicsProcess.h"
-namespace Framework
+#include "Process_Template.h"
+namespace Process
 {
-  void GraphicsProcess::VUpdate(const double dt)
+  void TemplateProcess::VUpdate(const double dt)
   {
 
   }
 
-  void GraphicsProcess::VInit()
+  void TemplateProcess::VInit()
   {
 
   }
   
-  GraphicsProcess::GraphicsProcess()
+  TemplateProcess::TemplateProcess()
   {
     std::hash<std::string> id;
-    mName = std::string("graphics");
+    mName = std::string("template");
     mProcessID = id(mName); //faster access with hash instead of string
     m_bActive = true; // skip when process is deactivated
     m_bInitialized = false; //debugging purposes if initialized
@@ -32,7 +32,7 @@ namespace Framework
     
   }
 
-  GraphicsProcess:: ~GraphicsProcess()
+  TemplateProcess:: ~TemplateProcess()
   {
 
   }

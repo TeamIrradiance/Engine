@@ -8,10 +8,9 @@
 // */
 //******************************************************************************/
 #include <Precompiled.h>
-#include "ITypeReflection.h"
-#include "Sprite.h"
+
 //@TODO: test vector 2 glm::vec2 conversion using copy constructor and assignment operator
-namespace Components
+namespace Framework
 {
 ////******************************************************************************/
 ////*!

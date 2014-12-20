@@ -1,5 +1,5 @@
 #pragma once
-#include "Precompiled.h"
+//#include "Precompiled.h"
 #include "Variant.h"
 #include "TypeInfo.h"
 

@@ -26,11 +26,12 @@ int main (void)
   Engine.settings.windowsY = 576;
   Engine.settings.application_name = "Irradiance";
 
-  AddProcess(new Process::WindowProcess);
-  AddProcess(new Process::GraphicsProcess);
+  AddProcess (new Framework::ResourceManager);
+  AddProcess(new Framework::WindowProcess);
+  AddProcess(new Framework::GraphicsProcess);
   Engine.DefineMeta();
   Engine.Init();
-  type_sample();
+  //type_sample();
 
 
   Engine.Update();

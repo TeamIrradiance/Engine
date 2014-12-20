@@ -1,38 +1,35 @@
 /******************************************************************************/
 /*!
- \file   Transform.cpp
+ \file   sampleObject.cpp
  \author Aji Suprana
  \par    Course: GAM250
  \par    All content ?2014 DigiPen (USA) Corporation, all rights reserved.
  \brief
  */
 /******************************************************************************/
-#include "Precompiled.h"
-#include "ITypeReflection.h"
-#include "IComponents.h"
+#include <Precompiled.h>
+#include "sampleObject.h"
 
-namespace Framework
+namespace Component
 {
 /******************************************************************************/
 /*!
-\fn   Transform()
-\brief   Constructor
+\fn      sampleObject()
+\brief   Default constructor
 */
 /******************************************************************************/
-  Transform::Transform()
+  sampleObject::sampleObject()
   {
-    m_sName = Tokenize(typeid(Transform).name());
   }
 
 /******************************************************************************/
 /*!
-\fn   ~Transform()
-\brief   Destructor
+\fn   ~sampleObject()
+\brief   destructor
 */
 /******************************************************************************/
-  Transform::~Transform()
+  sampleObject::~sampleObject()
   {
-
   }
 
 /******************************************************************************/
@@ -41,8 +38,7 @@ namespace Framework
 \brief   define meta here
 */
 /******************************************************************************/
-  void Transform::DefineMeta()
+  void sampleObject::DefineMeta()
   {
-
   }
 }

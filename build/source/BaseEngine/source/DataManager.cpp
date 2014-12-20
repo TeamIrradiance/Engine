@@ -10,7 +10,7 @@
 #include "Precompiled.h"
 #include "DataManager.h"
 
-namespace BaseEngine
+namespace Framework
 {
 
 }

@@ -1,28 +1,31 @@
 /******************************************************************************/
 /*!
- \file   GraphicsProcess.h
+ \file   sampleObject.h
  \author Aji Suprana
  \par    Course: GAM250
  \par    All content ?2014 DigiPen (USA) Corporation, all rights reserved.
  \brief
  */
 /******************************************************************************/
-#include "IBaseEngine.h"
-//#include "Precompiled.h"
+#include "Components.h"
+//@@ REMEMBER TO INCLUDE NEW COMPONENT TO "IComponents.h"
+namespace Component
+{
 /******************************************************************************/
 /*!
- \class   GraphicsProcess
- \brief   Process graphics datas
+ \class   sampleComponent
+ \brief   sampleComponent Component
+ Notes: 
  */
 /******************************************************************************/
-namespace Framework
-{
-  class GraphicsProcess : public Framework::CProcess
+//@@ Only this 4 function is allowed in component class
+  class sampleObject: public ::IData
   {
   public:
-    void VUpdate(const double dt);
-    void VInit();
-    GraphicsProcess();
-    ~GraphicsProcess();
+    sampleObject();
+    ~sampleObject();
+    void DefineMeta();
+
+    //DATAS
   };
 }

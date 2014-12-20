@@ -19,7 +19,7 @@ void type_sample()
 
 
 
-BaseEngine::GameObject myObject;
+Framework::GameObject myObject;
 Deserialize(&myObject,"test.arch");
 Serialize(&myObject,"test1.arch");
 

@@ -12,7 +12,7 @@
 #include "Components.h"
 #include "MathLib.h"
 
-namespace Components
+namespace Framework
 {
 /******************************************************************************/
 /*!
@@ -22,7 +22,7 @@ namespace Components
  */
 /******************************************************************************/
 //@@ Only this 4 function is allowed in component class
-  class Transform: public BaseEngine::Component
+  class Transform: public Framework::Component
   {
   public:
     Transform();

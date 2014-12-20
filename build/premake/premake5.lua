@@ -45,12 +45,8 @@ project "Irradiance"
   
   includedirs
   { 
-	"../source/",
-	"../source/**/",
-	"../source/**/**/",
-	"../source/**/**/**/",
-	"../dependency/include/GL",
-  "../dependency/include/glm",
+	"../source**",
+	"../dependency/include/GL**",
   "../dependency/include/jsonlib"
   }
   

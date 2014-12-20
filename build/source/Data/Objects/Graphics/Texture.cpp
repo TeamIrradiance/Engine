@@ -1,38 +1,35 @@
 /******************************************************************************/
 /*!
- \file   Transform.cpp
- \author Aji Suprana
+ \file   Texture.cpp
+ \author Manas Sudhir Kulkarni
  \par    Course: GAM250
  \par    All content ?2014 DigiPen (USA) Corporation, all rights reserved.
  \brief
  */
 /******************************************************************************/
-#include "Precompiled.h"
-#include "ITypeReflection.h"
-#include "IComponents.h"
+#include <Precompiled.h>
+
 
 namespace Framework
 {
 /******************************************************************************/
 /*!
-\fn   Transform()
-\brief   Constructor
+\fn      Texture()
+\brief   Default constructor
 */
 /******************************************************************************/
-  Transform::Transform()
+  Texture::Texture()
   {
-    m_sName = Tokenize(typeid(Transform).name());
   }
 
 /******************************************************************************/
 /*!
-\fn   ~Transform()
-\brief   Destructor
+\fn   ~Texture()
+\brief   destructor
 */
 /******************************************************************************/
-  Transform::~Transform()
+  Texture::~Texture()
   {
-
   }
 
 /******************************************************************************/
@@ -41,8 +38,7 @@ namespace Framework
 \brief   define meta here
 */
 /******************************************************************************/
-  void Transform::DefineMeta()
+  void Texture::DefineMeta()
   {
-
   }
 }

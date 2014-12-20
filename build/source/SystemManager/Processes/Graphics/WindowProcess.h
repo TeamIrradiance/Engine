@@ -11,7 +11,7 @@
 // DO NOT WRITE TEMPELATE FILES FOR ACTUAL CODE
 //////////////////////////////////////////////////////////////////////////////
 #include "IBaseEngine.h"
-#include "Precompiled.h"
+//#include "Precompiled.h"
 /******************************************************************************/
 /*!
  \class   TemplateProcess
@@ -19,9 +19,9 @@
  Notes: Derived class ust have  Constructor with param:
  */
 /******************************************************************************/
-namespace Process
+namespace Framework
 {
-  class WindowProcess : public BaseEngine::CProcess
+  class WindowProcess : public Framework::CProcess
   {
   public:
     void VUpdate(const double dt);

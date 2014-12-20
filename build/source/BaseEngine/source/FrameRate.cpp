@@ -11,7 +11,7 @@
 #include "FrameRate.h"
 #include "IDebugAssertion.h"
 
-namespace BaseEngine
+namespace Framework
 {
   void frameRate::Init(double frameRate)
   {

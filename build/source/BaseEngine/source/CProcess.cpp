@@ -10,7 +10,7 @@
 #include <Precompiled.h>
 #include "IBaseEngine.h"
 
-namespace BaseEngine
+namespace Framework
 {
 /******************************************************************************/
 /*!

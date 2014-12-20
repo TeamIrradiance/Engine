@@ -1,18 +1,22 @@
 /******************************************************************************/
 /*!
- \file   TemplateProcess.h
+ \file   ResourceManager.h
  \author Aji Suprana
  \par    Course: GAM250
  \par    All content ?2014 DigiPen (USA) Corporation, all rights reserved.
  \brief
  */
 /******************************************************************************/
-//@@ REMEMBER TO INCLUDE NEW COMPONENT TO "IProcesses.h"
+
 #include "IBaseEngine.h"
-//#include "Precompiled.h"
+
+#ifndef _RESOURCE_MANAGER_H
+#define _RESOURCE_MANAGER_H
+
+
 /******************************************************************************/
 /*!
- \class   TemplateProcess
+ \class   ResourceManager
  \brief   Template to write other child processes
  Notes: Derived class ust have  Constructor with param:
         - string name
@@ -24,12 +28,29 @@
 /******************************************************************************/
 namespace Framework
 {
-  class TemplateProcess : public Framework::CProcess
+
+  class ResourceManager : public CProcess
   {
   public:
     void VUpdate(const double dt);
     void VInit();
-    TemplateProcess();
-    ~TemplateProcess();
+    ResourceManager();
+    ~ResourceManager();
+
+    Texture* Get_Texture (std::string texName);
+    Shader* Get_Shader (std::string shaderName);
+
+    static std::string ROOT_DIRECTORY;
+
+  private:
+    std::unordered_map <std::string, Texture*> m_textureMap;
+    std::unordered_map <std::string, Shader*> m_shaderMap;
+
+    void Load_Resources ();
+    void Load_Shaders ();
+    void Load_Textures ();
+    void Load_Audio ();
   };
 }
+
+#endif // !_RESOURCE_MANAGER_H

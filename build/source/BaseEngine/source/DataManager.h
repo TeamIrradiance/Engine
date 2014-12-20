@@ -28,7 +28,7 @@
   };
 
 
-namespace BaseEngine
+namespace Framework
 {
   class DataManager
   {

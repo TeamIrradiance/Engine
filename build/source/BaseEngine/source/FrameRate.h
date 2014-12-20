@@ -16,7 +16,7 @@
 
  */
 /******************************************************************************/
-namespace BaseEngine
+namespace Framework
 {
   class frameRate
   {

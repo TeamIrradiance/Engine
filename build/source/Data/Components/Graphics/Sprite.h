@@ -7,9 +7,10 @@
 // \brief
 // */
 //******************************************************************************/
-#include "Components.h"
-#include "MathLib.h"
-namespace Components
+
+#pragma once
+
+namespace Framework
 {
 //******************************************************************************/
 //*!
@@ -18,15 +19,17 @@ namespace Components
 // Notes: 
 // */
 //******************************************************************************/
-  class Sprite: public BaseEngine::Component
+  class Sprite: public Framework::Component
   {
   public:
     Sprite();
     ~Sprite();
+
     void DefineMeta();
 
     //DATA
-    Vector2 size;
+    //Vector2 size;
+    std::string m_textureName;
 
   };
 }

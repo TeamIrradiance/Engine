@@ -9,7 +9,7 @@
 /******************************************************************************/
 #include <Precompiled.h>
 #include "Process_Template.h"
-namespace Process
+namespace Framework
 {
   void TemplateProcess::VUpdate(const double dt)
   {

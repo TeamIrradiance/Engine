@@ -9,7 +9,7 @@
 /******************************************************************************/
 #ifndef DESERIALIZE_HEADER
 #define DESERIALIZE_HEADER
-#include "Precompiled.h"
+//#include "Precompiled.h"
 #include "Json.h"
 #include "Components.h"
 #include "IComponents.h"
@@ -58,8 +58,8 @@ template<typename T> void Deserialize(T* obj,const char* targetFile);
 #define CHECK_COMPONENT(type)\
   if(curType == std::string(#type))\
   {\
-    obj->Add<type>();\
-    DeserializeData(obj->Get<type>(),&curRoot[curType.c_str()]);\
+    obj->AddComponent<type>();\
+    DeserializeData(obj->GetComponent<type>(),&curRoot[curType.c_str()]);\
   }
 
 #define READ_BASIC_DATA(T)\
@@ -82,7 +82,7 @@ void DeserializeData(T* obj,Json::Value *root)
   Variant var;
   var.Set(*obj);
 
-  using namespace Components;
+  using namespace Framework;
   for(Json::ValueIterator itr = root->begin() ; itr != root->end() ; itr++ )
   {
     Json::Value curRoot = *itr;
@@ -147,8 +147,8 @@ void DeserializeData(T* obj,Json::Value *root)
 template<typename T>
 void Deserialize(T* obj,const char* targetFile)
 {
-  using namespace BaseEngine;
-  using namespace Components;
+  using namespace Framework;
+  using namespace Framework;
   using namespace std;
   std::ifstream in(targetFile);
   ErrorIf(!in.is_open(),"%s is not found");
