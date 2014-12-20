@@ -84,7 +84,7 @@ void EngineCore::Update()
 /******************************************************************************/
 void EngineCore::DefineMeta()
 {
-  using namespace Component;
+  using namespace Components;
   using namespace std;
     // Add some type information to the reflection system
   meta_begin( int )

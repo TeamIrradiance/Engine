@@ -10,7 +10,8 @@
 #ifndef DESERIALIZE_HEADER
 #define DESERIALIZE_HEADER
 #include "Json.h"
-
+#include "Components.h"
+#include "IComponents.h"
 
 /******************************************************************************/
 /*!
@@ -18,7 +19,7 @@
  \brief  Serialize data like sprite, int,float, transform
  */
 /******************************************************************************/
-template<typename T> void DeserializeData(T* obj,Json::Value *root,const char* name);
+template<typename T> void DeserializeData(T* obj,Json::Value *root);
 
 /******************************************************************************/
 /*!
@@ -26,7 +27,7 @@ template<typename T> void DeserializeData(T* obj,Json::Value *root,const char* n
  \brief  It's only for gameObject or level for now
  */
 /******************************************************************************/
-template<typename T> void Deserialize(T* obj,Json::Value *root,const char* targetFile);
+template<typename T> void Deserialize(T* obj,const char* targetFile);
 
 #include "Deserialize.cpp"
 
@@ -47,13 +48,20 @@ template<typename T> void Deserialize(T* obj,Json::Value *root,const char* targe
 #include "ITypeReflection.h"
 
 #define DCHECK_TYPE(type)\
-  if(it.m_sName == "Vector3")\
+  if(var.m_csTypeInfo->name == #type)\
   {\
-    Vector3* castedObj = (Vector3*)it;\
-    DeserializeData(castedObj,&root,obj->m_sName);\
-  }\
+    type* castedObj = (type*)curData;\
+    castedObj = \
+  }
 
-#define DWRITE_BASIC_DATA(T)\
+#define CHECK_COMPONENT(type)\
+  if(curType == std::string(#type))\
+  {\
+    obj->Add<type>();\
+    DeserializeData(obj->Get<type>(),&curRoot[curType.c_str()]);\
+  }
+
+#define READ_BASIC_DATA(T)\
   if(  GET_TYPE_BY_STRING(#T)->id == id )\
   {\
     T data = *(T*)obj;\
@@ -68,15 +76,64 @@ template<typename T> void Deserialize(T* obj,Json::Value *root,const char* targe
  */
 /******************************************************************************/
 template<typename T>
-void DeserializeData(T* obj,Json::Value *root,const char* name = 0)
+void DeserializeData(T* obj,Json::Value *root)
 {
-  using namespace Component;
-  using namespace std;
-
-  //Create Variant to hold current obj
   Variant var;
   var.Set(*obj);
 
+  using namespace Components;
+  for(Json::ValueIterator itr = root->begin() ; itr != root->end() ; itr++ )
+  {
+    Json::Value curRoot = *itr;
+    char* dummy = (char *)var.GetValue< T >( );
+    int curTypeID;
+
+    std::string curType = itr.memberName();
+    for(int i = 0; i < var.m_csTypeInfo->childSize; ++i)
+    {
+      if(std::string(var.m_csTypeInfo->child_name[i]) == curType)
+      {
+        curTypeID = i;
+        break;
+      }
+    }
+    void* curData = (dummy + var.m_csTypeInfo->child_offsets[curTypeID]);
+    
+    // if this is a struct
+    if( var.m_csTypeInfo->child_info[curTypeID]->childSize > 0)
+    {
+      std::cout <<"is a struct" << std::endl;
+      if(var.m_csTypeInfo->child_info[curTypeID]->name == "Vector2")
+      {
+        Vector2* castedObj = (Vector2*)curData;
+        DeserializeData(castedObj,&(*itr));
+      }
+      if(var.m_csTypeInfo->child_info[curTypeID]->name == "Vector3")
+      {
+        Vector3* castedObj = (Vector3*)curData;
+        DeserializeData(castedObj,&(*itr));
+      }
+    }
+    else
+    {
+      std::cout <<"not a struct" << std::endl;
+      if(var.m_csTypeInfo->child_info[curTypeID]->name == "int")
+      {
+        int* castedObj = (int*)curData;
+        *castedObj = curRoot.asInt();
+      }
+      if(var.m_csTypeInfo->child_info[curTypeID]->name == "float")
+      {
+        float* castedObj = (float*)curData;
+        *castedObj = curRoot.asDouble();
+      }
+      if(var.m_csTypeInfo->child_info[curTypeID]->name == "double")
+      {
+        double* castedObj = (double*)curData;
+        *castedObj = curRoot.asDouble();
+      }
+    }
+  }
 
 }//end function
 
@@ -89,36 +146,30 @@ void DeserializeData(T* obj,Json::Value *root,const char* name = 0)
 template<typename T>
 void Deserialize(T* obj,const char* targetFile)
 {
+  using namespace BaseEngine;
+  using namespace Components;
+  using namespace std;
   std::ifstream in(targetFile);
   ErrorIf(!in.is_open(),"%s is not found");
   std::stringstream sstr;
   sstr << in.rdbuf();
 
-  Json::Value root;   // will contains the root value after parsing.
-
+  Json::Value& root = Json::Value();   // will contains the root value after parsing.
   Json::Reader reader;
-
   bool parsingSuccessful = reader.parse( sstr.str(), root );
   ErrorIf ( !parsingSuccessful, "json parsing failed, check opened json file's formating"  );
+  Json::Value& curRoot = root["GameObject"];
 
-  std::cout <<sstr.str();
-
-  for(auto it: obj->m_csChild)
+  std::cout << root;
+  //Constructing object
+  for(Json::ValueIterator itr = curRoot.begin() ; itr != curRoot.end() ; itr++ )
   {
-    int typeCounted = 0;
-    using namespace Component;
-    using namespace std;
-    CHECK_TYPE(int);
-    CHECK_TYPE(float);
-    CHECK_TYPE(double);
-    CHECK_TYPE(string);
-    CHECK_TYPE(Vector2);
-    CHECK_TYPE(Vector3);
-    CHECK_TYPE(Vector4);
-    CHECK_TYPE(Transform);
-    CHECK_TYPE(Sprite);
-    ErrorIf(typeCounted < typeInfosCount, "A defined type is not handled in serialization system!");
-    ErrorIf(typeCounted > typeInfosCount, "A handled type is not defined or multiple definition exist!");
+    std::string curType = std::string(itr.memberName());
+    //if It's a game Object or a level
+    
+    CHECK_COMPONENT(Sprite);
+    CHECK_COMPONENT(Transform);
+
   }
 }
 

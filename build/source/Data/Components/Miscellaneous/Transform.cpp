@@ -11,7 +11,7 @@
 #include "ITypeReflection.h"
 #include "IComponents.h"
 
-namespace Component
+namespace Components
 {
 /******************************************************************************/
 /*!

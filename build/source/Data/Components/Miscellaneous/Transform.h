@@ -12,7 +12,7 @@
 #include "Components.h"
 #include "MathLib.h"
 
-namespace Component
+namespace Components
 {
 /******************************************************************************/
 /*!

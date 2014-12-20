@@ -69,7 +69,7 @@ template<typename T> void Serialize(T* obj,Json::Value *root,const char* targetF
 template<typename T>
 void SerializeData(T* obj,Json::Value *root,const char* name = 0)
 {
-  using namespace Component;
+  using namespace Components;
   using namespace std;
 
   //Create Variant to hold current obj
@@ -163,7 +163,7 @@ template<typename T>
 void CheckAllType(void* curData,Json::Value* curRoot,int id,const char* curChildName)
 {
   int typeCounted = 0;
-  using namespace Component;
+  using namespace Components;
   using namespace std;
   CHECK_TYPE(int);
   CHECK_TYPE(float);
