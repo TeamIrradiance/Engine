@@ -18,6 +18,7 @@ namespace Framework
   RenderPipeline::RenderPipeline ()
   {
     G_RENDER = this;
+    glClearColor (m_clearColor.r (), m_clearColor.g (), m_clearColor.b (), m_clearColor.a ());
   }
 
   RenderPipeline::~RenderPipeline ()
@@ -27,7 +28,7 @@ namespace Framework
 
   void RenderPipeline::Draw ()
   {
-
+    glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   }
 
 }

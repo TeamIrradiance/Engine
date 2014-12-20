@@ -1,0 +1,93 @@
+/******************************************************************************/
+/*!
+\file   BufferObjects.cpp
+\author Manas Sudhir Kulkarni
+\par    Course: GAM250
+\par    All content ?2014 DigiPen (USA) Corporation, all rights reserved.
+\brief
+*/
+/******************************************************************************/
+
+#include "Precompiled.h"
+
+namespace Framework
+{
+
+  //////////////////////////////////////////////////////////////////////////
+  // VAO
+  //////////////////////////////////////////////////////////////////////////
+
+  VertexArrayObject::VertexArrayObject ()
+  {
+    glGenVertexArrays (1, &m_vertexArrayLocation);
+    glBindVertexArray (m_vertexArrayLocation);
+  }
+
+  VertexArrayObject::~VertexArrayObject ()
+  {
+    glDeleteVertexArrays (1, &m_vertexArrayLocation);
+  }
+
+  void VertexArrayObject::Bind ()
+  {
+    glBindVertexArray (m_vertexArrayLocation);
+  }
+
+  void VertexArrayObject::Unbind ()
+  {
+    glBindVertexArray (0);
+  }
+
+  GLuint VertexArrayObject::Get_Location ()
+  {
+    return m_vertexArrayLocation;
+  }
+
+
+  //////////////////////////////////////////////////////////////////////////
+  // BASE CLASS
+  //////////////////////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////////////////////
+  // DERIVED CLASSES
+  //////////////////////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////////////////////
+  // VBO
+  //////////////////////////////////////////////////////////////////////////
+
+  VertexBufferObject::VertexBufferObject () : BufferObject <float> ()
+  {
+    m_bufferType = GL_ARRAY_BUFFER;
+    Bind ();
+  }
+
+  //////////////////////////////////////////////////////////////////////////
+  // EBO
+  //////////////////////////////////////////////////////////////////////////
+
+  ElementBufferObject::ElementBufferObject () : BufferObject <unsigned> ()
+  {
+    m_bufferType = GL_ELEMENT_ARRAY_BUFFER;
+    Bind ();
+  }
+
+  //////////////////////////////////////////////////////////////////////////
+  // FBO
+  //////////////////////////////////////////////////////////////////////////
+
+  FrameBufferObject::FrameBufferObject () : BufferObject <unsigned> ()
+  {
+    m_bufferType = GL_FRAMEBUFFER;
+  }
+
+  //////////////////////////////////////////////////////////////////////////
+  // SSBO
+  //////////////////////////////////////////////////////////////////////////
+
+  ShaderStorageBufferObject::ShaderStorageBufferObject () : BufferObject <unsigned> ()
+  {
+    m_bufferType = GL_SHADER_STORAGE_BUFFER;
+  }
+
+}

@@ -14,6 +14,9 @@ namespace Framework
 {
   TransformPipeline* G_TRANSFORM = nullptr;
 
+  // STATIC VARIABLES
+  std::unordered_map <unsigned, std::list <Transform*>> TransformPipeline::transformVectorMap;
+
   /*************************************************************************/
   // Method:    TransformPipeline
   // FullName:  Framework::TransformPipeline::TransformPipeline
@@ -34,6 +37,10 @@ namespace Framework
     m_modelViewProjectionMatrix = glm::mat4 (1.0f);
     m_matricesReady = true;
     m_currentMatrix = 0;
+
+    transformVectorMap [0];
+    transformVectorMap [1];
+    transformVectorMap [2];
   }
 
   /*************************************************************************/
@@ -354,8 +361,17 @@ namespace Framework
   // Brief: Update the OpenGL Transform Pipeline
   /*************************************************************************/
   void TransformPipeline::Update(double dt)
-{
-    // TODO
+  {
+    unsigned i = 0;
+    for (auto& it : transformVectorMap)
+    {
+      Camera::allCameras [i]->UpdateCamera ();
+      for (auto& t : it.second)
+      {
+        t->Update_Matrices (dt);
+      }
+      ++i;
+    }
   }
 
   /*************************************************************************/

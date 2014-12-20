@@ -33,7 +33,7 @@ namespace Framework
     }
 
   private:
-
+    Vector4 m_clearColor;
   };
 
   extern RenderPipeline* G_RENDER;

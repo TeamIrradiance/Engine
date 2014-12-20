@@ -27,7 +27,36 @@ namespace Framework
     void Serialize ();
     void DefineMeta ();
 
+    Vector2 ()
+    {}
+    Vector2 (const glm::vec2& v) : _ (v)
+    {}
+    operator glm::vec2 ()
+    {
+      return _;
+    }
+
+    float r ()
+    {
+      return _.r;
+    }
+    float g ()
+    {
+      return _.g;
+    }
+
+    float x ()
+    {
+      return _.x;
+    }
+    float y ()
+    {
+      return _.y;
+    }
+
+    // DATA
     glm::vec2 _;
+
   };
 
   /******************************************************************************/
@@ -44,7 +73,44 @@ namespace Framework
     void Serialize ();
     void DefineMeta ();
 
+    Vector3 ()
+    {}
+    Vector3 (const glm::vec3& v) : _ (v)
+    {}
+    operator glm::vec3 ()
+    {
+      return _;
+    }
+
+    float r ()
+    {
+      return _.r;
+    }
+    float g ()
+    {
+      return _.g;
+    }
+    float b ()
+    {
+      return _.b;
+    }
+
+    float x ()
+    {
+      return _.x;
+    }
+    float y ()
+    {
+      return _.y;
+    }
+    float z ()
+    {
+      return _.z;
+    }
+
+    // DATA
     glm::vec3 _;
+
   };
 
   /******************************************************************************/
@@ -61,7 +127,53 @@ namespace Framework
     void Serialize ();
     void DefineMeta ();
 
+    Vector4 ()
+    {}
+    Vector4 (const glm::vec4& v) : _ (v)
+    {}
+    operator glm::vec4 ()
+    {
+      return _;
+    }
+
+    float r ()
+    {
+      return _.r;
+    }
+    float g ()
+    {
+      return _.g;
+    }
+    float b ()
+    {
+      return _.b;
+    }
+
+    float a ()
+    {
+      return _.a;
+    }
+
+    float x ()
+    {
+      return _.x;
+    }
+    float y ()
+    {
+      return _.y;
+    }
+    float z ()
+    {
+      return _.z;
+    }
+    float w ()
+    {
+      return _.w;
+    }
+
+    // DATA
     glm::vec4 _;
+
   };
 
 }

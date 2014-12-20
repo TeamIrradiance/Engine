@@ -15,6 +15,9 @@ namespace Framework
 {
   class GameObject;
   class Component;
+  class Transform;
+  class Sprite;
+  class Camera;
 
 /******************************************************************************/
 /*!
@@ -44,11 +47,17 @@ namespace Framework
       if(m_csChild[cType<T>::GetType()] != NULL) return;  //if it has existed return
 
       T* cmp = new T();    // Allocate component
-      cmp->m_csBase = this;    //assign created component's base
+      cmp->gameObject = this;    //assign created component's base
       m_csChild[cType<T>::GetType()] = cmp; //store it
     }
 
     std::map<int*,Component*> m_csChild; //name it as child to have the same structure as levels
+    unsigned m_layer;
+
+    // Pointers to Components
+    Transform* transform;
+    Sprite* sprite;
+    Camera* camera;
   };
 
 /******************************************************************************/
@@ -65,7 +74,7 @@ namespace Framework
 
     virtual void DefineMeta() = 0;
     friend class GameObject;
-    GameObject* m_csBase;
+    GameObject* gameObject;
     std::string m_sName;
   };
 }

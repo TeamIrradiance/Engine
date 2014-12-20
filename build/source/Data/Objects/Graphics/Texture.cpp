@@ -42,29 +42,46 @@ namespace Framework
   {
   }
 
+  /*************************************************************************/
+  // Method:    Bind
+  // FullName:  Framework::Texture::Bind
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Brief: Bind Current Texture
+  /*************************************************************************/
   void Texture::Bind ()
   {
     glBindTexture (GL_TEXTURE_2D, m_texture);
   }
 
+  /*************************************************************************/
+  // Method:    Unbind
+  // FullName:  Framework::Texture::Unbind
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Brief: Unbind Current Texture
+  /*************************************************************************/
   void Texture::Unbind ()
   {
     glBindTexture (GL_TEXTURE_2D, 0);
   }
 
+  /*************************************************************************/
+  // Method:    Load_Texture
+  // FullName:  Framework::Texture::Load_Texture
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: const char * filename
+  // Brief: Load a 2D OpenGL Texture from Input File 
+  /*************************************************************************/
   void Texture::Load_Texture (const char* filename)
   {
-    std::string file = filename;
-
-    bool hasAlpha = false;
-    unsigned pos = file.find_last_of ('.');
-    std::string format = file.substr (pos + 1, file.size () - 1);
-    if (format == "png")
-    {
-      hasAlpha = true;
-    }
-
     int w, h;
+    std::string format;
+    bool hasAlpha = Is_Alpha(filename, format.c_str());
     unsigned char* image = Load_Pixels (filename, &w, &h, 0, SOIL_LOAD_AUTO);
 
     if (image != nullptr)
@@ -79,23 +96,26 @@ namespace Framework
       }
       if (format == "bmp")
       {
-        TexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        TexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        TexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        TexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glGenerateMipmap (GL_TEXTURE_2D);
+        Specify_BMP_Paramaters ();
       }
       else
       {
-        TexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        TexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        TexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        TexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        Specify_Alpha_Parameters ();
       }
     }
   }
 
 
+  /*************************************************************************/
+  // Method:    Generate_Texture
+  // FullName:  Framework::Texture::Generate_Texture
+  // Access:    private 
+  // Returns:   GLuint
+  // Qualifier:
+  // Parameter: int w
+  // Parameter: int h
+  // Brief: Generate a 2D OpenGL Texture with Input Dimensions
+  /*************************************************************************/
   GLuint Texture::Generate_Texture (int w, int h)
   {
     // Load textures
@@ -110,16 +130,48 @@ namespace Framework
     return texture;
   }
 
+  /*************************************************************************/
+  // Method:    Image2D
+  // FullName:  Framework::Texture::Image2D
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: GLenum mode
+  // Parameter: unsigned char * pixels
+  // Brief: Specify a 2D Texture Image
+  /*************************************************************************/
   void Texture::Image2D (GLenum mode, unsigned char* pixels /* = nullptr*/)
   {
     glTexImage2D (GL_TEXTURE_2D, 0, mode, m_size.x, m_size.y, 0, mode, GL_UNSIGNED_BYTE, pixels);
   }
 
+  /*************************************************************************/
+  // Method:    TexParameteri
+  // FullName:  Framework::Texture::TexParameteri
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: GLenum target
+  // Parameter: GLenum pname
+  // Parameter: GLenum param
+  // Brief: Sets Texture Parameters
+  /*************************************************************************/
   void Texture::TexParameteri (GLenum target, GLenum pname, GLenum param)
   {
     glTexParameteri (target, pname, param);
   }
 
+  /*************************************************************************/
+  // Method:    TexEnvf
+  // FullName:  Framework::Texture::TexEnvf
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: GLenum target
+  // Parameter: GLenum pname
+  // Parameter: GLenum param
+  // Brief: Modulation
+  /*************************************************************************/
   void Texture::TexEnvf (GLenum target, GLenum pname, GLenum param)
   {
     glTexEnvf (target, pname, (GLfloat)param);
@@ -129,16 +181,40 @@ namespace Framework
   // GETTORS
   //////////////////////////////////////////////////////////////////////////
 
+  /*************************************************************************/
+  // Method:    Get_ID
+  // FullName:  Framework::Texture::Get_ID
+  // Access:    public 
+  // Returns:   GLuint
+  // Qualifier:
+  // Brief: Get Texture ID
+  /*************************************************************************/
   GLuint Texture::Get_ID ()
   {
     return m_texture;
   }
 
+  /*************************************************************************/
+  // Method:    Get_Aspect
+  // FullName:  Framework::Texture::Get_Aspect
+  // Access:    public 
+  // Returns:   float
+  // Qualifier:
+  // Brief: Get ASpect Ratio of Texture
+  /*************************************************************************/
   float Texture::Get_Aspect ()
   {
     return m_aspect;
   }
 
+  /*************************************************************************/
+  // Method:    Get_Size
+  // FullName:  Framework::Texture::Get_Size
+  // Access:    public 
+  // Returns:   glm::ivec2
+  // Qualifier:
+  // Brief: Get Dimensions of Texture
+  /*************************************************************************/
   glm::ivec2 Texture::Get_Size ()
   {
     return m_size;
@@ -148,14 +224,78 @@ namespace Framework
   // PRIVATE METHODS
   //////////////////////////////////////////////////////////////////////////
 
+  /*************************************************************************/
+  // Method:    Load_Pixels
+  // FullName:  Framework::Texture::Load_Pixels
+  // Access:    private 
+  // Returns:   unsigned char*
+  // Qualifier:
+  // Parameter: const char * filename
+  // Parameter: int * w
+  // Parameter: int * h
+  // Parameter: int * channels
+  // Parameter: GLenum forceChannels
+  // Brief: Load Pixels from Input File
+  /*************************************************************************/
   unsigned char* Texture::Load_Pixels (const char* filename, int* w, int *h, int* channels, GLenum forceChannels)
   {
     return SOIL_load_image (filename, w, h, channels, forceChannels);
   }
 
+  /*************************************************************************/
+  // Method:    Free_Pixels
+  // FullName:  Framework::Texture::Free_Pixels
+  // Access:    private 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: unsigned char * pixels
+  // Brief: Free Loaded Pixels
+  /*************************************************************************/
   void Texture::Free_Pixels (unsigned char* pixels)
   {
     SOIL_free_image_data (pixels);
+  }
+
+  void Texture::Specify_BMP_Paramaters ()
+  {
+    TexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    TexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    TexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    TexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glGenerateMipmap (GL_TEXTURE_2D);
+  }
+
+  void Texture::Specify_Alpha_Parameters ()
+  {
+    TexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    TexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    TexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    TexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+  }
+
+  /*************************************************************************/
+  // Method:    Is_Alpha
+  // FullName:  Framework::Texture::Is_Alpha
+  // Access:    private 
+  // Returns:   bool
+  // Qualifier:
+  // Parameter: const char * filename
+  // Parameter: const char * _format
+  // Brief: Helper Function To Find If File Is Png, Bmp, Jpeg...
+  /*************************************************************************/
+  bool Texture::Is_Alpha (const char* filename, const char* _format)
+  {
+    std::string file = filename;
+    bool hasAlpha = false;
+    unsigned pos = file.find_last_of ('.');
+    std::string format = file.substr (pos + 1, file.size () - 1);
+    if (format == "png")
+    {
+      hasAlpha = true;
+    }
+
+    _format = format.c_str ();
+    return hasAlpha;
   }
 
 }

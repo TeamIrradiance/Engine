@@ -8,8 +8,6 @@
  */
 /******************************************************************************/
 
-#include "IData.h"
-
 #ifndef _TEXTURE_H
 #define _TEXTURE_H
 
@@ -56,6 +54,11 @@ namespace Framework
     GLuint Generate_Texture (int w, int h);
     unsigned char* Load_Pixels (const char* filename, int* w, int *h, int* channels, GLenum forceChannels);
     void Free_Pixels (unsigned char* pixels);
+    void Specify_BMP_Paramaters ();
+    void Specify_Alpha_Parameters ();
+
+    // Helper
+    bool Is_Alpha (const char* filename, const char* format);
   };
 }
 

@@ -65,6 +65,8 @@ namespace Framework
       _mm_free (p);
     }
 
+    static std::unordered_map <unsigned, std::list <Transform*>> transformVectorMap;
+
   private:
     std::vector <Matrix4x4> m_modelMatrix;
     std::vector <Matrix4x4> m_viewMatrix;

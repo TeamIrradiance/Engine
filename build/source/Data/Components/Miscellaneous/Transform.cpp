@@ -21,6 +21,8 @@ namespace Framework
 /******************************************************************************/
   Transform::Transform()
   {
+    gameObject->transform = this;
+    G_TRANSFORM->transformVectorMap [gameObject->m_layer].push_back (this);
     m_sName = Tokenize(typeid(Transform).name());
   }
 
@@ -32,7 +34,7 @@ namespace Framework
 /******************************************************************************/
   Transform::~Transform()
   {
-
+    G_TRANSFORM->transformVectorMap [gameObject->m_layer].remove (this);
   }
 
 /******************************************************************************/
@@ -45,4 +47,34 @@ namespace Framework
   {
 
   }
+
+  void Transform::Update_Matrices (double dt)
+  {
+    G_TRANSFORM->MatrixMode (MODEL);
+    G_TRANSFORM->LoadIdentity ();
+
+    G_TRANSFORM->Translatefv (glm::value_ptr (translation._));
+    G_TRANSFORM->Scalefv (glm::value_ptr (scale._));
+    G_TRANSFORM->Rotatef (rotation, 0, 0, 1);
+
+    m_modelMatrix = G_TRANSFORM->GetModelMatrix ();
+
+    m_modelViewProjectionMatrix =
+      G_TRANSFORM->GetProjectionMatrix () *
+      G_TRANSFORM->GetViewMatrix () *
+      m_modelMatrix;
+
+    G_TRANSFORM->LoadIdentity ();
+  }
+
+  Matrix4x4 Transform::GetModelMatrix ()
+  {
+    return m_modelMatrix;
+  }
+
+  Matrix4x4 Transform::GetModelViewProjectionMatrix ()
+  {
+    return m_modelViewProjectionMatrix;
+  }
+
 }
