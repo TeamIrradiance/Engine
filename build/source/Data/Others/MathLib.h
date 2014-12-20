@@ -19,31 +19,19 @@
           for serialization and tool automation
  */
 /******************************************************************************/
-class Vector2:public IData
+class Vector2 : public IData
 {
-public:
-  Vector2(){x = y = 0;};
-  //Vector2(glm::vec2 vec)
-  //{
-  //  x = vec.x;
-  //  y = vec.y;
-  //};
-  void DefineMeta();
-  
-  union
-  {
-    struct 
-    {
-      float x, y;
-    };
-  
-    struct  
-    {
-      float r, g;
-    };
-  
-    float v[2];
-  };
+  public:
+    // Constructor - Destructor
+    Vector2 (){}
+
+    // Methods
+    void DefineMeta();
+
+    // Functions
+
+    // Data
+    glm::vec2 m_vec2;
 };
 
 /******************************************************************************/
@@ -53,32 +41,19 @@ public:
           for serialization and tool automation
  */
 /******************************************************************************/
-class Vector3:public IData
+class Vector3 : public IData
 {
-public:
-  Vector3(){x = y = z = 0;}
-  //Vector3(glm::vec3 vec)
-  //{
-  //  x = vec.x;
-  //  y = vec.y;
-  //  z = vec.z;
-  //};
-  void DefineMeta();
+  public:
+    // Constructor - Destructor
+    Vector3 (){}
 
-  union
-  {
-    struct 
-    {
-      float x, y, z;
-    };
-  
-    struct  
-    {
-      float r, g, b;
-    };
-  
-    float v[3];
-  };
+    // Methods
+    void DefineMeta();
+
+    // Functions
+
+    // Data
+    glm::vec3 m_vec3;
 };
 
 /******************************************************************************/
@@ -88,31 +63,17 @@ public:
           for serialization and tool automation
  */
 /******************************************************************************/
-class Vector4:public IData
+class Vector4 : public IData
 {
-public:
-  Vector4(){x = y = z = w = 0;}
-  //Vector4(glm::vec4 vec)
-  //{
-  //  x = vec.x;
-  //  y = vec.y;
-  //  z = vec.z;
-  //  w = vec.w;
-  //};
-  void DefineMeta();
+  public:
+    // Constructor - Destructor
+    Vector4 (){}
 
-  union
-  {
-    struct 
-    {
-      float x, y, z, w;
-    };
-  
-    struct
-    {
-      float r, g, b, a;
-    };
-  
-    float v[4];
-  };
+    // Methods
+    void DefineMeta();
+
+    // Functions
+
+    // Data
+    glm::vec4 m_vec4;
 };
