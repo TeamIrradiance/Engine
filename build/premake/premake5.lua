@@ -43,6 +43,7 @@ project "Irradiance"
   {
     "../source/**.h",
     "../source/**.cpp",
+    "Resources/**.glsl",
     "**.c",
   }
   
@@ -61,7 +62,7 @@ project "Irradiance"
 -- Debug Configuration 
   configuration "Debug"
   flags{ "Symbols" }
-  defines { "_DEBUG", "_CRT_SECURE_NO_WARNINGS" ,"_CRTDBG_MAP_ALLOC"}
+  defines { "_DEBUG", "_CRT_SECURE_NO_WARNINGS" }
   links {linker}
   targetdir "../bin/debug"
   postbuildcommands

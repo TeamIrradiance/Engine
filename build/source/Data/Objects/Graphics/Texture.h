@@ -22,7 +22,7 @@ namespace Framework
  */
 /******************************************************************************/
 
-  class Texture : public ::IData
+  class Texture : public Resource
   {
   public:
     // Constructor - Destructor

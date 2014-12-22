@@ -21,7 +21,7 @@ namespace Framework
  */
 /******************************************************************************/
 //@@ Only this 4 function is allowed in component class
-  class Shader : public ::IData
+  class Shader : public Resource
   {
   public:
     // Constructor - Destructor
@@ -31,15 +31,17 @@ namespace Framework
     // Methods
     void DefineMeta();
 
-    inline GLuint Get_ID ();
-    inline void Use ();
-    inline void Disable ();
+    void UseShader ();
+    void DisableShader ();
 
     GLuint attribLocation (const char* attribName);
     void bindAttribLocation (GLint location, const char* attribName);
+
+    void enableVertexAttribArray (const char* attrName);
     void enableVertexAttribArray (GLint attr);
-    void vertexAttribPtr (const char* attribName, GLint size, GLenum type, GLboolean normalized, GLint stride, GLint offset);
-    void vertexAttribPtr (GLint index, GLint size, GLenum type, GLboolean normalized, GLint stride, GLint offset);
+
+    void vertexAttribPtr (const char* attribName, GLint size, GLint stride, GLint offset, GLenum type = GL_FLOAT, GLboolean normalized = GL_FALSE);
+    void vertexAttribPtr (GLint index, GLint size, GLint stride, GLint offset, GLenum type = GL_FLOAT, GLboolean normalized = GL_FALSE);
 
     GLuint uniLocation (const char* uniName);
 
@@ -62,6 +64,18 @@ namespace Framework
     void uni2fv (GLuint uniLoc, const float* uniValue, int _count = 1);
     void uni3fv (GLuint uniLoc, const float* uniValue, int _count = 1);
     void uni4fv (GLuint uniLoc, const float* uniValue, int _count = 1);
+
+    void uniMat2 (GLuint uniLoc, const float* uniValue, int _count = 1);
+    void uniMat3 (GLuint uniLoc, const float* uniValue, int _count = 1);
+    void uniMat4 (GLuint uniLoc, const float* uniValue, int _count = 1);
+
+    void uniMat2 (const char* uniName, const float* uniValue, int _count = 1);
+    void uniMat3 (const char* uniName, const float* uniValue, int _count = 1);
+    void uniMat4 (const char* uniName, const float* uniValue, int _count = 1);
+
+    GLuint Get_ID ();
+
+    friend class ResourceManager;
 
   private:
     //DATA

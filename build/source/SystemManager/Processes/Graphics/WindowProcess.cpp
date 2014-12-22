@@ -26,7 +26,7 @@ namespace Framework
 
       AllocConsole();
       freopen_s( &stream,"CONOUT$", "w", stdout);
-      std::cout << " WinMain Started" << std::endl;
+      std::cout << "WinMain Started" << std::endl;
     }
   }
 
@@ -39,9 +39,6 @@ namespace Framework
 /******************************************************************************/
   void WindowProcess::VInit()
   {
-    ConsoleAllocation(EngineSettings.consoleActive);
-    Create_Context ();
-    Init_Glew ();
   }
 
   
@@ -55,13 +52,11 @@ namespace Framework
   void WindowProcess::VUpdate(double dt)
   {
     //glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS
-    if(glfwWindowShouldClose(g_csEngineCore->g_glWindow))
+    if(glfwWindowShouldClose(g_csEngineCore->g_glWindow.GetWindow()))
       g_csEngineCore->g_bGameIsActive = false;
 
     // Swap buffers
-    glfwSwapBuffers(g_csEngineCore->g_glWindow);
-    glfwPollEvents();
-
+    glfwPollEvents ();
   }
 
 /******************************************************************************/
@@ -79,6 +74,10 @@ namespace Framework
     m_bActive = true; // skip when process is deactivated
     m_bInitialized = false; //debugging purposes if initialized
     m_bAttached = false; // check if process is attached to manager
+
+    ConsoleAllocation (EngineSettings.consoleActive);
+    Create_Context ();
+    Init_Glew ();
   }
 
 /******************************************************************************/
@@ -94,24 +93,12 @@ namespace Framework
 
   bool WindowProcess::Create_Context ()
   {
-    // Initialise GLFW
-    int success = glfwInit ();
-    ErrorIf (!success, "Failed to initialize GLFW\n");
-
-
-    // Open a window and create its OpenGL context 
-    g_csEngineCore->g_glWindow = glfwCreateWindow (EngineSettings.windowsX,
+    g_csEngineCore->g_glWindow.Create_Context
+      (
+      EngineSettings.windowsX,
       EngineSettings.windowsY,
-      EngineSettings.application_name.c_str (),
-      NULL,
-      NULL);
-    ErrorIf (!g_csEngineCore->g_glWindow, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n");
-
-    //Initialize GLFW
-    glfwMakeContextCurrent (g_csEngineCore->g_glWindow); // Initialize GLFW 
-
-    // Ensure we can capture the escape key being pressed below
-    glfwSetInputMode (g_csEngineCore->g_glWindow, GLFW_STICKY_KEYS, GL_TRUE);
+      EngineSettings.application_name.c_str ()
+      );
 
     return true;
   }

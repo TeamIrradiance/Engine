@@ -28,10 +28,11 @@
 /******************************************************************************/
 namespace Framework
 {
-  class Resource : public ::IData
+  enum RESOURCE_TYPE
   {
-    void DefineMeta ();
-    std::string m_name;
+    R_TEXTURE,
+    R_SHADER,
+    R_AUDIO,
   };
 
 
@@ -44,21 +45,20 @@ namespace Framework
     void VInit ();
     void VUpdate(const double dt);
 
-    static std::string ROOT_DIRECTORY;
+    static std::string RESOURCE_DIRECTORY;
 
-    template <typename T>
-    T* LoadResource ();
+    static Resource* LoadResource (std::string resourceName, unsigned resourceType);
 
   private:
-    std::unordered_map <std::string, Resource*> m_resourceMap;
+    void Load_Resources ();
+    void Load_Shaders ();
+    void Load_Textures ();
+
+    static std::unordered_map <RESOURCE_TYPE, std::unordered_map <std::string, Resource*>> m_resourceMap;
+    static std::string SHADER_DIRECTORY;
+    static std::string TEXTURE_DIRECTORY;
 
   };
-
-  template <typename T>
-  T* Framework::ResourceManager::LoadResource ()
-  {
-
-  }
 
 }
 

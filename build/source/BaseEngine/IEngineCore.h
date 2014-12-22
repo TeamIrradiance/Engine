@@ -47,7 +47,7 @@ struct EngineCore
 
   //GLOBAL VARIABLES
   bool g_bGameIsActive;
-  GLFWwindow* g_glWindow;
+  Framework::OpenGLWindow g_glWindow;
   EngineSetup settings;
 
   //Debugging purposes

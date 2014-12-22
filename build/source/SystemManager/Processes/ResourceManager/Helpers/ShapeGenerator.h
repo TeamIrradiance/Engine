@@ -24,13 +24,15 @@ namespace Framework
   class ShapeGenerator
   {
   public:
-    ShapeGenerator();
-    ~ShapeGenerator();
 
-    static void Generate_Triangle (Mesh* mesh);
-    static void Generate_Quad (Mesh* mesh);
-    static void Generate_Circle (Mesh* mesh);
-    static void Generate_Cube (Mesh* mesh);
+    ShapeGenerator ();
+    ~ShapeGenerator ();
+
+    static ShapeData Generate_Quad ();
+    static ShapeData Generate_Cube ();
+    static ShapeData Generate_Normals (const ShapeData& shapeData);
+
+  private:
 
   };
 }

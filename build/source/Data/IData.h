@@ -9,8 +9,21 @@
 /******************************************************************************/
 #pragma once
 #include "json.h"
+
+
 class IData
 {
   virtual void DefineMeta() = 0;
 };
+
+namespace Framework
+{
+
+  class Resource : public ::IData
+  {
+    void DefineMeta (){}
+    std::string m_name;
+  };
+
+}
 

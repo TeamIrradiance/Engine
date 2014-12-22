@@ -25,11 +25,15 @@ namespace Framework
   public:
     Mesh();
     ~Mesh();
+
     void DefineMeta();
+    void Load (ShapeData* data, Shader* shader);
+    void Draw (Shader* shader);
 
     //DATAS
     VAO* vao;
-    VBO* vbo;
+    VBO* m_posVbo;
+    VBO* m_texVbo;
     EBO* ebo;
   };
 }

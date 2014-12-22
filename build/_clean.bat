@@ -13,6 +13,10 @@ GOTO EndComment
 /******************************************************************************/
 :EndComment
 
+rmdir /S /Q obj
+rmdir /S /Q bin
+rmdir /S /Q ipch
+
 cd premake
 rm *.vcxproj
 rm *.vcxproj.filters
@@ -22,7 +26,4 @@ rm *.sdf
 rm *.opensdf
 rm *.sln
 rm *.suo
-rmdir /S /Q obj
-rmdir /S /Q bin
-rmdir /S /Q ipch
 pause

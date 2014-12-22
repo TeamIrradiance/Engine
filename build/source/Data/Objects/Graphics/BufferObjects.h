@@ -43,6 +43,7 @@ namespace Framework
 
     BufferObject ()
     {
+      glGenBuffers (1, &m_bufferLocation);
       m_data.clear ();
     }
 
@@ -70,8 +71,14 @@ namespace Framework
       m_data.clear ();
     }
 
+    template <typename T>
+    void UploadData (GLuint bufferSize, T* bufferData, GLenum mode = GL_STATIC_DRAW)
+    {
+      glBufferData (m_bufferType, bufferSize, bufferData, mode);
+    }
+
     template <typename T = float>
-    void AddData (GLfloat* data, GLuint size)
+    void AddData (T* data, GLuint size)
     {
       m_data.insert (m_data.end (), data, data + size);
     }

@@ -55,27 +55,27 @@ namespace Framework
   }
 
   /*************************************************************************/
-  // Method:    Use
-  // FullName:  Component::Shader::Use
+  // Method:    UseShader
+  // FullName:  Component::Shader::UseShader
   // Access:    public 
   // Returns:   void
   // Qualifier:
   // Brief: Use This Shader
   /*************************************************************************/
-  void Shader::Use ()
+  void Shader::UseShader ()
   {
     glUseProgram (m_program);
   }
 
   /*************************************************************************/
-  // Method:    Disable
-  // FullName:  Component::Shader::Disable
+  // Method:    DisableShader
+  // FullName:  Component::Shader::DisableShader
   // Access:    public 
   // Returns:   void
   // Qualifier:
   // Brief: Disable All Shaders
   /*************************************************************************/
-  void Shader::Disable ()
+  void Shader::DisableShader ()
   {
     glUseProgram (0);
   }
@@ -110,6 +110,21 @@ namespace Framework
     glBindAttribLocation (m_program, location, attribName);
   }
 
+
+  /*************************************************************************/
+  // Method:    enableVertexAttribArray
+  // FullName:  Framework::Shader::enableVertexAttribArray
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: GLint attr
+  // Brief:
+  /*************************************************************************/
+  void Shader::enableVertexAttribArray (const char* attrName)
+  {
+    glEnableVertexAttribArray (attribLocation(attrName));
+  }
+
   /*************************************************************************/
   // Method:    enableVertexAttribArray
   // FullName:  Component::Shader::enableVertexAttribArray
@@ -138,7 +153,7 @@ namespace Framework
   // Parameter: GLint offset
   // Brief:
   /*************************************************************************/
-  void Shader::vertexAttribPtr (const char* attribName, GLint size, GLenum type, GLboolean normalized, GLint stride, GLint offset)
+  void Shader::vertexAttribPtr (const char* attribName, GLint size, GLint stride, GLint offset, GLenum type /* = GL_FLOAT*/, GLboolean normalized /* = GL_FALSE*/)
   {
     glVertexAttribPointer (attribLocation (attribName), size, type, normalized, stride, (const void*) (offset));
   }
@@ -157,7 +172,7 @@ namespace Framework
   // Parameter: GLint offset
   // Brief:
   /*************************************************************************/
-  void Shader::vertexAttribPtr (GLint index, GLint size, GLenum type, GLboolean normalized, GLint stride, GLint offset)
+  void Shader::vertexAttribPtr (GLint index, GLint size, GLint stride, GLint offset, GLenum type /* = GL_FLOAT*/, GLboolean normalized /* = GL_FALSE*/)
   {
     glVertexAttribPointer (index, size, type, normalized, stride, (const void*) (offset));
   }
@@ -438,6 +453,105 @@ namespace Framework
     glUniform4fv (uniLoc, _count, uniValue);
   }
 
+  /*************************************************************************/
+  // Method:    uniMat2
+  // FullName:  Framework::Shader::uniMat2
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: GLuint uniLoc
+  // Parameter: const float * uniValue
+  // Parameter: int _count
+  // Brief:
+  /*************************************************************************/
+  void Shader::uniMat2 (GLuint uniLoc, const float* uniValue, int _count /* = 1*/)
+  {
+    glUniformMatrix2fv (uniLoc, _count, GL_FALSE, uniValue);
+  }
+
+  /*************************************************************************/
+  // Method:    uniMat3
+  // FullName:  Framework::Shader::uniMat3
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: GLuint uniLoc
+  // Parameter: const float * uniValue
+  // Parameter: int _count
+  // Brief:
+  /*************************************************************************/
+  void Shader::uniMat3 (GLuint uniLoc, const float* uniValue, int _count /* = 1*/)
+  {
+    glUniformMatrix3fv (uniLoc, _count, GL_FALSE, uniValue);
+  }
+
+  /*************************************************************************/
+  // Method:    uniMat2
+  // FullName:  Framework::Shader::uniMat2
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: const char * uniName
+  // Parameter: const float * uniValue
+  // Parameter: int _count
+  // Brief:
+  /*************************************************************************/
+  void Shader::uniMat2 (const char* uniName, const float* uniValue, int _count /* = 1*/)
+  {
+    GLuint uni = checkUniform (uniName);
+    uniMat2 (uni, uniValue, _count);
+  }
+
+  /*************************************************************************/
+  // Method:    uniMat3
+  // FullName:  Framework::Shader::uniMat3
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: const char * uniName
+  // Parameter: const float * uniValue
+  // Parameter: int _count
+  // Brief:
+  /*************************************************************************/
+  void Shader::uniMat3 (const char* uniName, const float* uniValue, int _count /* = 1*/)
+  {
+    GLuint uni = checkUniform (uniName);
+    uniMat3 (uni, uniValue, _count);
+  }
+
+  /*************************************************************************/
+  // Method:    uniMat4
+  // FullName:  Framework::Shader::uniMat4
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: const char * uniName
+  // Parameter: const float * uniValue
+  // Parameter: int _count
+  // Brief:
+  /*************************************************************************/
+  void Shader::uniMat4 (const char* uniName, const float* uniValue, int _count /* = 1*/)
+  {
+    GLuint uni = checkUniform (uniName);
+    uniMat4 (uni, uniValue, _count);
+  }
+
+  /*************************************************************************/
+  // Method:    uniMat4
+  // FullName:  Framework::Shader::uniMat4
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: GLuint uniLoc
+  // Parameter: const float * uniValue
+  // Parameter: int _count
+  // Brief:
+  /*************************************************************************/
+  void Shader::uniMat4 (GLuint uniLoc, const float* uniValue, int _count /* = 1*/)
+  {
+    glUniformMatrix4fv (uniLoc, _count, GL_FALSE, uniValue);
+  }
+
   //////////////////////////////////////////////////////////////////////////
   // PRIVATE FUNCTIONS
   //////////////////////////////////////////////////////////////////////////
@@ -481,6 +595,7 @@ namespace Framework
   /*************************************************************************/
   GLuint Shader::checkUniform(const char* uniName)
   {
+    UseShader ();
     // log msg only in the DEBUG version
     int i = glGetUniformLocation (m_program, uniName);
 #ifdef _DEBUG
@@ -489,7 +604,6 @@ namespace Framework
       std::cout << "UNIFORM " + std::string(uniName) + " DOES NOT EXIST!\n";
     }
 #endif
-
     return i;
   }
 
@@ -565,7 +679,7 @@ namespace Framework
     glLinkProgram (program);
     char log [1000];
     glGetProgramInfoLog (program, 1000, NULL, log);
-    std::cout << "\n" << sName << "\nLink Status...\n" << log << "\n--------------" << std::endl;
+    std::cout << "Shader Program\n" << sName << "\nLink Status...\n" << log << "\n--------------" << std::endl;
 
     m_program = program;
 

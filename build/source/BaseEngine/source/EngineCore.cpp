@@ -70,6 +70,7 @@ void EngineCore::Update ()
   {
     g_csFramerateControl->StartTime ();
     g_csProcessManager->UpdateProcesses (g_csFramerateControl->m_dDt);
+    g_glWindow.SwapBuffers ();
     g_csFramerateControl->Update ();
   }
 }
@@ -95,21 +96,21 @@ void EngineCore::DefineMeta ()
     meta_end ()
 
     meta_begin (Vector2)
-    meta_child (Vector2, Vector2::_.x)
-    meta_child (Vector2, Vector2::_.y)
+    meta_child (Vector2, Vector2::x)
+    meta_child (Vector2, Vector2::y)
     meta_end ()
 
     meta_begin (Vector3)
-    meta_child (Vector3, Vector3::_.x)
-    meta_child (Vector3, Vector3::_.y)
-    meta_child (Vector3, Vector3::_.z)
+    meta_child (Vector3, Vector3::x)
+    meta_child (Vector3, Vector3::y)
+    meta_child (Vector3, Vector3::z)
     meta_end ()
 
     meta_begin (Vector4)
-    meta_child (Vector4, Vector4::_.x)
-    meta_child (Vector4, Vector4::_.y)
-    meta_child (Vector4, Vector4::_.z)
-    meta_child (Vector4, Vector4::_.w)
+    meta_child (Vector4, Vector4::x)
+    meta_child (Vector4, Vector4::y)
+    meta_child (Vector4, Vector4::z)
+    meta_child (Vector4, Vector4::w)
     meta_end ()
 
     meta_begin (Transform)
