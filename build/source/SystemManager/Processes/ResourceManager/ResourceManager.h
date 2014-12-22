@@ -28,6 +28,12 @@
 /******************************************************************************/
 namespace Framework
 {
+  class Resource : public ::IData
+  {
+    void DefineMeta ();
+    std::string m_name;
+  };
+
 
   class ResourceManager : public CProcess
   {
@@ -38,20 +44,22 @@ namespace Framework
     void VInit ();
     void VUpdate(const double dt);
 
-    Texture* Get_Texture (std::string texName);
-    Shader* Get_Shader (std::string shaderName);
-
     static std::string ROOT_DIRECTORY;
 
-  private:
-    std::unordered_map <std::string, Texture*> m_textureMap;
-    std::unordered_map <std::string, Shader*> m_shaderMap;
+    template <typename T>
+    T* LoadResource ();
 
-    void Load_Resources ();
-    void Load_Shaders ();
-    void Load_Textures ();
-    void Load_Audio ();
+  private:
+    std::unordered_map <std::string, Resource*> m_resourceMap;
+
   };
+
+  template <typename T>
+  T* Framework::ResourceManager::LoadResource ()
+  {
+
+  }
+
 }
 
 #endif // !_RESOURCE_MANAGER_H

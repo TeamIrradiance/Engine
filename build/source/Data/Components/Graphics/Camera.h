@@ -28,7 +28,9 @@ namespace Framework
     ~Camera();
 
     // Methods
-    void DefineMeta();
+    void DefineMeta ();
+    void Initialize ();
+
     void UpdateCamera ();
 
     // Functions
@@ -40,14 +42,6 @@ namespace Framework
   private:
 
     // DATA
-    unsigned m_mask;
-    float m_aspect;
-    float m_fov;
-    float m_size;
-    float m_nearPlane;
-    float m_farPlane;
-    Vector3 m_viewDirection;
-    Vector3 m_upVector;
 
   };
 }

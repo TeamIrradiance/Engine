@@ -132,20 +132,20 @@ namespace Framework
     mesh->vbo->UploadData ();
     mesh->ebo->UploadData ();
 
-    Shader* shader = reinterpret_cast<ResourceManager*> (g_csEngineCore->g_csProcessManager->getProcess ("resources"))->Get_Shader ("Default");
-    //shader->Use ();
+    //Shader* shader = reinterpret_cast<ResourceManager*> (g_csEngineCore->g_csProcessManager->getProcess ("resources"))->Get_Shader ("Default");
+    ////shader->Use ();
 
-    shader->enableVertexAttribArray (shader->attribLocation ("position"));
-    shader->vertexAttribPtr ("position", 3, GL_FLOAT, GL_FALSE, 9 * sizeof (GLfloat), 0);
+    //shader->enableVertexAttribArray (shader->attribLocation ("position"));
+    //shader->vertexAttribPtr ("position", 3, GL_FLOAT, GL_FALSE, 9 * sizeof (GLfloat), 0);
 
-    shader->enableVertexAttribArray (shader->attribLocation ("color"));
-    shader->vertexAttribPtr ("color", 4, GL_FLOAT, GL_FALSE, 9 * sizeof (GLfloat), 3 * sizeof (GLfloat));
+    //shader->enableVertexAttribArray (shader->attribLocation ("color"));
+    //shader->vertexAttribPtr ("color", 4, GL_FLOAT, GL_FALSE, 9 * sizeof (GLfloat), 3 * sizeof (GLfloat));
 
-    shader->enableVertexAttribArray (shader->attribLocation ("texcoord"));
-    shader->vertexAttribPtr ("texcoord", 2, GL_FLOAT, GL_FALSE, 9 * sizeof (GLfloat), 7 * sizeof (GLfloat));
+    //shader->enableVertexAttribArray (shader->attribLocation ("texcoord"));
+    //shader->vertexAttribPtr ("texcoord", 2, GL_FLOAT, GL_FALSE, 9 * sizeof (GLfloat), 7 * sizeof (GLfloat));
 
-    //shader->Disable ();
-    mesh->vao->Unbind ();
+    ////shader->Disable ();
+    //mesh->vao->Unbind ();
   }
 
   void ShapeGenerator::Generate_Circle(Mesh* mesh)

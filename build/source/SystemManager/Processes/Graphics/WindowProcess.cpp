@@ -40,31 +40,8 @@ namespace Framework
   void WindowProcess::VInit()
   {
     ConsoleAllocation(EngineSettings.consoleActive);
-
-    // Initialise GLFW
-    int success = glfwInit();
-    ErrorIf(!success, "Failed to initialize GLFW\n");
- 
- 
-    // Open a window and create its OpenGL context 
-    g_csEngineCore->g_glWindow = glfwCreateWindow( EngineSettings.windowsX, 
-                                                   EngineSettings.windowsY,
-                                                   EngineSettings.application_name.c_str() ,
-                                                   NULL,
-                                                   NULL); 
-    ErrorIf(!g_csEngineCore->g_glWindow,"Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );
-
-    //Initialize GLEW
-    glfwMakeContextCurrent(g_csEngineCore->g_glWindow); // Initialize GLEW 
-    glewExperimental=true; //@Note: No idea what this is
-    success = glewInit();
-    ErrorIf( success == GLEW_ERROR_GLX_VERSION_11_ONLY,  "GLEW_ERROR_GLX_VERSION_11_ONLY\n");
-    ErrorIf( success == GLEW_ERROR_GL_VERSION_10_ONLY, "GLEW_ERROR_GL_VERSION_10_ONLY\n");
-    ErrorIf( success == GLEW_ERROR_NO_GL_VERSION,  "GLEW_ERROR_NO_GL_VERSION\n");
-    ErrorIf( success != GLEW_OK, "Failed to initialize GLEW\n");
-
-    // Ensure we can capture the escape key being pressed below
-    glfwSetInputMode(g_csEngineCore->g_glWindow, GLFW_STICKY_KEYS, GL_TRUE);
+    Create_Context ();
+    Init_Glew ();
   }
 
   
@@ -114,4 +91,46 @@ namespace Framework
   {
 
   }
+
+  bool WindowProcess::Create_Context ()
+  {
+    // Initialise GLFW
+    int success = glfwInit ();
+    ErrorIf (!success, "Failed to initialize GLFW\n");
+
+
+    // Open a window and create its OpenGL context 
+    g_csEngineCore->g_glWindow = glfwCreateWindow (EngineSettings.windowsX,
+      EngineSettings.windowsY,
+      EngineSettings.application_name.c_str (),
+      NULL,
+      NULL);
+    ErrorIf (!g_csEngineCore->g_glWindow, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n");
+
+    //Initialize GLFW
+    glfwMakeContextCurrent (g_csEngineCore->g_glWindow); // Initialize GLFW 
+
+    // Ensure we can capture the escape key being pressed below
+    glfwSetInputMode (g_csEngineCore->g_glWindow, GLFW_STICKY_KEYS, GL_TRUE);
+
+    return true;
+  }
+
+  bool WindowProcess::Init_Glew ()
+  {
+    // Expose All Extensions
+    glewExperimental = true;
+
+    int success = glewInit ();
+    ErrorIf (success == GLEW_ERROR_GLX_VERSION_11_ONLY, "GLEW_ERROR_GLX_VERSION_11_ONLY\n");
+    ErrorIf (success == GLEW_ERROR_GL_VERSION_10_ONLY, "GLEW_ERROR_GL_VERSION_10_ONLY\n");
+    ErrorIf (success == GLEW_ERROR_NO_GL_VERSION, "GLEW_ERROR_NO_GL_VERSION\n");
+    ErrorIf (success != GLEW_OK, "Failed to initialize GLEW\n");
+
+    std::cout << "OpenGL Version " << glGetString (GL_VERSION) << std::endl;
+    std::cout << "OpenGL Vendor "  << glGetString (GL_VENDOR)  << std::endl;
+
+    return true;
+  }
+
 }

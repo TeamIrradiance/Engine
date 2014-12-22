@@ -9,9 +9,6 @@
 /******************************************************************************/
 #pragma once
 #include <Precompiled.h>
-#include "IEngineCore.h"
-#include "ITypeReflection.h"
-#include "IComponents.h"
 
 EngineCore* g_csEngineCore = 0;
 /******************************************************************************/

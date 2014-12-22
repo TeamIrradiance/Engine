@@ -26,7 +26,7 @@ namespace Framework
   void ResourceManager::VInit()
   {
     ROOT_DIRECTORY = "Resources/";
-    Load_Resources ();
+    //Load_Resources ();
   }
   
   ResourceManager::ResourceManager()
@@ -45,54 +45,48 @@ namespace Framework
 
   }
 
-  void ResourceManager::Load_Resources ()
-  {
-    Load_Shaders ();
-    Load_Textures ();
-    Load_Audio ();
-  }
 
-  Texture* ResourceManager::Get_Texture (std::string texName)
-  {
-    for (auto& i : m_textureMap)
-    {
-      if (i.first == texName)
-      {
-        return i.second;
-      }
-    }
+  //Texture* ResourceManager::Get_Texture (std::string texName)
+  //{
+  //  for (auto& i : m_textureMap)
+  //  {
+  //    if (i.first == texName)
+  //    {
+  //      return i.second;
+  //    }
+  //  }
 
-    std::cout << "NO TEXTURE WITH NAME " + texName + " FOUND. USING DEFAULT TEXTURE\n";
-    return m_textureMap ["DEFAULT"];
-  }
+  //  std::cout << "NO TEXTURE WITH NAME " + texName + " FOUND. USING DEFAULT TEXTURE\n";
+  //  return m_textureMap ["DEFAULT"];
+  //}
 
-  Shader* ResourceManager::Get_Shader (std::string shaderName)
-  {
-    for (auto& i : m_shaderMap)
-    {
-      if (i.first == shaderName)
-      {
-        return i.second;
-      }
-    }
+  //Shader* ResourceManager::Get_Shader (std::string shaderName)
+  //{
+  //  for (auto& i : m_shaderMap)
+  //  {
+  //    if (i.first == shaderName)
+  //    {
+  //      return i.second;
+  //    }
+  //  }
 
-    std::cout << "NO SHADER WITH NAME " + shaderName + " FOUND. USING DEFAULT SHADER\n";
-    return m_shaderMap ["DEFAULT"];
-  }
+  //  std::cout << "NO SHADER WITH NAME " + shaderName + " FOUND. USING DEFAULT SHADER\n";
+  //  return m_shaderMap ["DEFAULT"];
+  //}
 
-  void ResourceManager::Load_Shaders ()
-  {
+  //void ResourceManager::Load_Shaders ()
+  //{
 
-  }
+  //}
 
-  void ResourceManager::Load_Textures ()
-  {
+  //void ResourceManager::Load_Textures ()
+  //{
 
-  }
+  //}
 
-  void ResourceManager::Load_Audio ()
-  {
+  //void ResourceManager::Load_Audio ()
+  //{
 
-  }
+  //}
 
 }

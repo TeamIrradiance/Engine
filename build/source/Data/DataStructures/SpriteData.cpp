@@ -1,7 +1,7 @@
 /******************************************************************************/
 /*!
-\file   MathLib.cpp
-\author Aji Suprana
+\file   SpriteData.cpp
+\author Manas Sudhir Kulkarni
 \par    Course: GAM250
 \par    All content ?2014 DigiPen (USA) Corporation, all rights reserved.
 \brief
@@ -9,45 +9,20 @@
 /******************************************************************************/
 
 #include <Precompiled.h>
-#include "MathLib.h"
 
 namespace Framework
 {
-
-
-  void Vector2::DefineMeta ()
+  void SpriteData::DefineMeta ()
   {
+    meta_begin (SpriteData)
 
-  }
+    meta_child (SpriteData, m_shader)
+    meta_child (SpriteData, m_texture)
+    meta_child (SpriteData, m_color)
+    meta_child (SpriteData, m_visible)
+    meta_child (SpriteData, m_layerID)
 
-  void Vector2::ToolInit ()
-  {
-
-  }
-
-  void Vector2::Serialize ()
-  {
-
-  }
-
-  void Vector3::DefineMeta ()
-  {
-
-  }
-
-  void Vector3::ToolInit ()
-  {
-
-  }
-
-  void Vector3::Serialize ()
-  {
-
-  }
-
-  void Vector4::DefineMeta ()
-  {
-
+    meta_end ()
   }
 
 }

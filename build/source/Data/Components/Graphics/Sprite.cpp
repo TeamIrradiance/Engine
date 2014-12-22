@@ -44,5 +44,18 @@ namespace Framework
   {
 
   }
+
+  /*************************************************************************/
+  // Method:    Initialize
+  // FullName:  Framework::Sprite::Initialize
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Brief: Initialize Sprite Component
+  /*************************************************************************/
+  void Sprite::Initialize ()
+  {
+    gameObject->sprite = this;
+  }
 }
 

@@ -8,8 +8,8 @@
  */
 /******************************************************************************/
 
-#ifndef _SHADER_H
-#define _SHADER_H
+#pragma once
+
 
 namespace Framework
 {
@@ -75,5 +75,3 @@ namespace Framework
     GLuint Link_Program (const char* sName, GLuint vShader, GLuint fShader, GLuint gShader = 0);
   };
 }
-
-#endif // !_SHADER_H

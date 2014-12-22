@@ -19,17 +19,14 @@ namespace Framework
 // Notes: 
 // */
 //******************************************************************************/
-  class Sprite: public Framework::Component
+  class Sprite: public Drawable
   {
   public:
     Sprite();
     ~Sprite();
 
-    void DefineMeta();
-
-    //DATA
-    //Vector2 size;
-    std::string m_textureName;
+    void DefineMeta ();
+    void Initialize ();
 
   };
 }

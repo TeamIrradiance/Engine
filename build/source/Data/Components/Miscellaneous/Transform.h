@@ -27,7 +27,9 @@ namespace Framework
   public:
     Transform();
     ~Transform();
-    void DefineMeta();
+
+    void DefineMeta ();
+    void Initialize ();
 
     Matrix4x4 GetModelMatrix ();
     Matrix4x4 GetModelViewProjectionMatrix ();

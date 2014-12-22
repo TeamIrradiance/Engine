@@ -70,10 +70,16 @@ namespace Framework
   class Component : public ::IData
   {
   public:
+    // Constructor - Destructor
     virtual ~Component (){}
 
-    virtual void DefineMeta() = 0;
+    // Methods
+    virtual void DefineMeta () = 0;
+    virtual void Initialize () = 0;
+
     friend class GameObject;
+
+    // DATA
     GameObject* gameObject;
     std::string m_sName;
   };

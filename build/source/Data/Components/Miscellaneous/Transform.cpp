@@ -7,7 +7,7 @@
  \brief
  */
 /******************************************************************************/
-#include "Precompiled.h"
+#include <Precompiled.h>
 #include "ITypeReflection.h"
 #include "IComponents.h"
 
@@ -21,8 +21,6 @@ namespace Framework
 /******************************************************************************/
   Transform::Transform()
   {
-    gameObject->transform = this;
-    G_TRANSFORM->transformVectorMap [gameObject->m_layer].push_back (this);
     m_sName = Tokenize(typeid(Transform).name());
   }
 
@@ -34,7 +32,7 @@ namespace Framework
 /******************************************************************************/
   Transform::~Transform()
   {
-    G_TRANSFORM->transformVectorMap [gameObject->m_layer].remove (this);
+    //G_TRANSFORM->transformVectorMap [gameObject->m_layer].remove (this);
   }
 
 /******************************************************************************/
@@ -48,6 +46,29 @@ namespace Framework
 
   }
 
+  /*************************************************************************/
+  // Method:    Initialize
+  // FullName:  Framework::Transform::Initialize
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Brief: Initialize Component
+  /*************************************************************************/
+  void Transform::Initialize ()
+  {
+    gameObject->transform = this;
+    G_TRANSFORM->transformVectorMap [gameObject->m_layer].push_back (this);
+  }
+
+  /*************************************************************************/
+  // Method:    Update_Matrices
+  // FullName:  Framework::Transform::Update_Matrices
+  // Access:    private 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: double dt
+  // Brief: Update Model, ModelViewProjection Matrix of Transform
+  /*************************************************************************/
   void Transform::Update_Matrices (double dt)
   {
     G_TRANSFORM->MatrixMode (MODEL);
@@ -67,11 +88,32 @@ namespace Framework
     G_TRANSFORM->LoadIdentity ();
   }
 
+  //////////////////////////////////////////////////////////////////////////
+  // GETTORS
+  //////////////////////////////////////////////////////////////////////////
+
+
+  /*************************************************************************/
+  // Method:    GetModelMatrix
+  // FullName:  Framework::Transform::GetModelMatrix
+  // Access:    public 
+  // Returns:   Matrix4x4
+  // Qualifier:
+  // Brief: Get Model Matrix of Transform
+  /*************************************************************************/
   Matrix4x4 Transform::GetModelMatrix ()
   {
     return m_modelMatrix;
   }
 
+  /*************************************************************************/
+  // Method:    GetModelViewProjectionMatrix
+  // FullName:  Framework::Transform::GetModelViewProjectionMatrix
+  // Access:    public 
+  // Returns:   Matrix4x4
+  // Qualifier:
+  // Brief: Get ModelViewProjection Matrix of Transform
+  /*************************************************************************/
   Matrix4x4 Transform::GetModelViewProjectionMatrix ()
   {
     return m_modelViewProjectionMatrix;

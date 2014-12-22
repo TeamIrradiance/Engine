@@ -24,7 +24,6 @@ namespace Framework
   Camera::Camera()
   {
     m_sName = Tokenize(typeid(Camera).name());
-    gameObject->camera = this;
   }
 
 /******************************************************************************/
@@ -46,23 +45,44 @@ namespace Framework
 /******************************************************************************/
   void Camera::DefineMeta()
   {
-    allCameras.emplace (std::make_pair (m_mask, this));
+    //allCameras.emplace (std::make_pair (m_mask, this));
   }
 
+  /*************************************************************************/
+  // Method:    Initialize
+  // FullName:  Framework::Camera::Initialize
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Brief: Initialize Camera Component
+  /*************************************************************************/
+  void Camera::Initialize ()
+  {
+    gameObject->camera = this;
+  }
+
+  /*************************************************************************/
+  // Method:    UpdateCamera
+  // FullName:  Framework::Camera::UpdateCamera
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Brief: Update Camera Matrices - Model, View, Projection
+  /*************************************************************************/
   void Camera::UpdateCamera ()
   {
-    G_TRANSFORM->MatrixMode (VIEW);
+    //G_TRANSFORM->MatrixMode (VIEW);
 
-    G_TRANSFORM->Translatefv (glm::value_ptr (gameObject->transform->translation._));
+    //G_TRANSFORM->Translatefv (glm::value_ptr (gameObject->transform->translation._));
 
-    G_TRANSFORM->Perspective (m_fov, m_aspect, m_nearPlane, m_farPlane);
-    Vector3 eye = m_size * m_viewDirection._ + glm::vec3 (gameObject->transform->translation.x (), gameObject->transform->translation.y (), 0.0);
-    G_TRANSFORM->LookAt (eye, gameObject->transform->translation, m_upVector);
-    G_TRANSFORM->MatrixMode (MODEL);
-    G_TRANSFORM->LoadIdentity ();
+    //G_TRANSFORM->Perspective (m_fov, m_aspect, m_nearPlane, m_farPlane);
+    //Vector3 eye = m_size * m_viewDirection._ + glm::vec3 (gameObject->transform->translation.x (), gameObject->transform->translation.y (), 0.0);
+    //G_TRANSFORM->LookAt (eye, gameObject->transform->translation, m_upVector);
+    //G_TRANSFORM->MatrixMode (MODEL);
+    //G_TRANSFORM->LoadIdentity ();
 
-    G_TRANSFORM->MatrixMode (MODEL);
-    G_TRANSFORM->LoadIdentity ();
+    //G_TRANSFORM->MatrixMode (MODEL);
+    //G_TRANSFORM->LoadIdentity ();
   }
 
 }

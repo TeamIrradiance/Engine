@@ -29,5 +29,10 @@ namespace Framework
     void VInit();
     WindowProcess();
     ~WindowProcess();
+
+  private:
+    bool Create_Context ();
+    bool Init_Glew ();
+
   };
 }
