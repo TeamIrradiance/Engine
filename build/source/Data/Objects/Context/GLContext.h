@@ -12,11 +12,11 @@
 
 namespace Framework
 {
-  class OpenGLWindow
+  class GLContext
   {
   public:
-    OpenGLWindow ();
-    ~OpenGLWindow ();
+    GLContext ();
+    ~GLContext ();
 
     void Create_Context (int w, int h, const char* wName);
     void Viewport (int x, int y, int w, int h);
@@ -31,6 +31,10 @@ namespace Framework
     Vector2 GetMousePosition ();
 
   private:
+    static void GLFrameBufferResizeCallback (GLFWwindow* wnd, const int w, const int h);
+    static void GLWindowResizeCallBack (GLFWwindow* wnd, const int w, const int h);
+    static void GLMouseCursorPosCallBack (GLFWwindow* wnd, double x, double y);
+
     GLFWwindow* m_window;
     int m_width;
     int m_height;

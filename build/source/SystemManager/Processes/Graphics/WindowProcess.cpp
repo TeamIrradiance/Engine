@@ -51,12 +51,13 @@ namespace Framework
 /******************************************************************************/
   void WindowProcess::VUpdate(double dt)
   {
+    glfwPollEvents ();
+
     //glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS
     if(glfwWindowShouldClose(g_csEngineCore->g_glWindow.GetWindow()))
       g_csEngineCore->g_bGameIsActive = false;
 
     // Swap buffers
-    glfwPollEvents ();
   }
 
 /******************************************************************************/

@@ -57,5 +57,25 @@ namespace Framework
   {
     gameObject->sprite = this;
   }
+
+  void Sprite::Draw(unsigned instanceID, VBO* posVbo, VBO* texVbo /* = nullptr*/)
+  {
+    Matrix4x4 m =
+      glm::translate (glm::linearRand (glm::vec3 (-1.0f, -1.0f, 0.0f), glm::vec3 (1.0f, 1.0f, 0.0f))) *
+      glm::rotate (glm::linearRand (-1.0f, 1.0f), glm::vec3 (0, 0, 1)) *
+      glm::scale (glm::linearRand (glm::vec3 (0.04f), glm::vec3 (0.05f)));
+    if (m_batched)
+    {
+      posVbo->UpdateMatrixData (m, instanceID, sizeof (Matrix4x4) / sizeof (GLfloat));
+    }
+    else
+    {
+      posVbo->AddData (glm::value_ptr (m), sizeof (Matrix4x4) / sizeof (GLfloat));
+      //texVbo->AddData (glm::value_ptr (m_texcoord), 1);
+    }
+
+    m_batched = true;
+  }
+
 }
 

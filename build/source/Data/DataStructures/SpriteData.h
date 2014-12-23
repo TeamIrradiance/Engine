@@ -19,10 +19,10 @@ namespace Framework
   public:
     void DefineMeta ();
 
-  private:
     std::string m_shader;
     std::string m_texture;
     Vector4 m_color;
+    Vector2 m_texcoord;
     bool m_visible;
     unsigned m_layerID;
 

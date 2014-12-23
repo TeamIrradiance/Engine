@@ -27,6 +27,12 @@ namespace Framework
 
     void DefineMeta ();
     void Initialize ();
+    void Draw (unsigned instanceID, VBO* posVbo, VBO* texVbo = nullptr);
+
+    bool m_batched = false;
+
+  private:
+    Vector2 m_texcoord;
 
   };
 }

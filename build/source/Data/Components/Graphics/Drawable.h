@@ -16,8 +16,8 @@ namespace Framework
   {
 
   public:
-    void DefineMeta () = 0;
-    void Initialize () = 0;
+    virtual void DefineMeta () = 0;
+    virtual void Initialize () = 0;
 
   protected:
     // TEMPORARY

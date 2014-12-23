@@ -13,18 +13,17 @@
 namespace Framework
 {
 
-
-  OpenGLWindow::OpenGLWindow ()
+  GLContext::GLContext ()
   {
 
   }
 
-  OpenGLWindow::~OpenGLWindow ()
+  GLContext::~GLContext ()
   {
     glfwTerminate ();
   }
 
-  void OpenGLWindow::Create_Context(int w, int h, const char* wName)
+  void GLContext::Create_Context(int w, int h, const char* wName)
   {
     // Initialise GLFW
     int success = glfwInit ();
@@ -41,45 +40,65 @@ namespace Framework
 
     // Ensure we can capture the escape key being pressed below
     glfwSetInputMode (m_window, GLFW_STICKY_KEYS, GL_TRUE);
+
+    glfwSetWindowSizeCallback (m_window, (GLContext::GLWindowResizeCallBack));
+    glfwSetFramebufferSizeCallback (m_window, (GLContext::GLFrameBufferResizeCallback));
+    glfwSetCursorPosCallback (m_window, (GLContext::GLMouseCursorPosCallBack));
+
   }
 
-  void OpenGLWindow::Viewport (int x, int y, int w, int h)
+  void GLContext::Viewport (int x, int y, int w, int h)
   {
     glViewport (x, y, w, h);
   }
 
-  void OpenGLWindow::SwapBuffers ()
+  void GLContext::SwapBuffers ()
   {
     glfwSwapBuffers (m_window);
   }
 
-  void OpenGLWindow::Resize (int w, int h)
+  void GLContext::Resize (int w, int h)
   {
     glViewport (0, 0, w, h);
   }
 
-  void OpenGLWindow::ResizeFrameBuffer (int w, int h)
+  void GLContext::ResizeFrameBuffer (int w, int h)
   {
   }
 
-  GLFWwindow* OpenGLWindow::GetWindow ()
+  GLFWwindow* GLContext::GetWindow ()
   {
     return m_window;
   }
 
-  int OpenGLWindow::GetWindowWidth ()
+  int GLContext::GetWindowWidth ()
   {
     return m_width;
   }
 
-  int OpenGLWindow::GetWindowHeight ()
+  int GLContext::GetWindowHeight ()
   {
     return m_height;
   }
 
-  Vector2 OpenGLWindow::GetMousePosition ()
+  Vector2 GLContext::GetMousePosition ()
   {
     return m_mousePosition;
+  }
+
+  void GLContext::GLWindowResizeCallBack (GLFWwindow* wnd, const int w, const int h)
+  {
+    glViewport (0, 0, w, h);
+  }
+
+  void GLContext::GLFrameBufferResizeCallback (GLFWwindow* wnd, const int w, const int h)
+  {
+
+  }
+
+  void GLContext::GLMouseCursorPosCallBack (GLFWwindow* wnd, double x, double y)
+  {
+    g_csEngineCore->g_glWindow.m_mousePosition = Vector2 (x, y);
   }
 
 }

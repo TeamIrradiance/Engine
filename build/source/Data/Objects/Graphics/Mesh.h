@@ -12,6 +12,20 @@
 
 namespace Framework
 {
+  enum MESH_TYPE
+  {
+    MESH_TRIANGLE = 0,
+    MESH_QUAD,
+    MESH_CUBE,
+    MESH_CIRCLE,
+
+    MESH_INSTANCE_TRIANGLE,
+    MESH_INSTANCE_QUAD,
+    MESH_INSTANCE_CUBE,
+    MESH_INSTANCE_CIRCLE,
+  };
+
+
 /******************************************************************************/
 /*!
  \class   sampleComponent
@@ -24,16 +38,35 @@ namespace Framework
   {
   public:
     Mesh();
-    ~Mesh();
+    virtual ~Mesh();
 
     void DefineMeta();
     void Load (ShapeData* data, Shader* shader);
-    void Draw (Shader* shader);
+    virtual void Draw (Shader* shader);
+    virtual void DrawInstanced (Shader* shader, unsigned instCount);
 
+  protected:
     //DATAS
-    VAO* vao;
+    VAO* m_vao;
     VBO* m_posVbo;
     VBO* m_texVbo;
-    EBO* ebo;
+    EBO* m_indexBuffer;
+  };
+
+
+  class SpriteMesh : public Mesh
+  {
+
+  public:
+    SpriteMesh ();
+    ~SpriteMesh ();
+    virtual void DrawInstanced (Shader* shader, unsigned instCount);
+
+    VBO const* CreateSprite (Shader* shader);
+
+  private:
+    //DATAS
+    VBO* m_matrixVbo;
+
   };
 }
