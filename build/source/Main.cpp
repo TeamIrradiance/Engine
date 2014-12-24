@@ -30,7 +30,7 @@ int main (void)
   AddProcess(new Framework::WindowProcess);
   AddProcess(new Framework::GraphicsProcess);
 
-  //Engine.DefineMeta();
+  Engine.DefineMeta();
   Engine.Init();
   //type_sample();
 

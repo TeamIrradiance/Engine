@@ -146,7 +146,7 @@ namespace Framework
     shader->UseShader ();
     m_vao->Bind ();
 
-    m_matrixVbo->UploadData (GL_DYNAMIC_DRAW);
+    m_matrixVbo->UploadData <float> (GL_DYNAMIC_DRAW);
     glDrawElementsInstanced (GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0, instCount);
 
     m_vao->Unbind ();
