@@ -77,7 +77,7 @@ namespace Framework
   // Parameter: const char * filename
   // Brief: Load a 2D OpenGL Texture from Input File 
   /*************************************************************************/
-  void Texture::Load_Texture (const char* name, const char* filename)
+  void Texture::Load_Texture (const char* filename)
   {
     int w, h;
     std::string format;
@@ -86,7 +86,6 @@ namespace Framework
 
     if (image != nullptr)
     {
-      m_name = name;
       Generate_Texture (w, h);
       Image2D (hasAlpha ? GL_RGBA : GL_RGB, image);
       Free_Pixels (image);
@@ -124,7 +123,7 @@ namespace Framework
     glGenTextures (1, &texture);
     glBindTexture (GL_TEXTURE_2D, texture);
 
-    m_size = Vector2(w, h);
+    m_size = { w, h };
     m_aspect = float (w) / h;
     m_texture = texture;
 

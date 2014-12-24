@@ -13,7 +13,6 @@
 
 class IData
 {
-public:
   virtual void DefineMeta() = 0;
 };
 
@@ -22,9 +21,7 @@ namespace Framework
 
   class Resource : public ::IData
   {
-  public:
     void DefineMeta (){}
-  protected:
     std::string m_name;
   };
 

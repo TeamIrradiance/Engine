@@ -29,7 +29,7 @@ namespace Framework
     void Initialize ();
     void Draw (unsigned instanceID, VBO* posVbo, VBO* texVbo = nullptr);
 
-    bool m_batched;
+    bool m_batched = false;
 
   private:
     Vector2 m_texcoord;

@@ -59,7 +59,7 @@ namespace Framework
   VertexBufferObject::VertexBufferObject () : BufferObject <float> ()
   {
     m_bufferType = GL_ARRAY_BUFFER;
-    Bind <float>();
+    Bind ();
   }
 
   //////////////////////////////////////////////////////////////////////////
@@ -69,7 +69,7 @@ namespace Framework
   ElementBufferObject::ElementBufferObject () : BufferObject <unsigned> ()
   {
     m_bufferType = GL_ELEMENT_ARRAY_BUFFER;
-    Bind <float>();
+    Bind ();
   }
 
   //////////////////////////////////////////////////////////////////////////

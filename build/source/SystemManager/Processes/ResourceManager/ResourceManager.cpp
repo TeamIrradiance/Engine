@@ -9,7 +9,6 @@
 /******************************************************************************/
 
 #include <Precompiled.h>
-#include "Deserialize.h"
 
 namespace Framework
 {
@@ -60,10 +59,6 @@ namespace Framework
     {
       delete i.second;
     }
-    for (auto& i : m_resourceMap [R_TEXTURE])
-    {
-      delete i.second;
-    }
   }
 
   Resource* ResourceManager::LoadResource(std::string resourceName, unsigned resourceType)
@@ -86,7 +81,6 @@ namespace Framework
   void ResourceManager::Load_Resources ()
   {
     Load_Shaders ();
-    Load_Textures ();
   }
   using namespace std;
   void find_and_replace (string& source, string const& find, string const& replace)
@@ -191,24 +185,9 @@ namespace Framework
         {
           // Link The Corresponding Vertex And Fragment Shaders in the Shader Program File
           shader->m_program = shader->Link_Program (name.c_str(), vSource [vs], fSource [fs], gSource [gs]);
-          m_resourceMap [R_SHADER][name] = /*static_cast<Resource*> */(shader);
+          m_resourceMap [R_SHADER][name] = static_cast<Resource*> (shader);
         }
       }
-    }
-  }
-
-  void ResourceManager::Load_Textures ()
-  {
-    std::vector <std::string> TEXTURE;
-    getFilesList (TEXTURE_DIRECTORY, ".png", TEXTURE);
-
-    for (auto& i : TEXTURE)
-    {
-      std::string name = i;
-      name.replace (name.find (TEXTURE_DIRECTORY), TEXTURE_DIRECTORY.length(), "");
-      Texture* texture = new Texture ();
-      texture->Load_Texture (name.c_str(), i.c_str ());
-      m_resourceMap [R_TEXTURE][i] = /*static_cast<Resource*>*/(texture);
     }
   }
 

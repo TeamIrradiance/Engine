@@ -21,7 +21,6 @@ namespace Framework
   Sprite::Sprite()
   {
     m_sName = Tokenize(typeid(Sprite).name());
-    m_batched = false;
   }
 
 //******************************************************************************/

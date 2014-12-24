@@ -113,18 +113,15 @@ void EngineCore::DefineMeta ()
     meta_child (Vector4, Vector4::w)
     meta_end ()
 
-    //meta_begin (Transform)
-    //meta_child (Transform, translation)
-    //meta_child (Transform, scale)
-    //meta_child (Transform, rotation)
-    //meta_end ()
-
-    meta_begin (Texture)
+    meta_begin (Transform)
+    meta_child (Transform, translation)
+    meta_child (Transform, scale)
+    meta_child (Transform, rotation)
     meta_end ()
 
-    //meta_begin (Sprite)
+    meta_begin (Sprite)
     //meta_child (Sprite, size)
-    //meta_end ()
+    meta_end ()
 
 
 

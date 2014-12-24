@@ -34,7 +34,7 @@ namespace Framework
 
     void Bind ();
     void Unbind ();
-    void Load_Texture (const char* name, const char* texFile);
+    void Load_Texture (const char* texFile);
     void Image2D (GLenum mode, unsigned char* pixels = nullptr);
     void TexParameteri (GLenum target, GLenum pname, GLenum param);
     void TexEnvf (GLenum target, GLenum pname, GLenum param);
