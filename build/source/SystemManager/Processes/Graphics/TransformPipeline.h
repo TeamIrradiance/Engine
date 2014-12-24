@@ -13,6 +13,7 @@
 
 namespace Framework
 {
+  class Shader;
 
   enum MATRIX_MODE
   {

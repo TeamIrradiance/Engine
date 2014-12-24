@@ -9,6 +9,7 @@
 /******************************************************************************/
 
 #include <Precompiled.h>
+#include "BufferObjects.h"
 
 namespace Framework
 {

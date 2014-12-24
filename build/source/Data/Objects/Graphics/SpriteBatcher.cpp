@@ -9,6 +9,9 @@
 /******************************************************************************/
 
 #include <Precompiled.h>
+#include "Mesh.h"
+#include "BufferObjects.h"
+#include "Sprite.h"
 
 namespace Framework
 {

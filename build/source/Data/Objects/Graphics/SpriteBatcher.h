@@ -13,6 +13,14 @@
 namespace Framework
 {
   class SpriteMesh;
+  class Shader;
+  class Texture;
+  class VertexArrayObject;
+  typedef VertexArrayObject VAO;
+  class VertexBufferObject;
+  typedef VertexBufferObject VBO;
+  class ElementBufferObject;
+  typedef ElementBufferObject EBO;
 
 	class SpriteBatcher
 	{

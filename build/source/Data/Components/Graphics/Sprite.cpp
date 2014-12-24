@@ -8,6 +8,8 @@
 // */
 //******************************************************************************/
 #include <Precompiled.h>
+#include "Sprite.h"
+#include "BufferObjects.h"
 
 //@TODO: test vector 2 glm::vec2 conversion using copy constructor and assignment operator
 namespace Framework
@@ -65,6 +67,7 @@ namespace Framework
       glm::translate (glm::linearRand (glm::vec3 (-1.0f, -1.0f, 0.0f), glm::vec3 (1.0f, 1.0f, 0.0f))) *
       glm::rotate (glm::linearRand (-1.0f, 1.0f), glm::vec3 (0, 0, 1)) *
       glm::scale (glm::linearRand (glm::vec3 (0.04f), glm::vec3 (0.05f)));
+
     if (m_batched)
     {
       posVbo->UpdateMatrixData (m, instanceID, sizeof (Matrix4x4) / sizeof (GLfloat));

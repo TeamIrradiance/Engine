@@ -9,6 +9,7 @@
 /******************************************************************************/
 #pragma once
 #include <Precompiled.h>
+#include "Sprite.h"
 
 EngineCore* g_csEngineCore = 0;
 /******************************************************************************/
@@ -96,35 +97,34 @@ void EngineCore::DefineMeta ()
     meta_end ()
 
     meta_begin (Vector2)
-    meta_child (Vector2, Vector2::x)
-    meta_child (Vector2, Vector2::y)
+    meta_child (Vector2, x)
+    meta_child (Vector2, y)
     meta_end ()
 
     meta_begin (Vector3)
-    meta_child (Vector3, Vector3::x)
-    meta_child (Vector3, Vector3::y)
-    meta_child (Vector3, Vector3::z)
+    meta_child (Vector3, x)
+    meta_child (Vector3, y)
+    meta_child (Vector3, z)
     meta_end ()
 
     meta_begin (Vector4)
-    meta_child (Vector4, Vector4::x)
-    meta_child (Vector4, Vector4::y)
-    meta_child (Vector4, Vector4::z)
-    meta_child (Vector4, Vector4::w)
+    meta_child (Vector4, x)
+    meta_child (Vector4, y)
+    meta_child (Vector4, z)
+    meta_child (Vector4, w)
     meta_end ()
 
-    //meta_begin (Transform)
-    //meta_child (Transform, translation)
-    //meta_child (Transform, scale)
-    //meta_child (Transform, rotation)
-    //meta_end ()
+    meta_begin (Transform)
+    meta_child (Transform, translation)
+    meta_child (Transform, scale)
+    meta_child (Transform, rotation)
+    meta_end ()
 
     meta_begin (Texture)
     meta_end ()
 
-    //meta_begin (Sprite)
-    //meta_child (Sprite, size)
-    //meta_end ()
+    meta_begin (Sprite)
+    meta_end ()
 
 
 

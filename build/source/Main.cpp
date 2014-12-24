@@ -32,7 +32,7 @@ int main (void)
 
   Engine.DefineMeta();
   Engine.Init();
-  //type_sample();
+  type_sample();
 
 
   Engine.Update();

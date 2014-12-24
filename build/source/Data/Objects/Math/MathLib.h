@@ -7,185 +7,153 @@
 \brief
 */
 /******************************************************************************/
+
+#include "IData.h"
+
 #pragma once
 
-namespace Framework
+
+/******************************************************************************/
+/*!
+\class   Vector2
+\brief   Vector2 class, we need a vector struct that inherit from IData
+for serialization and tool automation
+*/
+/******************************************************************************/
+class Vector2 : public IData
 {
+public:
+  void ToolInit ();
+  void Serialize ();
+  void DefineMeta (){}
+  Vector2 ()
+  {
+    x = y = 0;
+  }
+  Vector2 (float _x, float _y) : x (_x), y (_y)
+  {}
+  Vector2 (double _x, double _y) : x ((float) _x), y ((float) _y)
+  {}
+  Vector2 (const glm::vec2& vec)
+  {
+    x = vec.x;
+    y = vec.y;
+  }
+  operator glm::vec2 ()
+  {
+    return glm::vec2 (x, y);
+  }
 
+  union
+  {
+    struct
+    {
+      float x, y;
+    };
 
-  ///******************************************************************************/
-  ///*!
-  //\class   Vector2
-  //\brief   Vector2 class, we need a vector struct that inherit from IData
-  //for serialization and tool automation
-  //*/
-  ///******************************************************************************/
-  //class Vector2 : public IData
-  //{
-  //public:
-  //  void ToolInit ();
-  //  void Serialize ();
-  //  void DefineMeta ();
+    struct
+    {
+      float r, g;
+    };
 
-  //  Vector2 ()
-  //  {}
-  //  Vector2 (const glm::vec2& v) : _ (v)
-  //  {}
-  //  Vector2 (float _x, float _y) : _ (glm::vec2 (_x, _y))
-  //  {}
-  //  Vector2 (float _f) : _ (glm::vec2 (_f))
-  //  {}
-  //  operator glm::vec2 ()
-  //  {
-  //    return _;
-  //  }
+    float v [2];
+  };
 
-  //  float r ()
-  //  {
-  //    return _.r;
-  //  }
-  //  float g ()
-  //  {
-  //    return _.g;
-  //  }
+};
 
-  //  float x ()
-  //  {
-  //    return _.x;
-  //  }
-  //  float y ()
-  //  {
-  //    return _.y;
-  //  }
+/******************************************************************************/
+/*!
+\class   Vector3
+\brief   Vector3 class, we need a vector struct that inherit from IData
+for serialization and tool automation
+*/
+/******************************************************************************/
+struct Vector3 : public IData
+{
+  void ToolInit ();
+  void Serialize ();
+  void DefineMeta (){}
+  Vector3 ()
+  {
+    x = y = z = 0;
+  }
+  Vector3 (glm::vec3& vec)
+  {
+    x = vec.x;
+    y = vec.y;
+    z = vec.z;
+  }
+  Vector3 (float _x, float _y, float _z) : x (_x), y (_y), z (_z)
+  {}
+  Vector3 (double _x, double _y, double _z) : x ((float) _x), y ((float) _y), z ((float) _z)
+  {}
+  operator glm::vec3 ()
+  {
+    return glm::vec3 (x, y, z);
+  }
 
-  //  // DATA
-  //  glm::vec2 _;
+  union
+  {
+    struct
+    {
+      float x, y, z;
+    };
 
-  //};
+    struct
+    {
+      float r, g, b;
+    };
 
-  ///******************************************************************************/
-  ///*!
-  //\class   Vector3
-  //\brief   Vector3 class, we need a vector struct that inherit from IData
-  //for serialization and tool automation
-  //*/
-  ///******************************************************************************/
-  //class Vector3 :public IData
-  //{
-  //public:
-  //  void ToolInit ();
-  //  void Serialize ();
-  //  void DefineMeta ();
+    float v [3];
+  };
+};
 
-  //  Vector3 ()
-  //  {}
-  //  Vector3 (const glm::vec3& v) : _ (v)
-  //  {}
-  //  Vector3 (float _x, float _y, float _z) : _ (glm::vec3 (_x, _y, _z))
-  //  {}
-  //  Vector3 (float _f) : _ (glm::vec3 (_f))
-  //  {}
-  //  operator glm::vec3 ()
-  //  {
-  //    return _;
-  //  }
+/******************************************************************************/
+/*!
+\class   Vector4
+\brief   Vector4 class, we need a vector struct that inherit from IData
+for serialization and tool automation
+*/
+/******************************************************************************/
+class Vector4 : public IData
+{
+public:
+  void ToolInit ();
+  void Serialize ();
+  void DefineMeta (){}
+  Vector4 ()
+  {
+    x = y = z = w = 0;
+  }
+  Vector4 (const glm::vec4& vec)
+  {
+    x = vec.x;
+    y = vec.y;
+    z = vec.z;
+    w = vec.w;
+  }
+  Vector4 (float _x, float _y, float _z, float _w) : x (_x), y (_y), z (_z), w (_w)
+  {}
+  Vector4 (double _x, double _y, double _z, double _w) : x ((float)_x), y ((float)_y), z ((float)_z), w ((float)_w)
+  {}
+  operator glm::vec4 ()
+  {
+    return glm::vec4 (x, y, z, w);
+  }
 
-  //  float r ()
-  //  {
-  //    return _.r;
-  //  }
-  //  float g ()
-  //  {
-  //    return _.g;
-  //  }
-  //  float b ()
-  //  {
-  //    return _.b;
-  //  }
+  union
+  {
+    struct
+    {
+      float x, y, z, w;
+    };
 
-  //  float x ()
-  //  {
-  //    return _.x;
-  //  }
-  //  float y ()
-  //  {
-  //    return _.y;
-  //  }
-  //  float z ()
-  //  {
-  //    return _.z;
-  //  }
+    struct
+    {
+      float r, g, b, a;
+    };
 
-  //  // DATA
-  //  glm::vec3 _;
+    float v [4];
+  };
 
-  //};
-
-  ///******************************************************************************/
-  ///*!
-  //\class   Vector4
-  //\brief   Vector4 class, we need a vector struct that inherit from IData
-  //for serialization and tool automation
-  //*/
-  ///******************************************************************************/
-  //class Vector4 : public IData
-  //{
-  //public:
-  //  void ToolInit ();
-  //  void Serialize ();
-  //  void DefineMeta ();
-
-  //  Vector4 ()
-  //  {}
-  //  Vector4 (const glm::vec4& v) : _ (v)
-  //  {}
-  //  Vector4 (float _x, float _y, float _z, float _w) : _ (glm::vec4 (_x, _y, _z, _w))
-  //  {}
-  //  Vector4 (float _f) : _ (glm::vec4 (_f))
-  //  {}
-  //  operator glm::vec4 ()
-  //  {
-  //    return _;
-  //  }
-
-  //  float r ()
-  //  {
-  //    return _.r;
-  //  }
-  //  float g ()
-  //  {
-  //    return _.g;
-  //  }
-  //  float b ()
-  //  {
-  //    return _.b;
-  //  }
-
-  //  float a ()
-  //  {
-  //    return _.a;
-  //  }
-
-  //  float x ()
-  //  {
-  //    return _.x;
-  //  }
-  //  float y ()
-  //  {
-  //    return _.y;
-  //  }
-  //  float z ()
-  //  {
-  //    return _.z;
-  //  }
-  //  float w ()
-  //  {
-  //    return _.w;
-  //  }
-
-  //  // DATA
-  //  glm::vec4 _;
-
-  //};
-
-}
+};

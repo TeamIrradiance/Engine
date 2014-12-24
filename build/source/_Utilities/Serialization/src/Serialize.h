@@ -174,6 +174,7 @@ void CheckAllType(void* curData,Json::Value* curRoot,int id,const char* curChild
   CHECK_TYPE(Vector4);
   CHECK_TYPE(Transform);
   CHECK_TYPE(Sprite);
+  CHECK_TYPE (Texture);
   ErrorIf(typeCounted < typeInfosCount, "A defined type is not handled in serialization system!");
   ErrorIf(typeCounted > typeInfosCount, "A handled type is not defined or multiple definition exist!");
 }

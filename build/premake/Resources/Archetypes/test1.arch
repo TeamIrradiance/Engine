@@ -1,16 +1,10 @@
 {
    "GameObject" : {
-      "Sprite" : {
-         "size" : {
-            "x" : 0.1,
-            "y" : 0.2
-         }
-      },
       "Transform" : {
-         "rotation" : -431602080.0,
+         "rotation" : 0.0,
          "scale" : {
             "x" : 3.0,
-            "y" : 40.1,
+            "y" : 40.09999847412109,
             "z" : 1.0
          },
          "translation" : {

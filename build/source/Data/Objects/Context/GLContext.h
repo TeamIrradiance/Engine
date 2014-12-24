@@ -10,6 +10,8 @@
 
 #pragma once
 
+#include "MathLib.h"
+
 namespace Framework
 {
   class GLContext

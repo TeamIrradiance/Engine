@@ -74,8 +74,8 @@ namespace Framework
     G_TRANSFORM->MatrixMode (MODEL);
     G_TRANSFORM->LoadIdentity ();
 
-    G_TRANSFORM->Translatefv (glm::value_ptr (translation));
-    G_TRANSFORM->Scalefv (glm::value_ptr (scale));
+    G_TRANSFORM->Translatefv ((float*)&translation);
+    G_TRANSFORM->Scalefv ((float*)&scale);
     G_TRANSFORM->Rotatef (rotation, 0, 0, 1);
 
     m_modelMatrix = G_TRANSFORM->GetModelMatrix ();

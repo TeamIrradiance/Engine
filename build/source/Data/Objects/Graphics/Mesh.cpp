@@ -8,6 +8,8 @@
  */
 /******************************************************************************/
 #include <Precompiled.h>
+#include "Mesh.h"
+#include "BufferObjects.h"
 
 namespace Framework
 {
@@ -193,7 +195,7 @@ namespace Framework
     for (int c = 0; c < 4; ++c)
     {
       glEnableVertexAttribArray (location + c); //location of each column
-      glVertexAttribPointer (location + c, components, type, normalized, datasize, pointer + c * sizeof(Vector4)); //tell other data
+      glVertexAttribPointer (location + c, components, type, normalized, datasize, pointer + c * sizeof(glm::vec4)); //tell other data
       glVertexAttribDivisor (location + c, divisor); //is it instanced?
     }
 

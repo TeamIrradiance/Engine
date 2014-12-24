@@ -9,7 +9,6 @@
 /******************************************************************************/
 
 #include <Precompiled.h>
-#include "MathLib.h"
 
 namespace Framework
 {

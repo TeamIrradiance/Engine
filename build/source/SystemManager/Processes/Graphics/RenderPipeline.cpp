@@ -9,6 +9,7 @@
 /******************************************************************************/
 
 #include <Precompiled.h>
+#include "Sprite.h"
 
 namespace Framework
 {

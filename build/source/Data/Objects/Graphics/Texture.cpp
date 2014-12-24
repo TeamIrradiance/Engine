@@ -124,7 +124,7 @@ namespace Framework
     glGenTextures (1, &texture);
     glBindTexture (GL_TEXTURE_2D, texture);
 
-    m_size = Vector2(w, h);
+    m_size = glm::ivec2 (w, h);
     m_aspect = float (w) / h;
     m_texture = texture;
 

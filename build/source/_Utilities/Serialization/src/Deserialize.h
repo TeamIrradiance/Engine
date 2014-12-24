@@ -99,8 +99,7 @@ void DeserializeData(T* obj,Json::Value *root)
       }
     }
 
-    void* curData = nullptr;
-    curRoot = (dummy + var.m_csTypeInfo->child_offsets [curTypeID]);
+    void* curData = (dummy + var.m_csTypeInfo->child_offsets [curTypeID]);;
     
     // if this is a struct
     if( var.m_csTypeInfo->child_info[curTypeID]->childSize > 0)

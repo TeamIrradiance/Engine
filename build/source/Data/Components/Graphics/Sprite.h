@@ -12,6 +12,9 @@
 
 namespace Framework
 {
+  class VertexBufferObject;
+  typedef VertexBufferObject VBO;
+
 //******************************************************************************/
 //*!
 // \macros   Sprite
@@ -29,10 +32,7 @@ namespace Framework
     void Initialize ();
     void Draw (unsigned instanceID, VBO* posVbo, VBO* texVbo = nullptr);
 
-    bool m_batched;
-
   private:
-    Vector2 m_texcoord;
-
+    bool m_batched;
   };
 }

@@ -12,6 +12,8 @@
 
 namespace Framework
 {
+  class SpriteData;
+
   class Drawable : public Component
   {
 

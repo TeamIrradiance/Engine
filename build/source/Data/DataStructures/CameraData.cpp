@@ -9,6 +9,7 @@
 /******************************************************************************/
 
 #include <Precompiled.h>
+#include "CameraData.h"
 
 namespace Framework
 {

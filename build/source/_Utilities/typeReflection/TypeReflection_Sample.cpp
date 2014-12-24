@@ -14,14 +14,15 @@
 #include "Transform.h"
 #include "Components.h"
 #include "Deserialize.h"
+#include "ResourceManager.h"
 void type_sample()
 {
 
 
 
 Framework::GameObject myObject;
-Deserialize(&myObject,"test.arch");
-Serialize(&myObject,"test1.arch");
+Deserialize(&myObject,(Framework::ResourceManager::RESOURCE_DIRECTORY + "Archetypes\\test.arch").c_str ());
+Serialize (&myObject, (Framework::ResourceManager::RESOURCE_DIRECTORY + "Archetypes\\test1.arch").c_str ());
 
 
 int i = 0;
