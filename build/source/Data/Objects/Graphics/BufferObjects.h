@@ -53,22 +53,22 @@ namespace Framework
       glDeleteBuffers (1, &m_bufferLocation);
     }
 
-    template <typename T = float>
+    template <typename T>
     void Bind ()
     {
       glBindBuffer (m_bufferType, m_bufferLocation);
     }
 
-    template <typename T = float>
+    template <typename T>
     void Unbind ()
     {
       glBindBuffer (m_bufferType, 0);
     }
 
-    template <typename T = float>
+    template <typename T>
     void UploadData (GLenum usage = GL_STATIC_DRAW)
     {
-      Bind ();
+      Bind <T>();
       glBufferData (m_bufferType, m_data.size() * sizeof T, m_data.data (), usage);
       //m_data.clear ();
     }
@@ -79,13 +79,13 @@ namespace Framework
       glBufferData (m_bufferType, bufferSize, bufferData, mode);
     }
 
-    template <typename T = float>
+    template <typename T>
     void AddData (T* data, GLuint size)
     {
       m_data.insert (m_data.end (), data, data + size);
     }
 
-    template <typename T = float>
+    template <typename T>
     void UpdateData (T* data, GLuint index, GLuint size = 1)
     {
       for (unsigned i = index * size; i < (index * size + size); ++i)
@@ -117,13 +117,13 @@ namespace Framework
       m_data [index * size + 15]  = data [3][3];
     }
 
-    template <typename T = float>
+    template <typename T>
     GLenum Get_Type ()
     {
       return m_bufferType;
     }
 
-    template <typename T = float>
+    template <typename T>
     GLuint Get_Location ()
     {
       return m_bufferLocation;
