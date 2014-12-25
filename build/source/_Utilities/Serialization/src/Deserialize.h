@@ -115,6 +115,17 @@ void DeserializeData(T* obj,Json::Value *root)
         Vector3* castedObj = (Vector3*)curData;
         DeserializeData(castedObj,&(*itr));
       }
+      if (var.m_csTypeInfo->child_info [curTypeID]->name == "Texcoord")
+      {
+        Texcoord* castedObj = (Texcoord*) curData;
+        DeserializeData (castedObj, &(*itr));
+      }
+      std::cout << var.m_csTypeInfo->child_info [curTypeID]->name << "\n";
+      if (var.m_csTypeInfo->child_info [curTypeID]->name == "std::string")
+      {
+        std::string* castedObj = (std::string*) curData;
+        DeserializeData (castedObj, &(*itr));
+      }
     }
     else
     {

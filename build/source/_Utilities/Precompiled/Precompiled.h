@@ -100,6 +100,7 @@
 // DATA
 //////////////////////////////////////////////////////////////////////////
 
+#include "Texcoord.h"
 #include "MathLib.h"
 #include "Shader.h"
 #include "Texture.h"

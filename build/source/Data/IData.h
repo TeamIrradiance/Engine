@@ -24,8 +24,7 @@ namespace Framework
   {
   public:
     void DefineMeta (){}
-  protected:
-    std::string m_name;
+    std::string Name;
   };
 
 }

@@ -199,17 +199,40 @@ namespace Framework
 
   void ResourceManager::Load_Textures ()
   {
-    std::vector <std::string> TEXTURE;
-    getFilesList (TEXTURE_DIRECTORY, ".png", TEXTURE);
+    //std::vector <std::string> TEXTURE;
+    //getFilesList (TEXTURE_DIRECTORY, ".png", TEXTURE);
 
-    for (auto& i : TEXTURE)
-    {
-      std::string name = i;
-      name.replace (name.find (TEXTURE_DIRECTORY), TEXTURE_DIRECTORY.length(), "");
-      Texture* texture = new Texture ();
-      texture->Load_Texture (name.c_str(), i.c_str ());
-      m_resourceMap [R_TEXTURE][i] = /*static_cast<Resource*>*/(texture);
-    }
+    //for (auto& i : TEXTURE)
+    //{
+    //  std::string name = i;
+    //  name.replace (name.find (TEXTURE_DIRECTORY), TEXTURE_DIRECTORY.length(), "");
+    //  Texture* texture = new Texture ();
+    //  //texture->Load_Texture (name.c_str(), i.c_str ());
+    //  //m_resourceMap [R_TEXTURE][i] = /*static_cast<Resource*>*/(texture);
+
+    //  std::ifstream in (TEXTURE_DIRECTORY + "DigiPenLogo.png.meta");
+    //  ErrorIf (!in.is_open (), "%s is not found");
+    //  std::stringstream sstr;
+    //  sstr << in.rdbuf ();
+
+    //  Json::Value& root = Json::Value ();   // will contains the root value after parsing.
+    //  Json::Reader reader;
+    //  bool parsingSuccessful = reader.parse (sstr.str (), root);
+    //  ErrorIf (!parsingSuccessful, "json parsing failed, check opened json file's formating");
+    //  Json::Value& curRoot = root ["Texture"];
+
+    //  std::cout << root;
+    //  //Constructing object
+    //  //for (Json::ValueIterator itr = curRoot.begin (); itr != curRoot.end (); itr++)
+    //  //{
+    //  //  std::string curType = std::string (itr.memberName ());
+    //  //  //if It's a game Object or a level
+    //  //  DeserializeData (texture, &(*itr));
+    //  //}
+    //  DeserializeData (texture, &curRoot);
+
+    //  //Deserialize (texture, (TEXTURE_DIRECTORY + "DigiPenLogo.png.meta").c_str ());
+    //}
   }
 
 }

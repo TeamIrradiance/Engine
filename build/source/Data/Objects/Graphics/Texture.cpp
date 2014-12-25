@@ -86,7 +86,7 @@ namespace Framework
 
     if (image != nullptr)
     {
-      m_name = name;
+      name = name;
       Generate_Texture (w, h);
       Image2D (hasAlpha ? GL_RGBA : GL_RGB, image);
       Free_Pixels (image);

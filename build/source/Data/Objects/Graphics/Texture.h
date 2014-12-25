@@ -44,6 +44,7 @@ namespace Framework
     glm::ivec2 Get_Size ();
 
     // Functions
+    Texcoord Texcoords;
 
   private:
     //DATA

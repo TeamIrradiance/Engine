@@ -11,6 +11,7 @@
 #include <Precompiled.h>
 #include "Sprite.h"
 
+
 EngineCore* g_csEngineCore = 0;
 /******************************************************************************/
 /*!
@@ -87,7 +88,9 @@ void EngineCore::DefineMeta ()
   using namespace Framework;
   using namespace std;
   // Add some type information to the reflection system
-  meta_begin (int)
+    meta_begin (int)
+    meta_end ()
+    meta_begin (char)
     meta_end ()
     meta_begin (float)
     meta_end ()
@@ -120,8 +123,19 @@ void EngineCore::DefineMeta ()
     meta_child (Transform, rotation)
     meta_end ()
 
-    meta_begin (Texture)
+    meta_begin (Texcoord)
+    meta_child (Texcoord, nw)
+    meta_child (Texcoord, sw)
+    meta_child (Texcoord, se)
+    meta_child (Texcoord, ne)
     meta_end ()
+
+    //////////////////////////////////////////////////////////////////////////
+    meta_begin (Texture)
+    meta_child (Texture, Name)
+    meta_child (Texture, Texcoords)
+    meta_end ()
+    //////////////////////////////////////////////////////////////////////////
 
     meta_begin (Sprite)
     meta_end ()
