@@ -40,8 +40,8 @@ TypeInfo* GetTypeByString( const char* typeNameCharPointer )
 
 /******************************************************************************/
 /*!
- \class   GetTypeByString( const char* typeNameCharPointer )
- \brief   get a type info with a string id
+ \class   std::string Tokenize(const char* name)
+ \brief   substract a string from a name
  */
 /******************************************************************************/
 std::string Tokenize(const char* name)
@@ -49,14 +49,40 @@ std::string Tokenize(const char* name)
   std::string Name(name);  //turn name const char* into a string
   std::string temp;        //temporary holder holding reversed string, example "float" as "taolf"
   std::string returnThis;  //reverse it back to "float"
+  int bracketCount = 0;
+
 
   //take the word before ':' sign or space.(remove namespaces or c++ keywords)
   for(int i = Name.size()-1; i >= 0; i--)
   {
-    if(Name.at(i) == ':' || Name.at(i) == ' ')
-      break;
+    if(Name.at(i) == '>')
+    {
+      bracketCount++;
+      continue;
+    }
 
-    temp.push_back(Name.at(i));
+    if(Name.at(i) == '<')
+    {
+      bracketCount--;
+      continue;
+    }
+
+    //break if it's a : or space
+    if(bracketCount == 0)
+    {
+      if(Name.at(i) == ':' || Name.at(i) == ' ' || Name.at(i) == '_')
+        break;
+    }
+    else
+    {
+      continue;
+    }
+
+    //only get the name, if < or > is not existing
+    if(bracketCount == 0)
+      temp.push_back(Name.at(i));
+    else
+      temp.clear();
   }
 
   //reverse temp
