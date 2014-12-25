@@ -20,7 +20,7 @@ namespace Framework
   std::string ResourceManager::SHADER_DIRECTORY;
   std::string ResourceManager::TEXTURE_DIRECTORY;
 
-  std::unordered_map <RESOURCE_TYPE, std::unordered_map <std::string, Resource*>> ResourceManager::m_resourceMap;
+  std::unordered_map <RESOURCE_TYPE, std::list <Resource*>> ResourceManager::m_resourceMap;
 
 
   void ResourceManager::VUpdate(const double dt)
@@ -58,11 +58,11 @@ namespace Framework
   {
     for (auto& i : m_resourceMap [R_SHADER])
     {
-      delete i.second;
+      delete i;
     }
     for (auto& i : m_resourceMap [R_TEXTURE])
     {
-      delete i.second;
+      delete i;
     }
   }
 
@@ -70,9 +70,9 @@ namespace Framework
   {
     for (auto& i : m_resourceMap [(RESOURCE_TYPE)resourceType])
     {
-      if (i.first == resourceName)
+      if (i->Name == resourceName)
       {
-        return i.second;
+        return i;
       }
     }
 
@@ -185,13 +185,13 @@ namespace Framework
         {
           // Link The Corresponding Vertex And Fragment Shaders in the Shader Program File
           shader->m_program = shader->Link_Program (name.c_str(), vSource [SHADER_DIRECTORY + vs], fSource [SHADER_DIRECTORY + fs]);
-          m_resourceMap [R_SHADER][name] = static_cast <Resource*> (shader);
+          m_resourceMap [R_SHADER].push_back (shader);
         }
         else
         {
           // Link The Corresponding Vertex And Fragment Shaders in the Shader Program File
           shader->m_program = shader->Link_Program (name.c_str(), vSource [vs], fSource [fs], gSource [gs]);
-          m_resourceMap [R_SHADER][name] = /*static_cast<Resource*> */(shader);
+          m_resourceMap [R_SHADER].push_back (shader);
         }
       }
     }
@@ -199,40 +199,29 @@ namespace Framework
 
   void ResourceManager::Load_Textures ()
   {
-    //std::vector <std::string> TEXTURE;
-    //getFilesList (TEXTURE_DIRECTORY, ".png", TEXTURE);
+    std::vector <std::string> TEXTURE;
+    getFilesList (TEXTURE_DIRECTORY, ".png", TEXTURE);
 
-    //for (auto& i : TEXTURE)
-    //{
-    //  std::string name = i;
-    //  name.replace (name.find (TEXTURE_DIRECTORY), TEXTURE_DIRECTORY.length(), "");
-    //  Texture* texture = new Texture ();
-    //  //texture->Load_Texture (name.c_str(), i.c_str ());
-    //  //m_resourceMap [R_TEXTURE][i] = /*static_cast<Resource*>*/(texture);
+    for (auto& i : TEXTURE)
+    {
+      std::string name = i;
+      name.replace (name.find (TEXTURE_DIRECTORY), TEXTURE_DIRECTORY.length(), "");
+      Texture* texture = new Texture ();
 
-    //  std::ifstream in (TEXTURE_DIRECTORY + "DigiPenLogo.png.meta");
-    //  ErrorIf (!in.is_open (), "%s is not found");
-    //  std::stringstream sstr;
-    //  sstr << in.rdbuf ();
+      std::ifstream in (TEXTURE_DIRECTORY + "DigiPenLogo.png.meta");
+      ErrorIf (!in.is_open (), "%s is not found");
+      std::stringstream sstr;
+      sstr << in.rdbuf ();
 
-    //  Json::Value& root = Json::Value ();   // will contains the root value after parsing.
-    //  Json::Reader reader;
-    //  bool parsingSuccessful = reader.parse (sstr.str (), root);
-    //  ErrorIf (!parsingSuccessful, "json parsing failed, check opened json file's formating");
-    //  Json::Value& curRoot = root ["Texture"];
-
-    //  std::cout << root;
-    //  //Constructing object
-    //  //for (Json::ValueIterator itr = curRoot.begin (); itr != curRoot.end (); itr++)
-    //  //{
-    //  //  std::string curType = std::string (itr.memberName ());
-    //  //  //if It's a game Object or a level
-    //  //  DeserializeData (texture, &(*itr));
-    //  //}
-    //  DeserializeData (texture, &curRoot);
-
-    //  //Deserialize (texture, (TEXTURE_DIRECTORY + "DigiPenLogo.png.meta").c_str ());
-    //}
+      Json::Value& root = Json::Value ();   // will contains the root value after parsing.
+      Json::Reader reader;
+      bool parsingSuccessful = reader.parse (sstr.str (), root);
+      ErrorIf (!parsingSuccessful, "json parsing failed, check opened json file's formating");
+      Json::Value& curRoot = root ["Texture"];
+      std::cout << root;
+      DeserializeData (texture, &curRoot);
+      m_resourceMap [R_TEXTURE].push_back (texture);
+    }
   }
 
 }

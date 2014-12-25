@@ -120,7 +120,6 @@ void DeserializeData(T* obj,Json::Value *root)
         Texcoord* castedObj = (Texcoord*) curData;
         DeserializeData (castedObj, &(*itr));
       }
-      std::cout << var.m_csTypeInfo->child_info [curTypeID]->name << "\n";
       if (var.m_csTypeInfo->child_info [curTypeID]->name == "std::string")
       {
         std::string* castedObj = (std::string*) curData;
@@ -129,6 +128,8 @@ void DeserializeData(T* obj,Json::Value *root)
     }
     else
     {
+      using std::string;
+      std::cout << var.m_csTypeInfo->child_info [curTypeID]->name << "\n";
       std::cout <<"not a struct" << std::endl;
       if(var.m_csTypeInfo->child_info[curTypeID]->name == "int")
       {
@@ -144,6 +145,11 @@ void DeserializeData(T* obj,Json::Value *root)
       {
         double* castedObj = (double*)curData;
         *castedObj = curRoot.asDouble();
+      }
+      if (var.m_csTypeInfo->child_info [curTypeID]->name == "string")
+      {
+        string* castedObj = (string*) curData;
+        *castedObj = curRoot.asString ();
       }
     }
   }

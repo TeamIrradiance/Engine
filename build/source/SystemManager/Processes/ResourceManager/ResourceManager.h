@@ -54,7 +54,7 @@ namespace Framework
     void Load_Shaders ();
     void Load_Textures ();
 
-    static std::unordered_map <RESOURCE_TYPE, std::unordered_map <std::string, Resource*>> m_resourceMap;
+    static std::unordered_map <RESOURCE_TYPE, std::list <Resource*>> m_resourceMap;
     static std::string SHADER_DIRECTORY;
     static std::string TEXTURE_DIRECTORY;
 
