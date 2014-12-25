@@ -92,6 +92,7 @@ void SerializeData(T* obj,Json::Value *root,const char* name = 0)
   {
     //check only default types
     WRITE_BASIC_DATA(int);
+    WRITE_BASIC_DATA(char);
     WRITE_BASIC_DATA(float);
     WRITE_BASIC_DATA(double);
     WRITE_BASIC_DATA(string);
