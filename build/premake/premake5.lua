@@ -44,6 +44,8 @@ project "Irradiance"
     "../source/**.h",
     "../source/**.cpp",
     "Resources/**.glsl",
+    "Resources/**.arch",
+    "Resources/**.meta",
     "**.c",
   }
   
