@@ -34,7 +34,7 @@ namespace Framework
 //******************************************************************************/
   Sprite::~Sprite()
   {
-
+    Color = Vector4 (1.0f, 1.0f, 1.0f, 1.0f);
   }
 
 /******************************************************************************/
@@ -58,24 +58,33 @@ namespace Framework
   /*************************************************************************/
   void Sprite::Initialize ()
   {
-    gameObject->sprite = this;
+    //gameObject->sprite = this;
+    m_texture = static_cast<Texture*>(ResourceManager::LoadResource (SpriteSource, R_TEXTURE));
+    SpriteBatcher::AddSprite (this, m_texture->AtlasName);
   }
 
-  void Sprite::Draw(unsigned instanceID, VBO* posVbo, VBO* texVbo /* = nullptr*/)
+  void Sprite::Draw(unsigned instanceID, VBO* posVbo, VBO* colVbo, VBO* texVbo)
   {
-    Matrix4x4 m =
-      glm::translate (glm::linearRand (glm::vec3 (-1.0f, -1.0f, 0.0f), glm::vec3 (1.0f, 1.0f, 0.0f))) *
-      glm::rotate (glm::linearRand (-1.0f, 1.0f), glm::vec3 (0, 0, 1)) *
-      glm::scale (glm::linearRand (glm::vec3 (0.04f), glm::vec3 (0.05f)));
+    Matrix4x4 m = glm::scale (glm::vec3 (0.1f));
 
     if (m_batched)
     {
       posVbo->UpdateMatrixData (m, instanceID, sizeof (Matrix4x4) / sizeof (GLfloat));
+      colVbo->UpdateColorData (Color, instanceID, sizeof (GLfloat));
+      texVbo->UpdateTexcoordData (m_texture->Texcoords, instanceID, sizeof (Texcoord) / sizeof (GLfloat));
     }
     else
     {
+      m =
+        glm::translate (glm::linearRand (glm::vec3 (-1.0f, -1.0f, 0.0f), glm::vec3 (1.0f, 1.0f, 0.0f))) *
+        glm::rotate (glm::linearRand (-1.0f, 1.0f), glm::vec3 (0, 0, 1)) *
+        glm::scale (glm::linearRand (glm::vec3 (0.04f), glm::vec3 (0.05f)));
+
       posVbo->AddData (glm::value_ptr (m), sizeof (Matrix4x4) / sizeof (GLfloat));
-      //texVbo->AddData (glm::value_ptr (m_texcoord), 1);
+
+      colVbo->AddData (glm::value_ptr (glm::vec4 (Color)), sizeof (Vector4) / sizeof (GLfloat));
+
+      texVbo->AddTexcoordData (m_texture->Texcoords);
     }
 
     m_batched = true;

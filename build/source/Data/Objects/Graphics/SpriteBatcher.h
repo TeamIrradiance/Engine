@@ -30,7 +30,7 @@ namespace Framework
 
     void Initialize ();
 
-    void AddSprite (Sprite* sprite);
+    static void AddSprite (Sprite* sprite, std::string& textureName);
     void Batch ();
 
 	private:
@@ -41,9 +41,10 @@ namespace Framework
     VBO* m_quadBuffer;
     EBO* m_indexBuffer;
     VBO* m_matrixBuffer;
+    VBO* m_colBuffer;
     VBO* m_texBuffer;
 
-    std::list <Sprite*> m_spriteList;
+    static std::unordered_map <std::string, std::list <Sprite*>> m_spriteList;
     bool m_dataReady;
 	
 	};

@@ -200,15 +200,27 @@ namespace Framework
   void ResourceManager::Load_Textures ()
   {
     std::vector <std::string> TEXTURE;
-    getFilesList (TEXTURE_DIRECTORY, ".png", TEXTURE);
+    getFilesList (TEXTURE_DIRECTORY + "ATLAS\\", ".png", TEXTURE);
 
+    for (auto& i : TEXTURE)
+    {
+      std::string name = i;
+      name.replace (name.find (TEXTURE_DIRECTORY + "ATLAS\\"), std::string(TEXTURE_DIRECTORY + "ATLAS\\").length(), "");
+      name.replace (name.find (".png"), name.length (), "");
+      Texture* texture = new Texture ();
+      texture->Load_Texture (name.c_str(), i.c_str());
+      m_resourceMap [R_ATLAS].push_back (texture);
+    }
+
+    TEXTURE.clear ();
+    getFilesList (TEXTURE_DIRECTORY + "PNG\\", ".png.meta", TEXTURE);
     for (auto& i : TEXTURE)
     {
       std::string name = i;
       name.replace (name.find (TEXTURE_DIRECTORY), TEXTURE_DIRECTORY.length(), "");
       Texture* texture = new Texture ();
 
-      std::ifstream in (TEXTURE_DIRECTORY + "DigiPenLogo.png.meta");
+      std::ifstream in (i);
       ErrorIf (!in.is_open (), "%s is not found");
       std::stringstream sstr;
       sstr << in.rdbuf ();
@@ -220,8 +232,11 @@ namespace Framework
       Json::Value& curRoot = root ["Texture"];
       std::cout << root;
       DeserializeData (texture, &curRoot);
+      texture->Set (static_cast<Texture*> (LoadResource (texture->AtlasName, R_ATLAS)));
       m_resourceMap [R_TEXTURE].push_back (texture);
     }
+
+    static_cast<Texture*> (LoadResource ("ATLAS", R_ATLAS))->Bind ();
   }
 
 }

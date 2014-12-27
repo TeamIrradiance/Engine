@@ -133,11 +133,14 @@ void EngineCore::DefineMeta ()
     //////////////////////////////////////////////////////////////////////////
     meta_begin (Texture)
     meta_child (Texture, Name)
+    meta_child (Texture, AtlasName)
     meta_child (Texture, Texcoords)
     meta_end ()
     //////////////////////////////////////////////////////////////////////////
 
     meta_begin (Sprite)
+    meta_child (Sprite, SpriteSource)
+    meta_child (Sprite, Color)
     meta_end ()
 
 

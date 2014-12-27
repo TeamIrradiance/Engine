@@ -85,6 +85,23 @@ namespace Framework
       m_data.insert (m_data.end (), data, data + size);
     }
 
+    void AddTexcoordData (Texcoord& texcoord)
+    {
+      std::vector <float> data;
+      data.push_back (texcoord.nw.x);
+      data.push_back (texcoord.nw.y);
+      data.push_back (texcoord.sw.x);
+      data.push_back (texcoord.sw.y);
+      data.push_back (texcoord.se.x);
+      data.push_back (texcoord.se.y);
+      data.push_back (texcoord.ne.x);
+      data.push_back (texcoord.ne.y);
+      for (auto& i : data)
+      {
+        m_data.push_back (i);
+      }
+    }
+
     template <typename T>
     void UpdateData (T* data, GLuint index, GLuint size = 1)
     {
@@ -94,7 +111,7 @@ namespace Framework
       }
     }
 
-    void UpdateMatrixData (Matrix4x4& data, GLuint index, GLuint size = 1)
+    void UpdateMatrixData (Matrix4x4& data, GLuint index, GLuint size)
     {
       m_data [index * size]       = data [0][0];
       m_data [index * size + 1]   = data [0][1];
@@ -115,6 +132,29 @@ namespace Framework
       m_data [index * size + 13]  = data [3][1];
       m_data [index * size + 14]  = data [3][2];
       m_data [index * size + 15]  = data [3][3];
+    }
+
+    void UpdateColorData (Vector4& color, GLuint index, GLuint size)
+    {
+      m_data [index * size]     = color.r;
+      m_data [index * size + 1] = color.g;
+      m_data [index * size + 2] = color.b;
+      m_data [index * size + 3] = color.a;
+    }
+
+    void UpdateTexcoordData (Texcoord& texcoord, GLuint index, GLuint size)
+    {
+      m_data [index * size] = texcoord.nw.x;
+      m_data [index * size + 1] = texcoord.nw.y;
+
+      m_data [index * size + 2] = texcoord.sw.x;
+      m_data [index * size + 3] = texcoord.sw.y;
+
+      m_data [index * size + 4] = texcoord.se.x;
+      m_data [index * size + 5] = texcoord.se.y;
+
+      m_data [index * size + 6] = texcoord.ne.x;
+      m_data [index * size + 7] = texcoord.ne.y;
     }
 
     template <typename T>

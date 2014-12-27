@@ -40,6 +40,11 @@ namespace Framework
 /******************************************************************************/
   void Texture::DefineMeta()
   {
+    // Print Abhishek 10 times
+    for (int i = 0; i < 10; ++i)
+    {
+      std::cout << "ABHISHEK " << i << std::endl;
+    }
   }
 
   /*************************************************************************/
@@ -178,6 +183,13 @@ namespace Framework
     glTexEnvf (target, pname, (GLfloat)param);
   }
 
+  void Texture::Set (Texture* atlas)
+  {
+    m_size.x = (int)(atlas->m_size.x * (Texcoords.ne.x - Texcoords.nw.x));
+    m_size.y = (int)(atlas->m_size.y * (Texcoords.ne.y - Texcoords.se.y));
+    m_aspect = (float) m_size.x / m_size.y;
+  }
+
   //////////////////////////////////////////////////////////////////////////
   // GETTORS
   //////////////////////////////////////////////////////////////////////////
@@ -190,7 +202,7 @@ namespace Framework
   // Qualifier:
   // Brief: Get Texture ID
   /*************************************************************************/
-  GLuint Texture::Get_ID ()
+  GLuint Texture::GetID ()
   {
     return m_texture;
   }
@@ -203,7 +215,7 @@ namespace Framework
   // Qualifier:
   // Brief: Get ASpect Ratio of Texture
   /*************************************************************************/
-  float Texture::Get_Aspect ()
+  float Texture::GetAspect ()
   {
     return m_aspect;
   }
@@ -216,7 +228,7 @@ namespace Framework
   // Qualifier:
   // Brief: Get Dimensions of Texture
   /*************************************************************************/
-  glm::ivec2 Texture::Get_Size ()
+  glm::ivec2 Texture::GetSize ()
   {
     return m_size;
   }

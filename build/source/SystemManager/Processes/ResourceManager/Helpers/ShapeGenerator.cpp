@@ -20,16 +20,16 @@ namespace Framework
     ShapeData data;
 
     data.Vertex2f (-1.0f, 1.0f);
-    data.Texcoord2f (0.0f, 0.0f);
+    data.Texcoord2f (0.0f, 1.0f);
 
     data.Vertex2f (-1.0f, -1.0f);
-    data.Texcoord2f (1.0f, 0.0f);
+    data.Texcoord2f (0.0f, 0.0f);
 
     data.Vertex2f (1.0f, -1.0f);
-    data.Texcoord2f (1.0f, 1.0f);
+    data.Texcoord2f (1.0f, 0.0f);
 
     data.Vertex2f (1.0f, 1.0f);
-    data.Texcoord2f (0.0f, 1.0f);
+    data.Texcoord2f (1.0f, 1.0f);
 
     data.Index3f (0, 1, 2);
     data.Index3f (2, 3, 0);

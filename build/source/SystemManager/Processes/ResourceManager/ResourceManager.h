@@ -30,6 +30,7 @@ namespace Framework
 {
   enum RESOURCE_TYPE
   {
+    R_ATLAS = 0,
     R_TEXTURE,
     R_SHADER,
     R_AUDIO,

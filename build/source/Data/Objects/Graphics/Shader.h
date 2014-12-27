@@ -45,6 +45,26 @@ namespace Framework
 
     GLuint uniLocation (const char* uniName);
 
+    void uni1i (const char* uniName, int uniValue);
+    void uni2i (const char* uniName, int uniValue1, int uniValue2);
+    void uni3i (const char* uniName, int uniValue1, int uniValue2, int uniValue3);
+    void uni4i (const char* uniName, int uniValue1, int uniValue2, int uniValue3, int uniValue4);
+
+    void uni1i (GLuint uniLoc, int uniValue);
+    void uni2i (GLuint uniLoc, int uniValue1, int uniValue2);
+    void uni3i (GLuint uniLoc, int uniValue1, int uniValue2, int uniValue3);
+    void uni4i (GLuint uniLoc, int uniValue1, int uniValue2, int uniValue3, int uniValue4);
+
+    void uni1iv (const char* uniName, const int* uniValue, int _count = 1);
+    void uni2iv (const char* uniName, const int* uniValue, int _count = 1);
+    void uni3iv (const char* uniName, const int* uniValue, int _count = 1);
+    void uni4iv (const char* uniName, const int* uniValue, int _count = 1);
+
+    void uni1iv (GLuint uniLoc, const int* uniValue, int _count = 1);
+    void uni2iv (GLuint uniLoc, const int* uniValue, int _count = 1);
+    void uni3iv (GLuint uniLoc, const int* uniValue, int _count = 1);
+    void uni4iv (GLuint uniLoc, const int* uniValue, int _count = 1);
+
     void uni1f (const char* uniName, float uniValue);
     void uni2f (const char* uniName, float uniValue1, float uniValue2);
     void uni3f (const char* uniName, float uniValue1, float uniValue2, float uniValue3);

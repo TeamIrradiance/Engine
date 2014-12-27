@@ -11,33 +11,33 @@
 
 namespace Framework
 {
-/******************************************************************************/
-/*!
-\fn      Shader()
-\brief   Default constructor
-*/
-/******************************************************************************/
-  Shader::Shader()
+  /******************************************************************************/
+  /*!
+  \fn      Shader()
+  \brief   Default constructor
+  */
+  /******************************************************************************/
+  Shader::Shader ()
   {
   }
 
-/******************************************************************************/
-/*!
-\fn   ~Shader()
-\brief   destructor
-*/
-/******************************************************************************/
-  Shader::~Shader()
+  /******************************************************************************/
+  /*!
+  \fn   ~Shader()
+  \brief   destructor
+  */
+  /******************************************************************************/
+  Shader::~Shader ()
   {
   }
 
-/******************************************************************************/
-/*!
-\fn   DefineMeta()
-\brief   define meta here
-*/
-/******************************************************************************/
-  void Shader::DefineMeta()
+  /******************************************************************************/
+  /*!
+  \fn   DefineMeta()
+  \brief   define meta here
+  */
+  /******************************************************************************/
+  void Shader::DefineMeta ()
   {
   }
 
@@ -122,7 +122,7 @@ namespace Framework
   /*************************************************************************/
   void Shader::enableVertexAttribArray (const char* attrName)
   {
-    glEnableVertexAttribArray (attribLocation(attrName));
+    glEnableVertexAttribArray (attribLocation (attrName));
   }
 
   /*************************************************************************/
@@ -189,6 +189,274 @@ namespace Framework
   GLuint Shader::uniLocation (const char* uniName)
   {
     return glGetUniformLocation (m_program, uniName);
+  }
+
+  /*************************************************************************/
+  // Method:    uni1i
+  // FullName:  Framework::Shader::uni1i
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: const char * uniName
+  // Parameter: int uniValue
+  // Brief:
+  /*************************************************************************/
+  void Shader::uni1i (const char* uniName, int uniValue)
+  {
+    GLuint loc = checkUniform (uniName);
+    uni1i (loc, uniValue);
+  }
+
+  /*************************************************************************/
+  // Method:    uni1i
+  // FullName:  Framework::Shader::uni1i
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: GLuint uniLoc
+  // Parameter: int uniValue
+  // Brief:
+  /*************************************************************************/
+  void Shader::uni1i (GLuint uniLoc, int uniValue)
+  {
+    glUniform1i (uniLoc, uniValue);
+  }
+
+  /*************************************************************************/
+  // Method:    uni2i
+  // FullName:  Framework::Shader::uni2i
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: const char * uniName
+  // Parameter: int uniValue1
+  // Parameter: int uniValue2
+  // Brief:
+  /*************************************************************************/
+  void Shader::uni2i (const char* uniName, int uniValue1, int uniValue2)
+  {
+    GLuint loc = checkUniform (uniName);
+    uni2i (loc, uniValue1, uniValue2);
+  }
+
+  /*************************************************************************/
+  // Method:    uni2i
+  // FullName:  Framework::Shader::uni2i
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: GLuint uniLoc
+  // Parameter: int uniValue1
+  // Parameter: int uniValue2
+  // Brief:
+  /*************************************************************************/
+  void Shader::uni2i (GLuint uniLoc, int uniValue1, int uniValue2)
+  {
+    glUniform2i (uniLoc, uniValue1, uniValue2);
+  }
+
+  /*************************************************************************/
+  // Method:    uni3i
+  // FullName:  Framework::Shader::uni3i
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: const char * uniName
+  // Parameter: int uniValue1
+  // Parameter: int uniValue2
+  // Parameter: int uniValue3
+  // Brief:
+  /*************************************************************************/
+  void Shader::uni3i (const char* uniName, int uniValue1, int uniValue2, int uniValue3)
+  {
+    GLuint loc = checkUniform (uniName);
+    uni3i (loc, uniValue1, uniValue2, uniValue3);
+  }
+
+  /*************************************************************************/
+  // Method:    uni3i
+  // FullName:  Framework::Shader::uni3i
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: GLuint uniLoc
+  // Parameter: int uniValue1
+  // Parameter: int uniValue2
+  // Parameter: int uniValue3
+  // Brief:
+  /*************************************************************************/
+  void Shader::uni3i (GLuint uniLoc, int uniValue1, int uniValue2, int uniValue3)
+  {
+    glUniform3i (uniLoc, uniValue1, uniValue2, uniValue3);
+  }
+
+  /*************************************************************************/
+  // Method:    uni4i
+  // FullName:  Framework::Shader::uni4i
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: const char * uniName
+  // Parameter: int uniValue1
+  // Parameter: int uniValue2
+  // Parameter: int uniValue3
+  // Parameter: int uniValue4
+  // Brief:
+  /*************************************************************************/
+  void Shader::uni4i (const char* uniName, int uniValue1, int uniValue2, int uniValue3, int uniValue4)
+  {
+    GLuint loc = checkUniform (uniName);
+    uni4i (loc, uniValue1, uniValue2, uniValue3, uniValue4);
+  }
+
+  /*************************************************************************/
+  // Method:    uni4i
+  // FullName:  Framework::Shader::uni4i
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: GLuint uniLoc
+  // Parameter: int uniValue1
+  // Parameter: int uniValue2
+  // Parameter: int uniValue3
+  // Parameter: int uniValue4
+  // Brief:
+  /*************************************************************************/
+  void Shader::uni4i (GLuint uniLoc, int uniValue1, int uniValue2, int uniValue3, int uniValue4)
+  {
+    glUniform4i (uniLoc, uniValue1, uniValue2, uniValue3, uniValue4);
+  }
+
+  /*************************************************************************/
+  // Method:    uni1iv
+  // FullName:  Framework::Shader::uni1iv
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: const char * uniName
+  // Parameter: const int * uniValue
+  // Parameter: int _count
+  // Brief:
+  /*************************************************************************/
+  void Shader::uni1iv (const char* uniName, const int* uniValue, int _count /* = 1*/)
+  {
+    GLuint loc = checkUniform (uniName);
+    uni1iv (loc, uniValue, _count);
+  }
+
+  /*************************************************************************/
+  // Method:    uni1iv
+  // FullName:  Framework::Shader::uni1iv
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: GLuint uniLoc
+  // Parameter: const int * uniValue
+  // Parameter: int _count
+  // Brief:
+  /*************************************************************************/
+  void Shader::uni1iv (GLuint uniLoc, const int* uniValue, int _count /* = 1*/)
+  {
+    glUniform1iv (uniLoc, _count, uniValue);
+  }
+
+  /*************************************************************************/
+  // Method:    uni2iv
+  // FullName:  Framework::Shader::uni2iv
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: const char * uniName
+  // Parameter: const int * uniValue
+  // Parameter: int _count
+  // Brief:
+  /*************************************************************************/
+  void Shader::uni2iv (const char* uniName, const int* uniValue, int _count /* = 1*/)
+  {
+    GLuint loc = checkUniform (uniName);
+    uni2iv (loc, uniValue, _count);
+  }
+
+  /*************************************************************************/
+  // Method:    uni2iv
+  // FullName:  Framework::Shader::uni2iv
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: GLuint uniLoc
+  // Parameter: const int * uniValue
+  // Parameter: int _count
+  // Brief:
+  /*************************************************************************/
+  void Shader::uni2iv (GLuint uniLoc, const int* uniValue, int _count /* = 1*/)
+  {
+    glUniform2iv (uniLoc, _count, uniValue);
+  }
+
+  /*************************************************************************/
+  // Method:    uni3iv
+  // FullName:  Framework::Shader::uni3iv
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: const char * uniName
+  // Parameter: const int * uniValue
+  // Parameter: int _count
+  // Brief:
+  /*************************************************************************/
+  void Shader::uni3iv (const char* uniName, const int* uniValue, int _count /* = 1*/)
+  {
+    GLuint loc = checkUniform (uniName);
+    uni3iv (loc, uniValue, _count);
+  }
+
+  /*************************************************************************/
+  // Method:    uni3iv
+  // FullName:  Framework::Shader::uni3iv
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: GLuint uniLoc
+  // Parameter: const int * uniValue
+  // Parameter: int _count
+  // Brief:
+  /*************************************************************************/
+  void Shader::uni3iv (GLuint uniLoc, const int* uniValue, int _count /* = 1*/)
+  {
+    glUniform3iv (uniLoc, _count, uniValue);
+  }
+
+  /*************************************************************************/
+  // Method:    uni4iv
+  // FullName:  Framework::Shader::uni4iv
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: const char * uniName
+  // Parameter: const int * uniValue
+  // Parameter: int _count
+  // Brief:
+  /*************************************************************************/
+  void Shader::uni4iv (const char* uniName, const int* uniValue, int _count /* = 1*/)
+  {
+    GLuint loc = checkUniform (uniName);
+    uni4iv (loc, uniValue, _count);
+  }
+
+  /*************************************************************************/
+  // Method:    uni4iv
+  // FullName:  Framework::Shader::uni4iv
+  // Access:    public 
+  // Returns:   void
+  // Qualifier:
+  // Parameter: GLuint uniLoc
+  // Parameter: const int * uniValue
+  // Parameter: int _count
+  // Brief:
+  /*************************************************************************/
+  void Shader::uni4iv (GLuint uniLoc, const int* uniValue, int _count /* = 1*/)
+  {
+    glUniform4iv (uniLoc, _count, uniValue);
   }
 
   /*************************************************************************/
@@ -690,6 +958,7 @@ namespace Framework
       glDeleteShader (gShader);
     }
 
+    this->Name = sName;
     return program;
   }
 

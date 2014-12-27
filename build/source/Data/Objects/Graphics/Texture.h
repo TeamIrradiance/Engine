@@ -39,12 +39,15 @@ namespace Framework
     void TexParameteri (GLenum target, GLenum pname, GLenum param);
     void TexEnvf (GLenum target, GLenum pname, GLenum param);
 
-    GLuint Get_ID ();
-    float Get_Aspect ();
-    glm::ivec2 Get_Size ();
+    void Set (Texture* atlas);
+
+    GLuint GetID ();
+    float GetAspect ();
+    glm::ivec2 GetSize ();
 
     // Functions
     Texcoord Texcoords;
+    std::string AtlasName;
 
   private:
     //DATA

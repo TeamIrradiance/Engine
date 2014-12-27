@@ -15,6 +15,7 @@
 
 namespace Framework
 {
+  std::unordered_map <std::string, std::list <Sprite*>> SpriteBatcher::m_spriteList;
 
   /*************************************************************************/
   // Method:    SpriteBatcher
@@ -57,7 +58,10 @@ namespace Framework
   {
     m_shader = static_cast<Shader*>(ResourceManager::LoadResource ("Sprite", R_SHADER));
     m_mesh = new SpriteMesh ();
-    m_matrixBuffer = const_cast<VBO*> (m_mesh->CreateSprite (m_shader));
+    m_mesh->CreateSprite (m_shader);
+    m_matrixBuffer = m_mesh->m_matrixVbo;
+    m_texBuffer = m_mesh->m_texVbo;
+    m_colBuffer = m_mesh->m_colVbo;
 
     m_vao->Unbind ();
     m_shader->DisableShader ();
@@ -72,10 +76,10 @@ namespace Framework
   // Parameter: Sprite * sprite
   // Brief: Add Sprite To This Batcher
   /*************************************************************************/
-  void SpriteBatcher::AddSprite (Sprite* sprite)
-  {
-    m_spriteList.push_back (sprite);
-    m_dataReady = false;
+  void SpriteBatcher::AddSprite(Sprite* sprite, std::string& textureName)
+{
+    m_spriteList [textureName].push_back (sprite);
+    //m_dataReady = false;
   }
 
   /*************************************************************************/
@@ -89,13 +93,18 @@ namespace Framework
   void SpriteBatcher::Batch ()
   {
     unsigned id = 0;
+    std::string textureName;
     for (auto& i : m_spriteList)
     {
-      i->Draw (id, m_matrixBuffer, m_texBuffer);
-      ++id;
-    }
+      textureName = i.first;
+      for (auto& j : m_spriteList [textureName])
+      {
+        j->Draw (id, m_matrixBuffer, m_colBuffer, m_texBuffer);
+        ++id;
+      }
 
-    m_mesh->DrawInstanced (m_shader, m_spriteList.size());
+      m_mesh->DrawInstanced (m_shader, m_spriteList [textureName].size ());
+    }
   }
 
 }

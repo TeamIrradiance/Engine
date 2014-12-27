@@ -22,9 +22,12 @@ namespace Framework
     glClearColor (m_clearColor.r, m_clearColor.g, m_clearColor.b, m_clearColor.a);
     batch->Initialize ();
 
-    for (int i = 0; i < 1000; ++i)
+    for (int i = 0; i < 1; ++i)
     {
-      batch->AddSprite (new Sprite ());
+      Sprite* sprite = new Sprite ();
+      sprite->SpriteSource = "Circle";
+      sprite->Initialize ();
+      //batch->AddSprite (sprite, ResourceManager::LoadResource("ATLAS", R_ATLAS)->Name);
     }
   }
 
@@ -36,6 +39,8 @@ namespace Framework
   void RenderPipeline::Draw ()
   {
     glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable (GL_BLEND);
+    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     batch->Batch ();
   }
 

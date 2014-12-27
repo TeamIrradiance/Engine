@@ -30,9 +30,13 @@ namespace Framework
 
     void DefineMeta ();
     void Initialize ();
-    void Draw (unsigned instanceID, VBO* posVbo, VBO* texVbo = nullptr);
+    void Draw (unsigned instanceID, VBO* posVbo, VBO* colVbo, VBO* texVbo);
+
+    std::string SpriteSource;
+    Vector4 Color;
 
   private:
     bool m_batched;
+    Texture* m_texture;
   };
 }

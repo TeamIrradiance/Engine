@@ -41,14 +41,17 @@ namespace Framework
     virtual ~Mesh();
 
     void DefineMeta();
-    void Load (ShapeData* data, Shader* shader);
+    void Load (ShapeData* data, Shader* shader, bool instance = false);
     virtual void Draw (Shader* shader);
     virtual void DrawInstanced (Shader* shader, unsigned instCount);
+
+    friend class SpriteBatcher;
 
   protected:
     //DATAS
     VAO* m_vao;
     VBO* m_posVbo;
+    VBO* m_colVbo;
     VBO* m_texVbo;
     EBO* m_indexBuffer;
   };
@@ -62,7 +65,9 @@ namespace Framework
     ~SpriteMesh ();
     virtual void DrawInstanced (Shader* shader, unsigned instCount);
 
-    VBO const* CreateSprite (Shader* shader);
+    void CreateSprite (Shader* shader);
+
+    friend class SpriteBatcher;
 
   private:
     //DATAS

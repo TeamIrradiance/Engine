@@ -57,7 +57,7 @@ namespace Framework
   // Parameter: Shader * shader
   // Brief: Upload Input Shape To GPU
   /*************************************************************************/
-  void Mesh::Load (ShapeData* data, Shader* shader)
+  void Mesh::Load (ShapeData* data, Shader* shader, bool instance /* = false*/)
   {
     m_vao = new VAO ();
 
@@ -66,15 +66,23 @@ namespace Framework
     shader->enableVertexAttribArray ("position");
     shader->vertexAttribPtr ("position", 3, 3 * sizeof (GLfloat), 0);
 
-    m_texVbo = new VBO ();
-    m_texVbo->UploadData (data->GetTexcoordBufferSize (), data->GetTexcoords ());
-    shader->enableVertexAttribArray ("texcoord");
-    shader->vertexAttribPtr ("texcoord", 2, 2 * sizeof (GLfloat), 0);
+    if (!instance)
+    {
+      m_texVbo = new VBO ();
+      m_texVbo->UploadData (data->GetTexcoordBufferSize (), data->GetTexcoords ());
+      shader->enableVertexAttribArray ("texcoord");
+      shader->vertexAttribPtr ("texcoord", 2, 2 * sizeof (GLfloat), 0);
+
+      m_colVbo = new VBO ();
+      shader->enableVertexAttribArray ("color");
+      shader->vertexAttribPtr ("color", 4, 4 * sizeof (GLfloat), 0);
+    }
 
     m_indexBuffer = new EBO ();
     m_indexBuffer->UploadData (data->GetIndexBufferSize (), data->GetIndexData());
 
     shader->uniMat4 ("mvp", glm::value_ptr (Matrix4x4 (1)));
+    shader->uni1i ("image", 0);
     shader->uni4f ("overrideColor", 1.0f, 1.0f, 1.0f, 1.0f);
 
     m_vao->Unbind ();
@@ -149,6 +157,8 @@ namespace Framework
     m_vao->Bind ();
 
     m_matrixVbo->UploadData <float> (GL_DYNAMIC_DRAW);
+    m_texVbo->UploadData<float> ();
+    m_colVbo->UploadData<float> ();
     glDrawElementsInstanced (GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0, instCount);
 
     m_vao->Unbind ();
@@ -164,7 +174,7 @@ namespace Framework
   // Parameter: Shader * shader
   // Brief: Create a Sprite Primitive. Generate Matrix and Texcoord Buffer
   /*************************************************************************/
-  VBO const* SpriteMesh::CreateSprite (Shader* shader)
+  void SpriteMesh::CreateSprite (Shader* shader)
   {
     m_vao = new VAO ();
     ShapeData data = ShapeGenerator::Generate_Quad ();
@@ -194,15 +204,25 @@ namespace Framework
 
     for (int c = 0; c < 4; ++c)
     {
-      glEnableVertexAttribArray (location + c); //location of each column
-      glVertexAttribPointer (location + c, components, type, normalized, datasize, pointer + c * sizeof(glm::vec4)); //tell other data
+      shader->enableVertexAttribArray (location + c);
+      shader->vertexAttribPtr (location + c, components, datasize, c * sizeof (glm::vec4));
+      //glEnableVertexAttribArray (location + c); //location of each column
+      //glVertexAttribPointer (location + c, components, type, normalized, datasize, pointer + c * sizeof(glm::vec4)); //tell other data
       glVertexAttribDivisor (location + c, divisor); //is it instanced?
     }
 
+    m_texVbo = new VBO ();
+    location = shader->attribLocation ("texcoord");
+    shader->enableVertexAttribArray (location);
+    shader->vertexAttribPtr (location, 2, 2 * sizeof (GLfloat), 0);
+
+    m_colVbo = new VBO ();
+    location = shader->attribLocation ("color");
+    shader->enableVertexAttribArray (location);
+    shader->vertexAttribPtr (location, 4, 4 * sizeof (GLfloat), 0);
+
     shader->uniMat4 ("mvp", glm::value_ptr (Matrix4x4 (1)));
     shader->uni4f ("overrideColor", 1.0f, 1.0f, 1.0f, 1.0f);
-
-    return m_matrixVbo;
   }
 
 }
