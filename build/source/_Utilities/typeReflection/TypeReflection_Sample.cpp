@@ -15,6 +15,8 @@
 #include "Components.h"
 #include "Deserialize.h"
 #include "ResourceManager.h"
+#include <string>
+
 void type_sample()
 {
 
