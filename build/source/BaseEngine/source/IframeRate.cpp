@@ -42,7 +42,7 @@ namespace Framework
   IframeRate::IframeRate(void)
   {
     _private = new pFrameRate;
-    g_csEngineCore->g_csFramerateControl = this;
+    G_CORE->g_csFramerateControl = this;
     m_dDt = 0.f;
   }
 

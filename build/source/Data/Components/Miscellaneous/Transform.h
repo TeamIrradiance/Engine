@@ -34,9 +34,19 @@ namespace Framework
     Matrix4x4 GetModelMatrix ();
     Matrix4x4 GetModelViewProjectionMatrix ();
 
+    void Translate (float x, float y, float z);
+    void Translate (Vector3& vec);
+    void Scale (float x, float y, float z);
+    void Scale (float s);
+    void Scale (Vector3& vec);
+    void Rotate (float r, float x, float y, float z);
+    void Rotate (float r, Vector3& vec);
+    void Rotate (float r);
+
     //DATA
-    Vector3 translation;
+    Vector3 position;
     Vector3 scale;
+    //Vector3 axis;
     float rotation;
 
     // 16 BYTE ALIGNMENT TO AVOID ACCESS VIOLATION

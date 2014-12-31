@@ -18,7 +18,7 @@
 /******************************************************************************/
 namespace Framework
 {
-  class GraphicsProcess : public Framework::CProcess
+  class GraphicsProcess : public CProcess
   {
   public:
     void VUpdate(const double dt);

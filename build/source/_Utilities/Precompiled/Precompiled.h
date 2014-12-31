@@ -29,6 +29,7 @@
 #include <map>
 #include <utility>
 #include <hash_map>
+#include <algorithm>
 
 //////////////////////////////////////////////////////////////////////////
 // I / O
@@ -67,6 +68,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 #include <glew.h>
+#include <glut.h>
 #include <glfw3.h>
 #include <SOIL.h>
 #include "Math_Defines.h"
@@ -133,6 +135,7 @@
 // Main Systems
 //////////////////////////////////////////////////////////////////////////
 
+#include "PhysicsProcess.h"
 #include "GraphicsProcess.h"
 #include "WindowProcess.h"
 #include "ResourceManager.h"

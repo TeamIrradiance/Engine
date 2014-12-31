@@ -57,7 +57,7 @@ namespace Framework
   void Transform::Initialize ()
   {
     gameObject->transform = this;
-    G_TRANSFORM->transformVectorMap [gameObject->m_layer].push_back (this);
+    G_TRANSFORM->AddTransform (this);
   }
 
   /*************************************************************************/
@@ -74,7 +74,7 @@ namespace Framework
     G_TRANSFORM->MatrixMode (MODEL);
     G_TRANSFORM->LoadIdentity ();
 
-    G_TRANSFORM->Translatefv ((float*)&translation);
+    G_TRANSFORM->Translatefv ((float*)&position);
     G_TRANSFORM->Scalefv ((float*)&scale);
     G_TRANSFORM->Rotatef (rotation, 0, 0, 1);
 
@@ -117,6 +117,46 @@ namespace Framework
   Matrix4x4 Transform::GetModelViewProjectionMatrix ()
   {
     return m_modelViewProjectionMatrix;
+  }
+
+  void Transform::Translate (float x, float y, float z)
+  {
+    position += Vector3 (x, y, z);
+  }
+
+  void Transform::Translate (Vector3& vec)
+  {
+    position += vec;
+  }
+
+  void Transform::Scale (float x, float y, float z)
+  {
+    scale += Vector3 (x, y, z);
+  }
+
+  void Transform::Scale (float s)
+  {
+    scale += Vector3 (s);
+  }
+
+  void Transform::Scale (Vector3& vec)
+  {
+    scale += vec;
+  }
+
+  void Transform::Rotate (float r, float x, float y, float z)
+  {
+    rotation += r;
+  }
+
+  void Transform::Rotate (float r, Vector3& vec)
+  {
+    rotation += r;
+  }
+
+  void Transform::Rotate (float r)
+  {
+    rotation += r;
   }
 
 }

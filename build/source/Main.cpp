@@ -23,11 +23,12 @@ int main (void)
   Engine.settings.consoleActive = true;
   Engine.settings.fps_cap = 60;
   Engine.settings.windowsX = 1024;
-  Engine.settings.windowsY = 576;
+  Engine.settings.windowsY = 768;
   Engine.settings.application_name = "Irradiance";
 
   AddProcess (new Framework::ResourceManager);
   AddProcess(new Framework::WindowProcess);
+  AddProcess (new Framework::PhysicsSystem);
   AddProcess(new Framework::GraphicsProcess);
 
   Engine.DefineMeta();

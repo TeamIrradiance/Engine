@@ -21,8 +21,8 @@ namespace Framework
   CProcessManager::CProcessManager()
   {
     //Assert if user try to initialize ProcessManager twice or recreate it
-    ErrorIf(g_csEngineCore->g_csProcessManager != NULL, "Processmanager has been created!");
-    g_csEngineCore->g_csProcessManager = this;
+    ErrorIf(G_CORE->g_csProcessManager != NULL, "Processmanager has been created!");
+    G_CORE->g_csProcessManager = this;
   }
 
 /******************************************************************************/

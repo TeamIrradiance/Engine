@@ -18,6 +18,8 @@ namespace Framework
   class Transform;
   class Sprite;
   class Camera;
+  class ShapeCollider2D;
+  class RigidBody2D;
 
 /******************************************************************************/
 /*!
@@ -58,6 +60,9 @@ namespace Framework
     Transform* transform;
     Sprite* sprite;
     Camera* camera;
+    ShapeCollider2D* collider;
+    RigidBody2D* rigidBody;
+
   };
 
 /******************************************************************************/

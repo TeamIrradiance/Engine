@@ -39,8 +39,6 @@ namespace Framework
     m_currentMatrix = 0;
 
     transformVectorMap [0];
-    transformVectorMap [1];
-    transformVectorMap [2];
   }
 
   /*************************************************************************/
@@ -130,7 +128,7 @@ namespace Framework
   // Parameter: float * v
   // Brief: Translate Current Matrix By Input Vector
   /*************************************************************************/
-  void TransformPipeline::Translatefv (float* v)
+  void TransformPipeline::Translatefv (const float* v)
   {
     if (m_currentMatrix == MODEL)
     {
@@ -201,7 +199,7 @@ namespace Framework
   // Parameter: float * v
   // Brief: Scale Current Matrix By Input Vector
   /*************************************************************************/
-  void TransformPipeline::Scalefv (float* v)
+  void TransformPipeline::Scalefv (const float* v)
   {
     if (m_currentMatrix == MODEL)
     {
@@ -350,6 +348,11 @@ namespace Framework
   void TransformPipeline::UploadMatrices (Shader* shader)
   {
     // TODO
+  }
+
+  void TransformPipeline::AddTransform (Transform* transform)
+    {
+    transformVectorMap [transform->gameObject->m_layer].push_back (transform);
   }
 
   /*************************************************************************/

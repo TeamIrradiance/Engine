@@ -23,7 +23,7 @@ namespace Framework
  */
 /******************************************************************************/
   #define AddProcess(a)\
-  g_csEngineCore->g_csProcessManager->AddProcessf(a);
+  G_CORE->g_csProcessManager->AddProcessf(a);
 
 /******************************************************************************/
 /*!

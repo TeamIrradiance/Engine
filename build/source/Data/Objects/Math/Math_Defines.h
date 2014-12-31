@@ -30,6 +30,10 @@
 #define M_PI_4 M_PI_2 * 2
 #endif // !M_PI_4
 
+#ifndef EPSILON
+#define EPSILON 0.0001f
+#endif // !EPSILON
+
 typedef glm::mat2 Matrix2x2;
 typedef glm::mat3 Matrix3x3;
 typedef glm::mat4 Matrix4x4;

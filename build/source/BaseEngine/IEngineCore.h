@@ -9,7 +9,7 @@
 /******************************************************************************/
 #pragma once
 #include "IBaseEngine.h"
-#define EngineSettings g_csEngineCore->settings
+#define EngineSettings G_CORE->settings
 
 
 struct EngineSetup
@@ -47,11 +47,11 @@ struct EngineCore
 
   //GLOBAL VARIABLES
   bool g_bGameIsActive;
-  Framework::GLContext g_glWindow;
+  Framework::GLContext G_CONTEXT;
   EngineSetup settings;
 
   //Debugging purposes
   bool m_bIsInitialized;
 };
 
-extern EngineCore* g_csEngineCore;
+extern EngineCore* G_CORE;

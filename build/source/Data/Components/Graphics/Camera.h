@@ -32,6 +32,7 @@ namespace Framework
     void Initialize ();
 
     void UpdateCamera ();
+    void Zoom (float zoom);
 
     // Functions
 
@@ -39,9 +40,19 @@ namespace Framework
     static Camera* main;
     static std::unordered_map<unsigned, Camera*> allCameras;
 
+    Vector3 m_viewDirection;
+    Vector3 m_upVector;
+    float m_size;
+    float m_aspect;
+    float m_fov;
+    float m_nearPlane;
+    float m_farPlane;
+
   private:
 
     // DATA
+    Matrix4x4 m_viewMatrix;
+    Matrix4x4 m_projectionMatrix;
 
   };
 }

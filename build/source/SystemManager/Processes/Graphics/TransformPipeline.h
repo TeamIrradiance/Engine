@@ -29,14 +29,15 @@ namespace Framework
     ~TransformPipeline ();
 
     void Update (double dt);
+    void AddTransform (Transform* transform);
 
     void LoadIdentity ();
     void MatrixMode (int mode);
     void Translatef (float x, float y, float z);
-    void Translatefv (float* v);
+    void Translatefv (const float* v);
     void Scalef (float x, float y, float z);
     void Scalef (float s);
-    void Scalefv (float* v);
+    void Scalefv (const float* v);
     void Rotatef (float r, float x, float y, float z);
     void Rotatefv (float r, float* v);
     void Ortho (float left, float right, float bottom, float top, float near = 0.0f, float farPlane = 1.0f);

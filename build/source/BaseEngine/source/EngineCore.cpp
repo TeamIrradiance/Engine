@@ -12,7 +12,7 @@
 #include "Sprite.h"
 
 
-EngineCore* g_csEngineCore = 0;
+EngineCore* G_CORE = 0;
 /******************************************************************************/
 /*!
 \class   EngineCore()
@@ -21,8 +21,8 @@ EngineCore* g_csEngineCore = 0;
 /******************************************************************************/
 EngineCore::EngineCore ()
 {
-  ErrorIf (g_csEngineCore != 0, "Engine is created!");
-  g_csEngineCore = this;
+  ErrorIf (G_CORE != 0, "Engine is created!");
+  G_CORE = this;
 
   g_bGameIsActive = true;
   m_bIsInitialized = false;
@@ -72,7 +72,7 @@ void EngineCore::Update ()
   {
     g_csFramerateControl->StartTime ();
     g_csProcessManager->UpdateProcesses (g_csFramerateControl->m_dDt);
-    g_glWindow.SwapBuffers ();
+    G_CONTEXT.SwapBuffers ();
     g_csFramerateControl->Update ();
   }
 }
@@ -118,7 +118,7 @@ void EngineCore::DefineMeta ()
     meta_end ()
 
     meta_begin (Transform)
-    meta_child (Transform, translation)
+    meta_child (Transform, position)
     meta_child (Transform, scale)
     meta_child (Transform, rotation)
     meta_end ()

@@ -1,16 +1,16 @@
 {
    "GameObject" : {
       "Transform" : {
+         "position" : {
+            "x" : 3.0,
+            "y" : 6.0,
+            "z" : 8.0
+         },
          "rotation" : 0.0,
          "scale" : {
             "x" : 3.0,
             "y" : 40.09999847412109,
             "z" : 1.0
-         },
-         "translation" : {
-            "x" : 3.0,
-            "y" : 6.0,
-            "z" : 8.0
          }
       }
    }

@@ -54,8 +54,8 @@ namespace Framework
     glfwPollEvents ();
 
     //glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS
-    if(glfwWindowShouldClose(g_csEngineCore->g_glWindow.GetWindow()))
-      g_csEngineCore->g_bGameIsActive = false;
+    if(glfwWindowShouldClose(G_CORE->G_CONTEXT.GetWindow()))
+      G_CORE->g_bGameIsActive = false;
 
     // Swap buffers
   }
@@ -94,7 +94,7 @@ namespace Framework
 
   bool WindowProcess::Create_Context ()
   {
-    g_csEngineCore->g_glWindow.Create_Context
+    G_CORE->G_CONTEXT.Create_Context
       (
       EngineSettings.windowsX,
       EngineSettings.windowsY,
