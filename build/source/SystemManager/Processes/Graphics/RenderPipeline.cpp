@@ -43,15 +43,29 @@ namespace Framework
     b->staticFriction = 0.0f;
     b->dynamicFriction = 0.0f;
 
-    CircleCollider2D* poly1 = new CircleCollider2D ();
-    poly1->radius = 1.0f;
+    PolygonCollider2D* poly1 = new PolygonCollider2D ();
+    //poly1->radius = 1.0f;
+    poly1->SetBox (2.0f, 2.0f);
     //poly1->SetBox (0.5f, 0.5f);
     RigidBody2D* b1 = PHYSICS->Add (poly1, 0.0f, 3.0f);
     b1->SetOrient (0.1f);
-    b1->SetStatic ();
+    //b1->SetStatic ();
     b1->restitution = 1.0f;
     b1->staticFriction = 0.0f;
     b1->dynamicFriction = 0.0f;
+
+    {
+      PolygonCollider2D* poly1 = new PolygonCollider2D ();
+      //poly1->radius = 1.0f;
+      poly1->SetBox (2.0f, 2.0f);
+      //poly1->SetBox (0.5f, 0.5f);
+      RigidBody2D* b1 = PHYSICS->Add (poly1, 0.0f, 3.0f);
+      b1->SetOrient (0.1f);
+      //b1->SetStatic ();
+      b1->restitution = 1.0f;
+      b1->staticFriction = 0.0f;
+      b1->dynamicFriction = 0.0f;
+    }
 
     {
       CircleCollider2D* poly1 = new CircleCollider2D ();
